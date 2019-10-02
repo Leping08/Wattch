@@ -1,0 +1,118 @@
+<?php
+
+namespace App\Observers;
+
+use App\Page;
+use App\SslResponse;
+use App\Task;
+use App\Website;
+use Illuminate\Support\Facades\Log;
+
+class WebsiteObserver
+{
+    /**
+     * Handle the website "created" event.
+     *
+     * @param \App\Website $website
+     * @return void
+     */
+    public function created(Website $website)
+    {
+        $website->execute();
+
+        $website->createHomePage();
+
+        Task::create([
+            'taskable_type' => 'App\Website',
+            'taskable_id' => $website->id,
+            'frequency' => 'daily'
+        ]);
+    }
+
+    /**
+     * Handle the website "updated" event.
+     *
+     * @param \App\Website $website
+     * @return void
+     */
+    public function updated(Website $website)
+    {
+        $website->execute();
+    }
+
+    /**
+     * Handle the website "deleted" event.
+     *
+     * @param \App\Website $website
+     * @return void
+     */
+    public function deleted(Website $website)
+    {
+        Log::info('Deleting Website Id: ' . $website->id);
+
+        //Delete any Pages related to the website
+        foreach ($website->pages as $page) {
+            $page->delete();
+        }
+
+        //Delete any Ssl_certs related to the website
+        foreach ($website->ssl_certs as $cert) {
+            $cert->delete();
+        }
+
+        //Delete any Tasks related to the website
+        foreach ($website->tasks as $task) {
+            $task->delete();
+        }
+    }
+
+    /**
+     * Handle the website "restored" event.
+     *
+     * @param \App\Website $website
+     * @return void
+     */
+    public function restored(Website $website)
+    {
+        Log::info('Restoring Website Id: ' . $website->id);
+
+        //Restore any Pages related to the website
+        $pages = Page::withTrashed()
+            ->where('website_id', $website->id)
+            ->get();
+
+        foreach ($pages as $page) {
+            $page->restore();
+        }
+
+        //Restore any SslResponses related to the website
+        $ssls = SslResponse::withTrashed()
+            ->where('website_id', $website->id)
+            ->get();
+
+        foreach ($ssls as $ssl) {
+            $ssl->restore();
+        }
+
+        //Restore any tasks related to the website
+        $tasks = Task::withTrashed()
+            ->where('taskable_type', 'App\Website')
+            ->where('taskable_id', $website->id)
+            ->get();
+
+        foreach ($tasks as $task) {
+            $task->restore();
+        }
+    }
+
+    /**
+     * Handle the website "force deleted" event.
+     *
+     * @param \App\Website $website
+     * @return void
+     */
+    public function forceDeleted(Website $website)
+    {
+        //
+    }
+}
