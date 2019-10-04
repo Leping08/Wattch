@@ -38,10 +38,6 @@ Route::get('/contact-us', function () {
     return view('pages.public.contact-us'); //TODO: Add contact us page
 });
 
-Route::get('/test', function (){
-    return \App\User::find(1)->paymentMethods();
-});
-
 /* Auth Routes */
 Route::middleware('auth')->group(function () {
 
