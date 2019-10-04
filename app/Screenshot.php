@@ -23,7 +23,6 @@ use Illuminate\Support\Facades\Log;
  * @property-read Page $page
  *
  */
-
 class Screenshot extends Model
 {
     use SoftDeletes;

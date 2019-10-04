@@ -27,7 +27,7 @@ class Website extends Model implements Taskable
 
     public function user()
     {
-        return $this->belongsTo(User::class,'user_id');
+        return $this->belongsTo(User::class, 'user_id');
     }
 
     public function pages()
@@ -50,7 +50,7 @@ class Website extends Model implements Taskable
         return $this->hasOne(Page::class, 'website_id')->where('route', '/');
     }
 
-    public function getLinkAttribute() : string
+    public function getLinkAttribute(): string
     {
         return '/website/' . $this->id;
     }
