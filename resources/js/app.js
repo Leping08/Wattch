@@ -6,7 +6,12 @@
 
 require('./bootstrap');
 
-window.Vue = require('vue');
+import Vue from 'vue';
+
+import VueCarousel from 'vue-carousel';
+import VueApexCharts from 'vue-apexcharts';
+Vue.use(VueCarousel);
+Vue.use(VueApexCharts);
 
 /**
  * The following block of code may be used to automatically register your
@@ -21,6 +26,8 @@ window.Vue = require('vue');
 
 Vue.component('dropdown', require('./components/Dropdown.vue').default);
 Vue.component('modal', require('./components/Modal.vue').default);
+Vue.component('page-chat', require('./components/PageChart').default);
+Vue.component('apexchart', VueApexCharts);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

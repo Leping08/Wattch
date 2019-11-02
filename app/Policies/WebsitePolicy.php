@@ -41,6 +41,7 @@ class WebsitePolicy
      */
     public function create(User $user)
     {
+        //return $user->subscription->product->features->rules->limit > $user->websites->count()
         // TODO add logic to make sure they have not hit the website limit
     }
 

@@ -78,9 +78,5 @@ class AnalyzePage implements ShouldQueue
                 ]);
             }
         }
-
-        //if($this->page->id === $this->page->website->home_page->id) {
-        CaptureScreenshot::dispatchNow($this->page);
-        //}
     }
 }

@@ -29,9 +29,10 @@ class PageController extends Controller
 
         $page = $page->load([
             'website',
+            'screenshots',
             'http_responses' => function ($query) {
                 $query->orderBy('created_at', 'desc')
-                    ->take(1);
+                    ->take(25);
             }
         ]);
 
@@ -40,7 +41,7 @@ class PageController extends Controller
             ->take(10)
             ->get();
 
-        return $page;
+        return view('pages.auth.pages.show', compact('page'));
     }
 
     public function store(Request $request)

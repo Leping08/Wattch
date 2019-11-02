@@ -19,12 +19,18 @@
 </head>
 <body class="bg-gray-200 h-screen antialiased leading-none">
 
-    <div  id="app">
-        @include('layouts.navbar')
+    <div id="app">
 
-        @yield('content')
+        <div class="min-h-screen flex flex-col">
 
-        @include('layouts.footer')
+            @include('layouts.navbar')
+
+            <div class="flex-grow">
+                @yield('content')
+            </div>
+
+            @include('layouts.footer')
+        </div>
     </div>
 
     <!-- Scripts -->

@@ -14,7 +14,7 @@
                 <dropdown align="right" width="150px">
                     <template v-slot:trigger>
                         <button
-                            class="no-underline focus:outline-none hover:bg-white rounded-full hover:shadow p-2 cursor-pointer text-xl text-gray-700"
+                            class="card bg-white p-2 rounded-full text-lg focus:outline-none"
                             v-pre
                         >
                             <span class="mdi mdi-dots-vertical"></span>
@@ -91,31 +91,31 @@
         <div class="flex flex-wrap ">
             <div class="w-full sm:w-1/1 p-3">
                 <form action="{{ route('pages.store') }}" method="POST"
-                      class="bg-white rounded-lg shadow-md hover:shadow-xl p-8 mb-4">
+                      class="bg-white card p-6 mb-4">
                     @csrf()
-                    <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="route">
-                            Watch Page
-                        </label>
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="route">
+                        Watch Page
+                    </label>
+                    <div class="mb-4 flex">
                         <input
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                            class="input flex-1"
                             id="route" type="text" name="route" placeholder="/about-us">
                         <input class="" id="website" type="hidden" name="website_id" value="{{ $website->id }}">
+                        <button type="submit"
+                                class="btn-teal ml-4">
+                            Submit
+                        </button>
                     </div>
-                    <button type="submit"
-                            class="bg-teal-500 hover:bg-teal-700 text-gray-100 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                        Submit
-                    </button>
                 </form>
             </div>
         </div>
 
         <modal name="delete-modal">
             <h1 class="font-bold text-xl mb-4">Delete Website</h1>
-            <p>Are you sure you want to delete <span class="text-gray-600 italic font-bold">{{ $website->domain }}</span> ?</p>
+            <p>Are you sure you want to delete <span class="text-teal-600 italic font-bold">{{ $website->domain }}</span> ?</p>
             <template v-slot:footer>
-                <a href="#" class="bg-gray-600 py-2 px-4 rounded text-white hover:bg-gray-700 mr-2 shadow">Cancel</a>
-                <a href="#" class="bg-red-600 hover:bg-red-700 py-2 px-4 rounded text-white shadow">Delete</a>
+                <a href="#" class="btn-teal mr-2">Cancel</a>
+                <a href="#" class="btn-teal bg-red-500 hover:bg-red-600">Delete</a> {{--TODO Get delete to work--}}
             </template>
         </modal>
 

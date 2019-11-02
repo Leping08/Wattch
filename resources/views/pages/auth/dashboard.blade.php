@@ -5,6 +5,8 @@
         <div class="">
             <div class="">
 
+                {{ auth()->user()->subscription->product->features }}
+
                 @if (session('status'))
                     <div
                         class="text-sm border border-t-8 rounded text-green-700 border-green-600 bg-green-100 px-3 py-4 mb-4"
@@ -20,7 +22,11 @@
                             <!--Metric Card-->
                             <a href="{{{$item['link']}}}">
                                 @php
-                                    $percent = (round(($item['valid_count'] / $item['total']), 2) * 100)
+                                    if($item['total']){
+                                        $percent = (round(($item['valid_count'] / $item['total']), 2) * 100);
+                                    } else {
+                                        $percent = 0;
+                                    }
                                 @endphp
                                 <div class="mb-10">
                                     <div class="rounded bg-white rounded-lg hover:shadow-xl shadow flex justify-center">

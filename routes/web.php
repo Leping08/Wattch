@@ -22,6 +22,9 @@ Route::get('/', function () {
     return view('pages.public.home');
 });
 
+/* @see SignUpController::store() */
+Route::post('/sign-up', 'SignUpController@store');
+
 Route::get('/about', function () {
     return view('pages.public.about'); //TODO: Add about page
 });
@@ -59,6 +62,9 @@ Route::middleware('auth')->group(function () {
     /* @see WebsiteController::edit() */
     Route::get('/websites/{website}/edit', 'WebsiteController@edit')->name('websites.edit');
 
+    /* @see WebsiteController::destroy() */
+    Route::delete('/websites/{website}', 'WebsiteController@destroy')->name('websites.destroy');
+
 
     /* @see PageController::index() */
     Route::get('/pages', 'PageController@index')->name('pages.index');
@@ -74,5 +80,5 @@ Route::middleware('auth')->group(function () {
     Route::post('/scan/websites/{website}', 'ScanWebsiteController@store')->name('scan.websites');
 
     /* @see ScanPageController::store() */
-    Route::post('/scan/pages/{website}', 'ScanPageController@store')->name('scan.pages');
+    Route::post('/scan/pages/{page}', 'ScanPageController@store')->name('scan.pages');
 });

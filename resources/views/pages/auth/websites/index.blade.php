@@ -67,20 +67,23 @@
         <div class="flex flex-wrap ">
             <div class="w-full sm:w-1/1 p-3">
                 <form action="{{ route('websites.store') }}" method="POST"
-                      class="bg-white rounded-lg shadow-md hover:shadow-xl p-8 mb-4">
+                      class="bg-white card p-6 mb-4">
                     @csrf()
-                    <div class="mb-4">
-                        <label class="block text-gray-700 text-sm font-bold mb-2" for="website">
-                            Add Website
-                        </label>
-                        <input
-                            class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
-                            id="website" type="text" name="domain" placeholder="https://wattch.io/">
+                    <label class="block text-gray-700 text-sm font-bold mb-2" for="website">
+                        Add Website
+                    </label>
+                    <div class="flex">
+                        <div class="mb-4 flex-1">
+                            <input
+                                class="input"
+                                id="website" type="text" name="domain" placeholder="https://wattch.io/">
+                        </div>
+                        <div>
+                            <button type="submit" class="ml-4 btn-teal">
+                                Submit
+                            </button>
+                        </div>
                     </div>
-                    <button type="submit"
-                            class="bg-teal-500 hover:bg-teal-700 text-gray-100 font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                        Submit
-                    </button>
                 </form>
             </div>
         </div>

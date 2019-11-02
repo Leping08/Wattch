@@ -1,15 +1,15 @@
 <template>
-    <div :id="name" class="overlay text-left absolute inset-0 flex justify-center opacity-0 items-center">
+    <div :id="name" class="overlay fixed inset-0 w-full h-screen flex items-center justify-center">
         <a href="#" class="cancel"></a>
 
-        <div class="modal relative rounded-lg bg-white p-4 shadow max-w-5xl">
+        <div class="modal relative rounded-lg bg-white p-4 shadow max-w-5xl m-4">
             <slot></slot>
 
             <footer class="flex mt-8">
                 <slot name="footer"></slot>
             </footer>
 
-            <a href="#" class="close">&times;</a>
+            <a href="#" class="close text-gray-600 text-2xl no-underline hover:text-gray-800">&times;</a>
         </div>
     </div>
 </template>
@@ -37,8 +37,6 @@
         position: absolute;
         top: 15px;
         right: 15px;
-        color: grey;
-        text-decoration: none;
     }
     .overlay .cancel {
         position: absolute;

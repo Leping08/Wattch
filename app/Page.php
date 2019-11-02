@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Jobs\AnalyzePage;
+use App\Jobs\CaptureScreenshot;
 use App\Library\Interfaces\Taskable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -10,7 +11,8 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
 /**
- * A page for a website
+ * A page for a website. This is a route for a website.
+ * Ex: '/about-us'
  *
  * An Eloquent Model: 'Page'
  *
@@ -23,6 +25,7 @@ use Illuminate\Support\Facades\Log;
  * @property-read Website $website
  * @property-read HttpResponse $http_responses
  * @property-read HttpResponse $latest_http_response
+ * @property-read Screenshot $screenshots
  * @property-read Task $tasks
  *
  */
@@ -91,5 +94,10 @@ class Page extends Model implements Taskable
     {
         Log::info("Executing Page:$this->id");
         AnalyzePage::dispatchNow($this);
+    }
+
+    public function screenshot()
+    {
+        CaptureScreenshot::dispatchNow($this);
     }
 }

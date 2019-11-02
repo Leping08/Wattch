@@ -10,7 +10,7 @@
 
         <transition name="pop-out-quick">
             <div v-show="isOpen"
-                 class="bg-white absolute bg-card py-2 rounded-lg shadow mt-2"
+                 class="bg-white absolute bg-card py-2 rounded-lg shadow mt-2 z-10"
                  :class="align === 'left' ? 'left-0' : 'right-0'"
                  :style="{ width }"
             >

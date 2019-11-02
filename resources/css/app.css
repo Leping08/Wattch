@@ -36,6 +36,36 @@
  * @import "components/forms";
  */
 
+.btn-teal {
+    @apply rounded-lg px-4 py-2 bg-teal-500 text-white font-semibold leading-tight shadow rounded-lg
+}
+.btn-teal:hover {
+    @apply bg-teal-600;
+}
+
+.card {
+    @apply object-contain rounded-lg shadow
+}
+.card:hover {
+    @apply shadow-lg
+}
+
+.input {
+    @apply shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight
+}
+
+.input:focus {
+    @apply outline-none shadow-outline
+}
+
+.card-overlap {
+    @apply bg-gray-100 rounded-lg shadow
+}
+
+.card-overlap:hover {
+    @apply shadow-lg
+}
+
 /**
  * This injects all of Tailwind's utility classes, generated based on your
  * config file.

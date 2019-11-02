@@ -54,6 +54,18 @@ class WebsiteController extends Controller
 
     public function edit(Website $website)
     {
+        //TODO: Create edit view and hook it up
         return $website;
+    }
+
+    public function destroy(Website $website)
+    {
+        $this->authorize('destroy', $website);
+
+        $website->delete();
+
+        //TODO Add flash message
+        return route('websites.index');
+
     }
 }

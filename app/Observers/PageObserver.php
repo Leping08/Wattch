@@ -4,6 +4,7 @@ namespace App\Observers;
 
 use App\HttpResponse;
 use App\Page;
+use App\Screenshot;
 use App\Task;
 use Illuminate\Support\Facades\Log;
 
@@ -12,12 +13,15 @@ class PageObserver
     /**
      * Handle the page "created" event.
      *
-     * @param \App\Page $page
+     * @param Page $page
      * @return void
      */
     public function created(Page $page)
     {
         $page->execute();
+
+        $page->screenshot();
+
         Task::create([
             'taskable_type' => 'App\Page',
             'taskable_id' => $page->id,
@@ -28,18 +32,20 @@ class PageObserver
     /**
      * Handle the page "updated" event.
      *
-     * @param \App\Page $page
+     * @param Page $page
      * @return void
      */
     public function updated(Page $page)
     {
         $page->execute();
+
+        $page->screenshot();
     }
 
     /**
      * Handle the page "deleted" event.
      *
-     * @param \App\Page $page
+     * @param Page $page
      * @return void
      */
     public function deleted(Page $page)
@@ -55,12 +61,17 @@ class PageObserver
         foreach ($page->tasks as $task) {
             $task->delete();
         }
+
+        //Delete any screenshots related to the page
+        foreach ($page->screenshots as $screenshot) {
+            $screenshot->delete();
+        }
     }
 
     /**
      * Handle the page "restored" event.
      *
-     * @param \App\Page $page
+     * @param Page $page
      * @return void
      */
     public function restored(Page $page)
@@ -76,6 +87,7 @@ class PageObserver
             $http->restore();
         }
 
+
         //Restore any Tasks related to the page
         $tasks = Task::withTrashed()
             ->where('taskable_type', 'App\Page')
@@ -86,13 +98,21 @@ class PageObserver
             $task->restore();
         }
 
-        //TODO Delete screenshots for page
+
+        //Restore any Screenshots related to the page
+        $screenshots = Screenshot::withTrashed()
+            ->where('page_id', $page->id)
+            ->get();
+
+        foreach ($screenshots as $screenshot) {
+            $screenshot->restore();
+        }
     }
 
     /**
      * Handle the page "force deleted" event.
      *
-     * @param \App\Page $page
+     * @param Page $page
      * @return void
      */
     public function forceDeleted(Page $page)
