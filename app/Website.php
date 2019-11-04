@@ -87,13 +87,4 @@ class Website extends Model implements Taskable
         Log::info("Executing Website:$this->id");
         AnalyzeWebsite::dispatchNow($this);
     }
-
-    public function createHomePage()
-    {
-        //TODO Add logic to not generate more then one home page for a website
-        Page::create([
-            'website_id' => $this->id,
-            'route' => '/'
-        ]);
-    }
 }

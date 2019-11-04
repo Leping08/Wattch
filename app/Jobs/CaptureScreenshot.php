@@ -14,6 +14,7 @@ use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Laravel\Dusk\Browser;
@@ -42,39 +43,47 @@ class CaptureScreenshot implements ShouldQueue
      */
     public function handle()
     {
-        $process = (new ChromeProcess())->toProcess();
-        $process->start();
-        $options = (new ChromeOptions())->addArguments(['--disable-gpu', '--headless']);
-        $capabilities = DesiredCapabilities::chrome()->setCapability(ChromeOptions::CAPABILITY, $options);
-        $driver = retry(5, function () use ($capabilities) {
-            return RemoteWebDriver::create('http://localhost:9515', $capabilities);
-        }, 50);
-        $browser = new Browser($driver);
-
-        //Start by setting your full desired width and an arbitrary height
-        $size = new WebDriverDimension(1920, 1080);
-        $browser->driver->manage()->window()->setSize($size);
-        $browser->visit($this->page->full_route);
-
-        $browser->waitUntilMissing('.loading');
-        $image = $browser->driver->TakeScreenshot(); //$image is now the image data in PNG format
-
-        $uuid = (string)Str::uuid(); //Create a uuid for the name of the file
-
-        $filename = 'screenshots/page_' . $this->page->id . '/' . $uuid . '.png'; //timestamp as a filename
-        if(Storage::disk('public')->put($filename, $image)) { //save the image somewhere useful
-            $path = 'storage/' . $filename; //set the src to the storage folder
-            //$path = Storage::disk('local')->path($filename); //TODO get the path to work on local and in deployment
+        if (App::runningUnitTests()) {
+            Screenshot::create([
+                'uuid' => (string)Str::uuid(),
+                'page_id' => $this->page->id,
+                'src' => '/' . (string)Str::uuid()
+            ]);
         } else {
-            throw new \Exception('Could not save image');
+            $process = (new ChromeProcess())->toProcess();
+            $process->start();
+            $options = (new ChromeOptions())->addArguments(['--disable-gpu', '--headless']);
+            $capabilities = DesiredCapabilities::chrome()->setCapability(ChromeOptions::CAPABILITY, $options);
+            $driver = retry(5, function () use ($capabilities) {
+                return RemoteWebDriver::create('http://localhost:9515', $capabilities);
+            }, 50);
+            $browser = new Browser($driver);
+
+            //Start by setting your full desired width and an arbitrary height
+            $size = new WebDriverDimension(1920, 1080);
+            $browser->driver->manage()->window()->setSize($size);
+            $browser->visit($this->page->full_route);
+
+            $browser->waitUntilMissing('.loading');
+            $image = $browser->driver->TakeScreenshot(); //$image is now the image data in PNG format
+
+            $uuid = (string)Str::uuid(); //Create a uuid for the name of the file
+
+            $filename = 'screenshots/page_' . $this->page->id . '/' . $uuid . '.png'; //timestamp as a filename
+            if (Storage::disk('public')->put($filename, $image)) { //save the image somewhere useful
+                $path = 'storage/' . $filename; //set the src to the storage folder
+                //$path = Storage::disk('local')->path($filename); //TODO get the path to work on local and in deployment
+            } else {
+                throw new \Exception('Could not save image');
+            }
+
+            $driver->quit();
+
+            Screenshot::create([
+                'uuid' => $uuid,
+                'page_id' => $this->page->id,
+                'src' => $path
+            ]);
         }
-
-        $driver->quit();
-
-        Screenshot::create([
-            'uuid' => $uuid,
-            'page_id' => $this->page->id,
-            'src' => $path
-        ]);
     }
 }
