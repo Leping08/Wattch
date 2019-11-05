@@ -34,6 +34,10 @@ class SslResponse extends Model
         'ssl_raw',
     ];
 
+    protected $casts = [
+        'ssl_raw' => 'array'
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */

@@ -43,6 +43,11 @@ class HttpResponse extends Model
         'request_stats_raw'
     ];
 
+    protected $casts = [
+        'headers_raw' => 'array',
+        'request_stats_raw' => 'array'
+    ];
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
      */
@@ -50,7 +55,6 @@ class HttpResponse extends Model
     {
         return $this->belongsTo(Page::class);
     }
-
 
     /**
      * @return bool
