@@ -77,6 +77,9 @@ class User extends Authenticatable
         return $this->hasMany(Website::class, 'user_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function subscription()
     {
         return $this->hasOne(Subscription::class, 'user_id'); //TODO this could have many

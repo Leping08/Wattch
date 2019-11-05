@@ -47,41 +47,65 @@ class Website extends Model implements Taskable
 //        static::addGlobalScope(new UserScope());
 //    }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function user()
     {
         return $this->belongsTo(User::class, 'user_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function pages()
     {
         return $this->hasMany(Page::class, 'website_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function ssl_certs()
     {
         return $this->hasMany(SslResponse::class, 'website_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function latest_ssl_response()
     {
         return $this->hasOne(SslResponse::class, 'website_id')->latest();
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function home_page()
     {
         return $this->hasOne(Page::class, 'website_id')->where('route', '/');
     }
 
+    /**
+     * @return string
+     */
     public function getLinkAttribute(): string
     {
         return '/website/' . $this->id;
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
     public function tasks()
     {
         return $this->morphMany(Task::class, 'taskable');
     }
 
+    /**
+     * @return void
+     */
     public function execute()
     {
         Log::info("Executing Website:$this->id");

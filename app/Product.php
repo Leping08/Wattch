@@ -32,17 +32,26 @@ class Product extends Model
         'stripe_plan'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasManyThrough
+     */
     public function users()
     {
         //TODO Make sure this works
         return $this->hasManyThrough(User::class, Subscription::class, 'user_id', 'id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function features()
     {
         return $this->hasMany(Feature::class);
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function subscriptions()
     {
         return $this->hasMany(Subscription::class, 'stripe_plan', 'stripe_plan');

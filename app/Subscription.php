@@ -28,6 +28,9 @@ use Illuminate\Support\Carbon;
  */
 class Subscription extends \Laravel\Cashier\Subscription
 {
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function product()
     {
         return $this->hasOne(Product::class, 'stripe_plan', 'stripe_plan');

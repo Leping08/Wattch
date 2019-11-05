@@ -42,41 +42,66 @@ class Page extends Model implements Taskable
         'passing' => 'boolean'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function website()
     {
         return $this->belongsTo(Website::class, 'website_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function http_responses()
     {
         return $this->hasMany(HttpResponse::class, 'page_id');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
     public function latest_http_response()
     {
         return $this->hasOne(HttpResponse::class, 'page_id')->latest();
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphMany
+     */
     public function tasks()
     {
         return $this->morphMany(Task::class, 'taskable');
     }
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
     public function screenshots()
     {
         return $this->hasMany(Screenshot::class, 'page_id');
     }
 
+    /**
+     * @return string
+     */
     public function getFullRouteAttribute()
     {
         return $this->remove_trailing_slashes($this->website->domain) . $this->route;
     }
 
+    /**
+     * @param $url
+     * @return string
+     */
     public function remove_trailing_slashes($url)
     {
         return rtrim($url, '/');
     }
 
+    /**
+     * @return bool
+     */
     public function getPassingAttribute(): bool
     {
         if ($this->latest_http_response) {
@@ -90,12 +115,18 @@ class Page extends Model implements Taskable
         }
     }
 
+    /**
+     * @return void
+     */
     public function execute()
     {
         Log::info("Executing Page:$this->id");
         AnalyzePage::dispatchNow($this);
     }
 
+    /**
+     * @return void
+     */
     public function screenshot()
     {
         CaptureScreenshot::dispatchNow($this);

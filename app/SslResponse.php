@@ -34,6 +34,9 @@ class SslResponse extends Model
         'ssl_raw',
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function website()
     {
         return $this->belongsTo(Website::class, 'website_id');

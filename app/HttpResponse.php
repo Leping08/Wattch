@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
+use phpDocumentor\Reflection\Types\Boolean;
 
 /**
  * A model for a website response. This is the
@@ -42,14 +43,20 @@ class HttpResponse extends Model
         'request_stats_raw'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function page()
     {
         return $this->belongsTo(Page::class);
     }
 
-    public function valid()
+
+    /**
+     * @return bool
+     */
+    public function valid(): bool
     {
-        // Return true if its not a 400 page
         return !Str::startsWith($this->response_code, '4');
     }
 }

@@ -34,11 +34,17 @@ class Screenshot extends Model
         'src'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
+     */
     public function page()
     {
         return $this->belongsTo(Page::class);
     }
 
+    /**
+     * @return void
+     */
     public function execute()
     {
         Log::info("Executing Screenshot:$this->id");

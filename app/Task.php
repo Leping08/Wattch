@@ -32,6 +32,9 @@ class Task extends Model
         'frequency'
     ];
 
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\MorphTo
+     */
     public function taskable()
     {
         return $this->morphTo();
