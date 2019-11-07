@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Tests\Unit\Models;
-
 
 use App\Jobs\AnalyzeWebsite;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
