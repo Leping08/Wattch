@@ -41,13 +41,4 @@ class Screenshot extends Model
     {
         return $this->belongsTo(Page::class);
     }
-
-    /**
-     * @return void
-     */
-    public function execute()
-    {
-        Log::info("Executing Screenshot:$this->id");
-        CaptureScreenshot::dispatchNow($this);
-    }
 }

@@ -24,11 +24,15 @@ class CaptureScreenshot implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
+    /**
+     * @var Page
+     */
     protected $page;
 
     /**
      * Create a new job instance.
      *
+     * @param Page $page
      * @return void
      */
     public function __construct(Page $page)
