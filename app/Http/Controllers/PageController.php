@@ -2,19 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Jobs\CaptureScreenshot;
-use App\Library\Classes\Screenshot;
-use App\Library\Classes\Wattch;
 use App\Page;
-use App\Website;
-use Facebook\WebDriver\Chrome\ChromeOptions;
-use Facebook\WebDriver\Remote\DesiredCapabilities;
-use Facebook\WebDriver\Remote\RemoteWebDriver;
-use Facebook\WebDriver\WebDriverDimension;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Storage;
-use Laravel\Dusk\Browser;
-use Laravel\Dusk\Chrome\ChromeProcess;
 
 class PageController extends Controller
 {

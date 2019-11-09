@@ -27,17 +27,25 @@ use Illuminate\Support\Facades\Log;
  * @property-read HttpResponse $latest_http_response
  * @property-read Screenshot $screenshots
  * @property-read Task $tasks
+ * @property string $full_route
+ * @property bool $passing
  *
  */
 class Page extends Model implements Taskable
 {
     use SoftDeletes;
 
+    /**
+     * @var array
+     */
     protected $fillable = [
         'website_id',
         'route'
     ];
 
+    /**
+     * @var array
+     */
     protected $casts = [
         'passing' => 'boolean'
     ];
@@ -130,5 +138,13 @@ class Page extends Model implements Taskable
     public function screenshot()
     {
         CaptureScreenshot::dispatchNow($this);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
+     */
+    public function assertions()
+    {
+        return $this->hasMany(Assertion::class);
     }
 }
