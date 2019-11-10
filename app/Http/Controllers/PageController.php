@@ -19,6 +19,8 @@ class PageController extends Controller
         $page = $page->load([
             'website',
             'screenshots',
+            'assertions.latest_result',
+            'assertions.type',
             'http_responses' => function ($query) {
                 $query->orderBy('created_at', 'desc')
                     ->take(25);

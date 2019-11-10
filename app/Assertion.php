@@ -89,4 +89,12 @@ class Assertion extends Model implements Taskable
     {
         return $this->hasMany(AssertionResult::class);
     }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function latest_result()
+    {
+        return $this->hasOne(AssertionResult::class)->latest();
+    }
 }
