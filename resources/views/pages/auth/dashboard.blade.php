@@ -1,90 +1,88 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mx-auto">
-        <div class="">
-            <div class="">
+    <div class="">
+        <div class="flex">
+            @php
+                $items = [
+                    [
+                        'title' => 'Websites',
+                        'icon' => 'monitor-dashboard',
+                        'value' => $websites_count,
+                        'link' => route('websites.index')
+                    ],
+                    [
+                        'title' => 'Assertions',
+                        'icon' => 'check',
+                        'value' => $assertions_count,
+                        'link' => '#'
+                    ],
+                    [
+                        'title' => 'Alerts',
+                        'icon' => 'bell-outline',
+                        'value' => 0,
+                        'link' => '#'
+                    ],
+                ]
+            @endphp
 
-                @if (session('status'))
-                    <div
-                        class="text-sm border border-t-8 rounded text-green-700 border-green-600 bg-green-100 px-3 py-4 mb-4"
-                        role="alert">
-                        {{ session('status') }}
-                    </div>
-                @endif
-
-
-                <div class="flex flex-wrap">
-                    @foreach($items as $index => $item)
-                        <div class="w-full sm:w-1/1 md:w-1/2 lg:w-1/4 p-3">
-                            <!--Metric Card-->
-                            <a href="{{{$item['link']}}}">
-                                @php
-                                    if($item['total']){
-                                        $percent = (round(($item['valid_count'] / $item['total']), 2) * 100);
-                                    } else {
-                                        $percent = 0;
-                                    }
-                                @endphp
-                                <div class="mb-10">
-                                    <div class="rounded bg-white rounded-lg hover:shadow-xl shadow flex justify-center">
-                                        <img class="object-contain h-56 pb-8 p-2"
-                                             src="{{ $item['image'] }}" alt="">
-                                    </div>
-                                </div>
-
-                                <div class="bg-gray-100 rounded-lg hover:shadow-xl shadow relative -mt-16 mx-2">
-                                    <div class="flex justify-center p-2">
-                                        <div class="text-xl text-gray-600 italic">{{ $item['title'] }}</div>
-                                    </div>
-
-                                    <div class="shadow w-full bg-red-700 rounded-bl-lg rounded-br-lg">
-                                        <div
-                                            class="bg-teal-500 text-xs leading-none py-1 text-center text-white rounded-bl-lg h-3"
-                                            style="width: {{ $percent }}%">
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                            <!--/Metric Card-->
+            @foreach($items as $item)
+                <a href="{{$item['link']}}" class="card w-1/2 flex justify-between items-center bg-white h-24 text-center mx-2">
+                    <div class="ml-4">
+                        <div class="pb-2">
+                            <span class="italic text-gray-700 font-bold text-2xl">{{$item['value']}}</span>
                         </div>
-                    @endforeach
-                </div>
-
-
-                <div class="flex flex-wrap ">
-                    <div class="w-full md:w-1/1 xl:w-1/2 p-3">
-                        <!--Graph Card-->
-                        <div class="bg-white border-transparent rounded-lg shadow-md hover:shadow-lg">
-                            <div class="bg-gray-700 border-b-4 border-teal-500 rounded-tl-lg rounded-tr-lg p-2">
-                                <h5 class="font-bold text-white">Graph</h5>
-                            </div>
-                            <div class="p-5">
-                            </div>
+                        <div>
+                            <span class="italic text-gray-600 text-xl">{{$item['title']}}</span>
                         </div>
-                        <!--/Graph Card-->
                     </div>
+                    <div class="p-3 mr-4">
+                        <span class="mdi mdi-{{$item['icon']}} text-teal-600 text-3xl"></span>
+                    </div>
+                </a>
+            @endforeach
+        </div>
 
-                    <div class="w-full md:w-1/1 xl:w-1/2 p-3">
-                        <!--Graph Card-->
-                        <div class="bg-white border-transparent rounded-lg shadow-md hover:shadow-lg">
-                            <div class="bg-gray-700 border-b-4 border-teal-500 rounded-tl-lg rounded-tr-lg p-2">
-                                <h5 class="font-bold text-white">Graph</h5>
-                            </div>
-                            <div class="p-5">
-                            </div>
+        <div class="flex">
+            <div class="card w-full bg-white mx-2 mt-4">
+                <dashboard-chart success-counts="{{$assertions_success_by_day}}" fail-counts="{{$assertions_fails_by_day}}"></dashboard-chart>
+            </div>
+        </div>
+
+        <div class="flex">
+            <div class="card w-full bg-white mx-2 mt-4">
+                <div class="">
+                    <div class="text-gray-600 italic">
+                        <div class="overflow-y-auto rounded-lg overflow-auto h-64 scrollbar-w-2 scrollbar-track-gray-lighter scrollbar-thumb-rounded scrollbar-thumb-gray scrolling-touch">
+                            <table class="w-full text-left table-collapse">
+                                <thead>
+                                    <tr class="bg-gray-100 shadow">
+                                        <th class="text-sm font-semibold text-gray-700 p-2">Status</th>
+                                        <th class="text-sm font-semibold text-gray-700 p-2">Method</th>
+                                        <th class="text-sm font-semibold text-gray-700 p-2">Prams</th>
+                                        <th class="text-sm font-semibold text-gray-700 p-2">Time</th>
+                                    </tr>
+                                </thead>
+                                <tbody class="align-baseline">
+                                    @forelse($latest_assertions as $assertion_result)
+                                        <tr>
+                                            <td class="p-2 border-t border-gray-300 font-mono text-xs whitespace-no-wrap"><span class="text-lg mdi {{$assertion_result->success ? 'mdi-checkbox-marked-circle-outline text-teal-500' : 'mdi-close-circle-outline text-red-500'}}"></span></td>
+                                            <td class="p-2 border-t border-gray-300 font-mono text-xs text-blue-700 whitespace-pre">{{$assertion_result->assertion->type->method}}</td>
+                                            <td class="p-2 border-t border-gray-300 font-mono text-xs text-blue-700 whitespace-pre">{{implode(' ', $assertion_result->assertion->parameters)}}</td>
+                                            <td class="p-2 border-t border-gray-300 font-mono text-xs text-blue-700 whitespace-pre">{{$assertion_result->created_at->diffForHumans()}}</td>
+                                        </tr>
+                                    @empty
+                                        <tr>
+                                            <td class="p-2 border-t border-gray-300 font-mono text-xs whitespace-no-wrap">--</td>
+                                            <td class="p-2 border-t border-gray-300 font-mono text-xs text-blue-700 whitespace-pre">--</td>
+                                            <td class="p-2 border-t border-gray-300 font-mono text-xs text-blue-700 whitespace-pre">--</td>
+                                            <td class="p-2 border-t border-gray-300 font-mono text-xs text-blue-700 whitespace-pre">--</td>
+                                        </tr>
+                                    @endforelse
+                                </tbody>
+                            </table>
                         </div>
-                        <!--/Graph Card-->
                     </div>
-                </div>
-                <div class="pt-4 pb-4">
-                    <form action="/analyze-site" method="POST">
-                        @csrf()
-                        <button type="submit"
-                                class="bg-teal-600 hover:bg-teal-700 text-white rounded-lg font-semibold py-2 px-4 border border-gray-400 shadow">
-                            Scan All Sites
-                        </button>
-                    </form>
                 </div>
             </div>
         </div>

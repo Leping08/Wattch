@@ -4,59 +4,51 @@ namespace App\Http\Controllers;
 
 use App\Page;
 use App\Website;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class DashboardController extends Controller
 {
     public function index()
     {
-        $websites = Website::all();
+        $websites = Website::withCount('assertions')->get();
+        $websites_count = $websites->count();
+        $assertions_count = $websites->sum('assertions_count');
         $pages = Page::with('website')->has('website')->get();
+        $latest_assertions = Website::with(['assertions.results' => function($query) {
+                                    $query->with('assertion.type')->orderBy('created_at', 'desc')->limit(25);
+                                }])
+                                ->get()
+                                ->pluck('assertions')
+                                ->flatten()
+                                ->pluck('results')
+                                ->flatten();
 
-        $validPageCount = 0;
-        foreach ($pages as $page) {
-            if ($page->passing) {
-                $validPageCount++;
-            }
-        }
+        $assertions_results = Website::with(['assertions.results' => function($query) {
+                                    $query->orderBy('created_at', 'desc')->whereDate('created_at', '>', Carbon::now()->subDays(30));
+                                }])
+                                ->get()
+                                ->pluck('assertions')
+                                ->flatten()
+                                ->pluck('results')
+                                ->flatten();
 
+        $assertions_success_by_day = $assertions_results->groupBy(function ($item) {
+                                    return Carbon::parse($item->created_at)->format('m-d-Y') . ' GMT';
+                                })
+                                ->map(function ($item) {
+                                    return $item->where('success', true)->count();
+                                });
 
-        $items = [
-            [
-                'title' => 'Websites',
-                'total' => $websites->count(),
-                'valid_count' => $websites->count(),
-                'link' => '/websites',
-                'image' => '/img/wattch_guy/undraw_experience_design_eq3j.svg'
-            ],
-            [
-                'title' => 'Pages',
-                'total' => $pages->count(),
-                'valid_count' => $validPageCount,
-                'link' => '/pages',
-                'image' => '/img/icons/undraw_online_page_cq94.svg'
-            ],
-            [
-                'title' => 'APIs',
-                'total' => 10,
-                'valid_count' => 10,
-                'link' => '/apis',
-                'image' => '/img/icons/undraw_code_review_l1q9.svg'
-            ],
-            [
-                'title' => 'Tests',
-                'total' => 5,
-                'valid_count' => 3,
-                'link' => '/tests',
-                'image' => '/img/icons/undraw_done_a34v.svg'
-            ]
-        ];
+        $assertions_fails_by_day = $assertions_results->groupBy(function ($item) {
+                                    return Carbon::parse($item->created_at)->format('m-d-Y') . ' GMT';
+                                })
+                                ->map(function ($item) {
+                                    return $item->where('success', false)->count();
+                                });
 
-
-        //$websites =  Website::with(['pages.latest_http_response', 'latest_ssl_response'])->get();
-
-
-        return view('pages.auth.dashboard', compact('websites', 'items'));
+        return view('pages.auth.dashboard', compact('websites_count', 'pages', 'assertions_count', 'latest_assertions', 'assertions_success_by_day', 'assertions_fails_by_day'));
     }
 }

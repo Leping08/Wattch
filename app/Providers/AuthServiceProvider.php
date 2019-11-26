@@ -2,7 +2,9 @@
 
 namespace App\Providers;
 
+use App\Assertion;
 use App\Page;
+use App\Policies\AssertionPolicy;
 use App\Policies\PagePolicy;
 use App\Policies\WebsitePolicy;
 use App\Website;
@@ -19,6 +21,7 @@ class AuthServiceProvider extends ServiceProvider
     protected $policies = [
         Website::class => WebsitePolicy::class,
         Page::class => PagePolicy::class,
+        Assertion::class => AssertionPolicy::class,
     ];
 
     /**

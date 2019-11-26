@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mx-auto">
-        <div class="flex justify-between m-4 mt-6">
+    <div class="">
+        <div class="flex justify-between m-2">
             <div class="">
                 <h1 class="font-bold text-gray-700 text-xl p-2">{{ $website->domain }}
                     <a href="{{ $website->domain }}" target="_blank">

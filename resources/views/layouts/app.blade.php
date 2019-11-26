@@ -12,28 +12,46 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.bundle.min.js"></script>
     <link rel="stylesheet" href="//cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css">
 
     <link rel="icon" type="image/png" sizes="96x96" href="/img/icons/wattch_icon_teal.png">
 </head>
 <body class="bg-gray-200 h-screen antialiased leading-none">
 
-    <div id="app">
-
-        <div class="min-h-screen flex flex-col">
-
-            @include('layouts.navbar')
-
-            <div class="flex-grow">
+<div id="app">
+    <div class="h-screen">
+        <div>
+            @include('layouts.top_nav')
+        </div>
+        <div class="flex">
+            <div>
+                @if (Auth::check())
+                    @include('layouts.side_nav')
+                @endif
+            </div>
+            <div class="ml-64 mt-16 p-4 w-full">
                 @yield('content')
             </div>
-
-            @include('layouts.footer')
         </div>
     </div>
 
-    <!-- Scripts -->
-    <script src="{{ mix('js/app.js') }}"></script>
+
+{{--    <div class="min-h-screen">--}}
+{{--        <div>--}}
+{{--            @include('layouts.top_nav')--}}
+{{--            <div class="flex min-h-screen">--}}
+{{--                @if (Auth::check())--}}
+{{--                    @include('layouts.side_nav')--}}
+{{--                @endif--}}
+{{--                <div class="p-6 flex-auto">--}}
+{{--                    @yield('content')--}}
+{{--                </div>--}}
+{{--            </div>--}}
+{{--        </div>--}}
+{{--    </div>--}}
+</div>
+
+<!-- Scripts -->
+<script src="{{ mix('js/app.js') }}"></script>
 </body>
 </html>

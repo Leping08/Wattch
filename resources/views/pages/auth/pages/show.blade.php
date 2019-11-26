@@ -1,9 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mx-auto">
+    <div class="mx-auto">
         <div class="m-3">
-            <div class="flex justify-between m-4 mt-6">
+            <div class="flex justify-between m-4">
                 <div class="">
                     <h1 class="font-bold text-gray-700 text-xl p-2">{{ $page->fullRoute }}
                         <a href="{{ $page->fullRoute }}" target="_blank">
@@ -88,54 +88,65 @@
                         </div>
                     </div>
                     <div class="flex-1">
-                        <div class="text-center card bg-white mt-6 mb-6 ml-3 pb-8 h-auto">
-                            <div class="">
-                                <div class="text-gray-600 italic">
-                                    <div
-                                        class="overflow-y-auto scrollbar-w-2 scrollbar-track-gray-lighter scrollbar-thumb-rounded scrollbar-thumb-gray scrolling-touch rounded-lg">
-                                        <table class="w-full text-left table-collapse">
-                                            <thead>
-                                                <tr>
-                                                    <th class="text-sm font-semibold text-gray-700 p-2 bg-gray-100">Status</th>
-                                                    <th class="text-sm font-semibold text-gray-700 p-2 bg-gray-100">Method</th>
-                                                    <th class="text-sm font-semibold text-gray-700 p-2 bg-gray-100">Prams</th>
-                                                    <th class="text-sm font-semibold text-gray-700 p-2 bg-gray-100">Time</th>
-                                                </tr>
-                                            </thead>
-                                            <tbody class="align-baseline">
-                                                @forelse($page->assertions as $assertion)
-                                                    <tr>
-                                                        <td class="p-2 border-t border-gray-300 font-mono text-xs whitespace-no-wrap"><span class="text-lg mdi {{$assertion->latest_result->success ? 'mdi-checkbox-marked-circle-outline text-teal-500' : 'mdi-close-circle-outline text-red-500'}}"></span></td>
-                                                        <td class="p-2 border-t border-gray-300 font-mono text-xs text-blue-700 whitespace-pre">{{$assertion->type->method}}</td>
-                                                        <td class="p-2 border-t border-gray-300 font-mono text-xs text-blue-700 whitespace-pre">{{implode(' ', $assertion->parameters)}}</td>
-                                                        <td class="p-2 border-t border-gray-300 font-mono text-xs text-blue-700 whitespace-pre">{{$assertion->latest_result->created_at->diffForHumans()}}</td>
+                        <a href="{{ route('pages.assertions.index', ['page' => $page]) }}">
+                            <div class="text-center card bg-white mt-6 mb-6 ml-3 pb-8 h-auto">
+                                <div class="">
+                                    <div class="text-gray-600 italic">
+                                        <div
+                                            class="overflow-y-auto scrollbar-w-2 scrollbar-track-gray-lighter scrollbar-thumb-rounded scrollbar-thumb-gray scrolling-touch rounded-lg">
+                                            <table class="w-full text-left table-collapse">
+                                                <thead>
+                                                    <tr class="bg-gray-100 shadow">
+                                                        <th class="text-sm font-semibold text-gray-700 p-2">Status</th>
+                                                        <th class="text-sm font-semibold text-gray-700 p-2">Method</th>
+                                                        <th class="text-sm font-semibold text-gray-700 p-2">Prams</th>
+                                                        <th class="text-sm font-semibold text-gray-700 p-2">Time</th>
                                                     </tr>
-                                                @empty
-                                                    <tr>
-                                                        <td class="p-2 border-t border-gray-300 font-mono text-xs whitespace-no-wrap">Add an assertion</td>
-                                                        <td class="p-2 border-t border-gray-300 font-mono text-xs text-blue-700 whitespace-pre">--</td>
-                                                        <td class="p-2 border-t border-gray-300 font-mono text-xs text-blue-700 whitespace-pre">--</td>
-                                                        <td class="p-2 border-t border-gray-300 font-mono text-xs text-blue-700 whitespace-pre">--</td>
-                                                    </tr>
-                                                @endforelse
-                                            </tbody>
-                                        </table>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="card-overlap relative -mt-12 mx-2 ml-5">
-                            <div class="flex flex-row items-center p-2">
-                                <div class="flex-1 text-center">
-                                    <div class="flex flex-row mt-2">
-                                        <div class="text-xl flex-1">
-                                            <span class="text-gray-600"><span class="mdi mdi-checkbox-multiple-marked-circle-outline mr-2"></span><span
-                                                    class="italic">Assertions</span></span>
+                                                </thead>
+                                                <tbody class="align-baseline">
+                                                    @forelse($page->assertions as $assertion)
+                                                        @if($assertion->latest_result)
+                                                            <tr>
+                                                                <td class="p-2 border-t border-gray-300 font-mono text-xs whitespace-no-wrap"><span class="text-lg mdi {{$assertion->latest_result->success ? 'mdi-checkbox-marked-circle-outline text-teal-500' : 'mdi-close-circle-outline text-red-500'}}"></span></td>
+                                                                <td class="p-2 border-t border-gray-300 font-mono text-xs text-blue-700 whitespace-pre">{{$assertion->type->method}}</td>
+                                                                <td class="p-2 border-t border-gray-300 font-mono text-xs text-blue-700 whitespace-pre">{{implode(' ', $assertion->parameters)}}</td>
+                                                                <td class="p-2 border-t border-gray-300 font-mono text-xs text-blue-700 whitespace-pre">{{$assertion->latest_result->created_at->diffForHumans()}}</td>
+                                                            </tr>
+                                                        @else
+                                                            <tr>
+                                                                <td class="p-2 border-t border-gray-300 font-mono text-xs whitespace-no-wrap">Add an assertion</td>
+                                                                <td class="p-2 border-t border-gray-300 font-mono text-xs text-blue-700 whitespace-pre">--</td>
+                                                                <td class="p-2 border-t border-gray-300 font-mono text-xs text-blue-700 whitespace-pre">--</td>
+                                                                <td class="p-2 border-t border-gray-300 font-mono text-xs text-blue-700 whitespace-pre">--</td>
+                                                            </tr>
+                                                        @endif
+                                                    @empty
+                                                        <tr>
+                                                            <td class="p-2 border-t border-gray-300 font-mono text-xs whitespace-no-wrap">Add an assertion</td>
+                                                            <td class="p-2 border-t border-gray-300 font-mono text-xs text-blue-700 whitespace-pre">--</td>
+                                                            <td class="p-2 border-t border-gray-300 font-mono text-xs text-blue-700 whitespace-pre">--</td>
+                                                            <td class="p-2 border-t border-gray-300 font-mono text-xs text-blue-700 whitespace-pre">--</td>
+                                                        </tr>
+                                                    @endforelse
+                                                </tbody>
+                                            </table>
                                         </div>
                                     </div>
                                 </div>
                             </div>
-                        </div>
+                            <div class="card-overlap relative -mt-12 mx-2 ml-5">
+                                <div class="flex flex-row items-center p-2">
+                                    <div class="flex-1 text-center">
+                                        <div class="flex flex-row mt-2">
+                                            <div class="text-xl flex-1">
+                                                <span class="text-gray-600"><span class="mdi mdi-checkbox-multiple-marked-circle-outline mr-2"></span><span
+                                                        class="italic">Assertions</span></span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </a>
                     </div>
                 </div>
                 {{--<div class="m-4 card bg-white">{{ $page->http_responses }}</div>--}}

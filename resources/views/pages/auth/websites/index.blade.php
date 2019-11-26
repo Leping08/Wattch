@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container mx-auto">
-        <div class="flex flex-wrap ">
+    <div class="">
+        <div class="flex flex-wrap">
             @foreach($websites as $website)
                 <!--Metric Card-->
                 <div class="w-full sm:w-1/1 md:w-1/2 lg:w-1/3 p-3">

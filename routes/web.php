@@ -81,4 +81,12 @@ Route::middleware('auth')->group(function () {
 
     /* @see ScanPageController::store() */
     Route::post('/scan/pages/{page}', 'ScanPageController@store')->name('scan.pages');
+
+
+    /* @see PageAssertionsController::index() */
+    Route::get('/pages/{page}/assertions', 'PageAssertionsController@index')->name('pages.assertions.index');
+
+    /* @see AssertionController::show() */
+    Route::get('/assertions/{assertion}', 'AssertionController@show')->name('assertions.show');
+
 });

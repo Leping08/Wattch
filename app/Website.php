@@ -111,4 +111,9 @@ class Website extends Model implements Taskable
         Log::info("Executing Website:$this->id");
         AnalyzeWebsite::dispatchNow($this);
     }
+
+    public function assertions()
+    {
+        return $this->hasManyThrough(Assertion::class, Page::class);
+    }
 }
