@@ -42,10 +42,9 @@
         @endphp
 
         @foreach($items as $item)
-            <a href="{{ $item['url'] }}"
-               class="text-white text-justify no-underline italic text-gray-600 font-bold hover:text-gray-800 {{ \Illuminate\Support\Facades\Request::routeIs($item['route_name']) ? 'text-gray-800' : '' }}">
+            <a href="{{ $item['url'] }}" class="text-white text-justify no-underline italic text-gray-600 font-bold hover:text-gray-800 {{ \Illuminate\Support\Facades\Request::routeIs($item['route_name']) ? 'text-gray-800' : '' }}">
                 <li class="leading-tight py-2 mb-2 text-sm px-8 hover:border-teal-600 border-l-4 hover:bg-gray-200 {{ \Illuminate\Support\Facades\Request::routeIs($item['route_name']) ? 'border-teal-600 bg-gray-200' : '' }}">
-                    <span class="text-gray-500 mr-4 mdi mdi-{{ $item['icon'] }} text-lg"></span> {{ $item['name'] }}
+                    <span class="mr-4 mdi mdi-{{ $item['icon'] }} text-lg {{ \Illuminate\Support\Facades\Request::routeIs($item['route_name']) ? 'text-teal-600' : 'text-gray-500' }}"></span> {{ $item['name'] }}
                 </li>
             </a>
         @endforeach

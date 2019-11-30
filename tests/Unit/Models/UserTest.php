@@ -16,9 +16,10 @@ class UserTest extends TestCase
         $this->fakeHttpResponse();
 
         $user = factory(\App\User::class)->create();
+        $this->be($user);
 
         $site = factory(\App\Website::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user
         ]);
 
         $site2 = factory(\App\Website::class)->create([
@@ -34,6 +35,7 @@ class UserTest extends TestCase
     public function it_has_a_subscription()
     {
         $user = factory(\App\User::class)->create();
+        $this->be($user);
 
         $subscription = factory(\App\Subscription::class)->create([
             'user_id' => $user->id

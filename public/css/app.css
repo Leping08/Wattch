@@ -669,16 +669,18 @@ video {
   padding-right: 1rem;
   padding-top: 0.5rem;
   padding-bottom: 0.5rem;
-  background-color: #38b2ac;
-  color: #fff;
   font-weight: 600;
   line-height: 1.25;
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
-  border-radius: 0.5rem
+  color: #38b2ac;
+  border-width: 1px;
+  border-color: #38b2ac;
+  color: #319795
 }
 
 .btn-teal:hover {
   background-color: #319795;
+  color: #f7fafc;
 }
 
 .card {
@@ -689,11 +691,12 @@ video {
 }
 
 .card:hover {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)
 }
 
 .input {
   box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+  outline: 0;
   -webkit-appearance: none;
      -moz-appearance: none;
           appearance: none;
@@ -709,8 +712,7 @@ video {
 }
 
 .input:focus {
-  outline: 0;
-  box-shadow: 0 0 0 3px rgba(66, 153, 225, 0.5)
+  border-color: #38b2ac
 }
 
 .card-overlap {
@@ -720,7 +722,7 @@ video {
 }
 
 .card-overlap:hover {
-  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05)
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)
 }
 
 .h-128 {

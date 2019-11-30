@@ -36,6 +36,7 @@ class AssertionType extends Model
     protected $fillable = [
         'name',
         'method',
+        'example',
         'description'
     ];
 

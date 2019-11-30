@@ -17,7 +17,7 @@ class PageTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         $page = $site->pages->first();
 
@@ -29,7 +29,7 @@ class PageTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         foreach ($site->ssl_certs as $cert) {
             $this->assertInstanceOf(\App\SslResponse::class, $cert);
@@ -45,7 +45,7 @@ class PageTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         $page = $site->pages->first();
 
@@ -59,7 +59,7 @@ class PageTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         $page = $site->pages->first();
 
@@ -73,7 +73,7 @@ class PageTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         $page = $site->pages->first();
 
@@ -100,12 +100,15 @@ class PageTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         $page = $site->pages->first();
 
+        $page->execute();
+
         $response = $page->latest_http_response;
         $response->response_code = 200;
+
         $response->save();
 
         $this->assertTrue($page->passing);
@@ -116,7 +119,7 @@ class PageTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         $page = $site->pages->first();
 
@@ -130,7 +133,7 @@ class PageTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         $page = $site->pages->first();
 

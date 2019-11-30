@@ -37,25 +37,25 @@
  */
 
 .btn-teal {
-    @apply rounded-lg px-4 py-2 bg-teal-500 text-white font-semibold leading-tight shadow rounded-lg
+    @apply rounded-lg px-4 py-2 font-semibold leading-tight shadow text-teal-500 border border-teal-500 text-teal-600
 }
 .btn-teal:hover {
-    @apply bg-teal-600;
+    @apply bg-teal-600 text-gray-100;
 }
 
 .card {
     @apply object-contain rounded-lg shadow
 }
 .card:hover {
-    @apply shadow-lg
+    @apply shadow-md
 }
 
 .input {
-    @apply shadow appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight
+    @apply shadow outline-none appearance-none border rounded-lg w-full py-2 px-3 text-gray-700 leading-tight
 }
 
 .input:focus {
-    @apply outline-none shadow-outline
+    @apply border-teal-500
 }
 
 .card-overlap {
@@ -63,7 +63,7 @@
 }
 
 .card-overlap:hover {
-    @apply shadow-lg
+    @apply shadow-md
 }
 
 .h-128 {

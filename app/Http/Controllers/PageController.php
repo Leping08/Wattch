@@ -23,7 +23,7 @@ class PageController extends Controller
             'assertions.type',
             'http_responses' => function ($query) {
                 $query->orderBy('created_at', 'desc')
-                    ->take(25);
+                    ->take(50);
             }
         ]);
 

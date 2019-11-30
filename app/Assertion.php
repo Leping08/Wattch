@@ -6,6 +6,7 @@ use App\Jobs\AnalyzeAssertion;
 use App\Library\Interfaces\Taskable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
@@ -48,6 +49,15 @@ class Assertion extends Model implements Taskable
     protected $casts = [
         'parameters' => 'json'  //TODO: MAKE SURE SOMEONE CAN NOT RUN CODE FROM THIS
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('user', function (Builder $builder) {
+            $builder->whereIn('page_id', Page::pluck('id'));  //Pages are already user scoped
+        });
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

@@ -3,8 +3,10 @@
 namespace App\Console;
 
 use App\Task;
+use App\User;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 class Kernel extends ConsoleKernel
@@ -26,17 +28,15 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        //Login as the system user
+        Auth::loginUsingId(config('auth.system_user_id'));
+
         // Go through each task to dynamically set them up.
         foreach (Task::all() as $task) {
-            $frequency = $task->frequency; // everyHour, everyMinute, twiceDaily etc.
             $schedule->call(function() use ($task){
                 $task->taskable->execute();
-            })->$frequency();
+            })->$task->frequency(); // everyHour, everyMinute, twiceDaily etc.
         }
-
-        //$schedule->call(function (){
-            //Log::info('yeet');
-        //})->everyMinute();
     }
 
     /**

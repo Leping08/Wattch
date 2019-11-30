@@ -75,8 +75,7 @@
             }
         },
         mounted() {
-            let x;
-            for (x of this.responses) {
+            for (let x of this.responses) {
                 this.series[0].data.push(x.total_time.toFixed(2));
                 this.chartOptions.xaxis.categories.push(Date.parse(x.created_at));
             }

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
@@ -37,6 +38,16 @@ class SslResponse extends Model
     protected $casts = [
         'ssl_raw' => 'array'
     ];
+
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('user', function (Builder $builder) {
+            $builder->whereIn('website_id', Website::pluck('id'));  //Pages are already user scoped
+        });
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

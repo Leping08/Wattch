@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\Builder;
 
 /**
  * A page for a website. This is a route for a website.
@@ -49,6 +50,15 @@ class Page extends Model implements Taskable
     protected $casts = [
         'passing' => 'boolean'
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('user', function (Builder $builder) {
+            $builder->whereIn('website_id', Website::pluck('id'));  //All websites is already user scoped
+        });
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

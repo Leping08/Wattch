@@ -4,10 +4,11 @@ namespace App;
 
 use App\Jobs\AnalyzeWebsite;
 use App\Library\Interfaces\Taskable;
-use App\Scopes\UserScope;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 
 /**
@@ -40,12 +41,18 @@ class Website extends Model implements Taskable
         'domain'
     ];
 
-//    protected static function boot()
-//    {
-//        parent::boot();
-//
-//        static::addGlobalScope(new UserScope());
-//    }
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('user', function (Builder $builder) {
+            if (Auth::id() === config('auth.system_user_id')) { //This is the system user
+                return $builder;
+            } else { //This is a normal user
+                return $builder->where('user_id', Auth::id());
+            }
+        });
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

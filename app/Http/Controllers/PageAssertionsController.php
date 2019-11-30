@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Assertion;
 use App\AssertionType;
 use App\Page;
+use App\Task;
 use Illuminate\Http\Request;
 
 class PageAssertionsController extends Controller
@@ -29,5 +30,32 @@ class PageAssertionsController extends Controller
         //TODO: Not sure if 2 authorize's are needed here or not
         $this->authorize('view', $assertion);
         $this->authorize('view', $page);
+    }
+
+    public function store(Request $request)
+    {
+        $request->validate([
+            'page_id' => ['required', 'numeric', 'exists:pages,id'],
+            'assertion_type_id' => ['required', 'numeric', 'exists:assertion_types,id']
+        ]);
+
+        $page = Page::find($request->page_id);
+        $assertion_type = AssertionType::find($request->assertion_type_id);
+
+        $assertion = Assertion::create([
+            'assertion_type_id' => $assertion_type->id,
+            'page_id' => $page->id,
+            'parameters' => [$request->parameters]
+        ]);
+
+        Task::create([
+            'taskable_type' => 'App\Assertion',
+            'taskable_id' => $assertion->id,
+            'frequency' => 'hourly'
+        ]);
+
+        session()->flash('success', 'Assertion created');
+
+        return redirect()->route('pages.assertions.index', ['page' => $page]);
     }
 }

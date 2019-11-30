@@ -16,7 +16,7 @@ class SslResponseTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         $ssl = SslResponse::first();
 

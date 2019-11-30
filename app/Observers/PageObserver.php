@@ -18,7 +18,7 @@ class PageObserver
      */
     public function created(Page $page)
     {
-        $page->execute();
+        //$page->execute();
 
         $page->screenshot();
 

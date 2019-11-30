@@ -16,7 +16,7 @@ class ScreenshotTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         $screenshot = \App\Screenshot::first();
 

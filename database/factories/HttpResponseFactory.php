@@ -9,11 +9,11 @@ use Faker\Generator as Faker;
 
 $factory->define(HttpResponse::class, function (Faker $faker) {
 
-    $page = factory(Page::class)->create();
+    //$page = factory(Page::class)->create();
 
     return [
-        'page_id' => $page->id,
-        'domain' => $page->website->domain,
+        'page_id' => factory(Page::class)->create()->id,
+        'domain' => $faker->url,
         'response_code' => 200,
         'ip' => $faker->ipv4,
         'total_time' => $faker->numerify('#.##'),

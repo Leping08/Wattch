@@ -16,7 +16,7 @@ class WebsiteTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         $this->assertInstanceOf(\App\User::class, $site->user);
     }
@@ -26,7 +26,7 @@ class WebsiteTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         foreach ($site->pages as $page) {
             $this->assertInstanceOf(\App\Page::class, $page);
@@ -38,7 +38,7 @@ class WebsiteTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         foreach ($site->ssl_certs as $cert) {
             $this->assertInstanceOf(\App\SslResponse::class, $cert);
@@ -50,7 +50,7 @@ class WebsiteTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         $this->assertInstanceOf(\App\SslResponse::class, $site->latest_ssl_response);
     }
@@ -60,7 +60,7 @@ class WebsiteTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         $this->assertInstanceOf(\App\Page::class, $site->home_page);
     }
@@ -70,7 +70,7 @@ class WebsiteTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         $this->assertEquals("/website/1", $site->link);
     }
@@ -80,7 +80,7 @@ class WebsiteTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         $this->assertInstanceOf(\App\Task::class, $site->tasks->first());
     }
@@ -90,7 +90,7 @@ class WebsiteTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         $this->expectsJobs(AnalyzeWebsite::class);
 

@@ -2,6 +2,7 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
@@ -32,11 +33,20 @@ class Task extends Model
         'frequency'
     ];
 
+//    protected static function boot()
+//    {
+//        parent::boot();
+//
+//        static::addGlobalScope('user', function (Builder $builder) {
+//            $builder->whereIn('page_id', Page::all());  //TODO Make this model user scoped
+//        });
+//    }
+
     /**
      * @return \Illuminate\Database\Eloquent\Relations\MorphTo
      */
     public function taskable()
     {
-        return $this->morphTo();
+        return $this->morphTo()->withoutGlobalScopes();
     }
 }

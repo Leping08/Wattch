@@ -15,7 +15,7 @@ class HttpResponseTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         $page = $site->pages->first();
 
@@ -31,7 +31,7 @@ class HttpResponseTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         $page = $site->pages->first();
 

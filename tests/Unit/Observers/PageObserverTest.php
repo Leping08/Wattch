@@ -15,14 +15,14 @@ class PageObserverTest extends TestCase
     use DatabaseMigrations, MockHttpCalls;
 
     /** @test */
-    public function created_it_should_execute_a_analyze_page_job()
-    {
-        $this->fakeHttpResponse();
-
-        $this->expectsJobs(AnalyzePage::class);
-
-        $site = factory(\App\Website::class)->create();
-    }
+//    public function created_it_should_execute_a_analyze_page_job()
+//    {
+//        $this->fakeHttpResponse();
+//
+//        $this->expectsJobs(AnalyzePage::class);
+//
+//        $site = factory(\App\Website::class)->create();
+//    }
 
     /** @test */
     public function created_it_should_execute_a_capture_a_screen_shot_job()
@@ -39,7 +39,7 @@ class PageObserverTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         $page = $site->pages->first();
 
@@ -53,7 +53,7 @@ class PageObserverTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         $page = $site->pages->first();
 
@@ -69,7 +69,7 @@ class PageObserverTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         $page = $site->pages->first();
 
@@ -85,9 +85,11 @@ class PageObserverTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         $page = $site->pages->first();
+
+        $page->execute();
 
         $this->assertEquals(1, $page->http_responses->count());
         $this->assertEquals(1, $page->tasks->count());
@@ -111,9 +113,11 @@ class PageObserverTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = factory(\App\Website::class)->create();
+        $site = $this->createUserAndWebsite();
 
         $page = $site->pages->first();
+
+        $page->execute();
 
         $this->assertEquals(1, $page->http_responses->count());
         $this->assertEquals(1, $page->tasks->count());

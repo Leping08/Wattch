@@ -2,11 +2,11 @@
 
 namespace App;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Str;
-use phpDocumentor\Reflection\Types\Boolean;
 
 /**
  * A model for a website response. This is the
@@ -47,6 +47,16 @@ class HttpResponse extends Model
         'headers_raw' => 'array',
         'request_stats_raw' => 'array'
     ];
+
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('user', function (Builder $builder) {
+            $builder->whereIn('page_id', Page::pluck('id'));  //Pages are already user scoped
+        });
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo

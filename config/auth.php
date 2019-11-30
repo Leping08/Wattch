@@ -100,4 +100,16 @@ return [
         ],
     ],
 
+    /*
+    |--------------------------------------------------------------------------
+    | System User Id
+    |--------------------------------------------------------------------------
+    |
+    | This is the system user and they avoid the query scopes on the website model
+    |
+    |
+    */
+
+    'system_user_id' => env('SYSTEM_USER_ID', 1)
+
 ];

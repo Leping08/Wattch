@@ -3,6 +3,7 @@
 namespace App;
 
 use App\Jobs\CaptureScreenshot;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
@@ -33,6 +34,16 @@ class Screenshot extends Model
         'page_id',
         'src'
     ];
+
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::addGlobalScope('user', function (Builder $builder) {
+            $builder->whereIn('page_id', Page::pluck('id'));  //Pages are already user scoped
+        });
+    }
 
     /**
      * @return \Illuminate\Database\Eloquent\Relations\BelongsTo
