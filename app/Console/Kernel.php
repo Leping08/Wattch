@@ -33,9 +33,15 @@ class Kernel extends ConsoleKernel
 
         // Go through each task to dynamically set them up.
         foreach (Task::all() as $task) {
-            $schedule->call(function() use ($task){
-                $task->taskable->execute();
-            })->$task->frequency(); // everyHour, everyMinute, twiceDaily etc.
+            try {
+                $frequency = $task->frequency; // everyHour, everyMinute, twiceDaily etc.
+                $schedule->call(function() use ($task){
+                    $task->taskable->execute();
+                })->$frequency();
+            } catch (\Exception $exception) {
+                Log::error('Error executing task Id: ' . $task->id);
+                Log::error($exception->toString());
+            }
         }
     }
 

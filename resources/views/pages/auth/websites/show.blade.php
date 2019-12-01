@@ -42,17 +42,17 @@
                     <a href="{{route('pages.show', ['page' => $page])}}">
                         <div class="mb-10">
                             @if($page->screenshots->last())
-                                <img class="object-contain rounded-lg hover:shadow-xl shadow"
+                                <img class="object-contain rounded-lg hover:shadow-md shadow"
                                      src="{{ asset($page->screenshots->last()->src) }}" alt="">
                             @else
                                 <div class="rounded bg-white">
-                                    <img class="object-contain rounded-lg hover:shadow-xl h-56"
+                                    <img class="object-contain rounded-lg hover:shadow-md h-56"
                                          src="/img/icons/undraw_surveillance_kqll.svg" alt="">
                                 </div>
                             @endif
                         </div>
 
-                        <div class="bg-gray-100 rounded-lg hover:shadow-xl shadow relative -mt-16 mx-2">
+                        <div class="bg-gray-100 rounded-lg hover:shadow-md shadow relative -mt-16 mx-2">
                             <div class="flex justify-center pt-2 italic">
                                 <div class="text-gray-600 text-sm">
                                     {{ $page->route }}

@@ -29,6 +29,7 @@ Vue.component('modal', require('./components/Modal.vue').default);
 Vue.component('page-chat', require('./components/PageChart').default);
 Vue.component('dashboard-chart', require('./components/DashboardChart').default);
 Vue.component('add-assertion', require('./components/AddAssertion').default);
+Vue.component('count-up', require('./components/CountUp').default);
 Vue.component('apexchart', VueApexCharts);
 
 /**

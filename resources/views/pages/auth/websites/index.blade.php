@@ -9,16 +9,16 @@
                     <a href="{{route('websites.show', ['website' => $website])}}">
                         <div class="mb-10">
                             @if($website->home_page->screenshots->last())
-                                <img class="object-contain rounded-lg hover:shadow-xl shadow"
+                                <img class="object-contain rounded-lg hover:shadow-md shadow"
                                      src="{{ asset($website->home_page->screenshots->last()->src) }}" alt="">
                             @else
                                 <div class="rounded bg-white">
-                                    <img class="object-contain rounded-lg hover:shadow-xl h-56"
+                                    <img class="object-contain rounded-lg hover:shadow-md h-56"
                                          data-src="/img/icons/undraw_surveillance_kqll.svg" alt="">
                                 </div>
                             @endif
                         </div>
-                        <div class="bg-gray-100 rounded-lg hover:shadow-xl shadow relative -mt-16 mx-2">
+                        <div class="bg-gray-100 rounded-lg hover:shadow-md shadow relative -mt-16 mx-2">
                             <div class="flex flex-row items-center p-2">
                                 <div class="flex-1 text-center">
                                     <div class="flex flex-row mt-2">
@@ -52,9 +52,7 @@
                             @endif
 
                             <div class="shadow w-full bg-red-700 rounded-bl-lg rounded-br-lg">
-                                <div
-                                    class="bg-teal-500 text-xs leading-none py-1 text-center text-white rounded-bl-lg h-3"
-                                    style="width: {{{ $percent }}}%">
+                                <div class="bg-teal-500 text-xs leading-none py-1 text-center text-white rounded-bl-lg h-3 {{$percent > 97 ? 'rounded-br-lg' : ''}}" style="width: {{ $percent }}%">
                                 </div>
                             </div>
                         </div>
@@ -87,6 +85,5 @@
                 </form>
             </div>
         </div>
-
     </div>
 @endsection
