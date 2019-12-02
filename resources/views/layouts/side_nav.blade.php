@@ -5,42 +5,36 @@
                 [
                     'name' => 'Dashboard',
                     'url' => route('dashboard'),
-                    'route_name' => 'dashboard',
                     'icon' => 'view-dashboard',
                     'active' => \Illuminate\Support\Facades\Request::segment(1) == 'dashboard'
                 ],
                 [
                     'name' => 'Websites',
                     'url' => route('websites.index'),
-                    'route_name' => route('websites.index'),
                     'icon' => 'monitor-cellphone',
                     'active' => \Illuminate\Support\Facades\Request::segment(1) == 'websites'
                 ],
                 [
                     'name' => "APIs",
                     'url' => '/apis',
-                    'route_name' => 'apis',
                     'icon' => 'code-braces',
                     'active' => \Illuminate\Support\Facades\Request::segment(1) == 'api'
                 ],
                 [
                     'name' => 'Assertions',
                     'url' => '/assertions',
-                    'route_name' => 'assertions',
                     'icon' => 'format-list-checks',
                     'active' => \Illuminate\Support\Facades\Request::segment(1) == 'assertions'
                 ],
                 [
                     'name' => "Alerts",
                     'url' => '/alerts',
-                    'route_name' => 'alerts',
                     'icon' => 'bell-outline',
                     'active' => \Illuminate\Support\Facades\Request::segment(1) == 'alerts'
                 ],
                 [
                     'name' => "Settings",
                     'url' => route('settings.account.index'),
-                    'route_name' => 'settings',
                     'icon' => 'settings',
                     'active' => \Illuminate\Support\Facades\Request::segment(1) == 'settings'
                 ],
