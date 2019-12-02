@@ -4,10 +4,14 @@
     <div class="container mx-auto">
         <div class="flex flex-wrap justify-center">
             <div class="w-full max-w-sm">
-                <div class="flex flex-col break-words bg-white border border-2 rounded rounded-lg rounded shadow-md">
+                <div class="flex flex-col break-words card bg-gray-100">
 
-                    <div class="font-semibold bg-gray-700 text-gray-200 py-3 px-6 mb-0 rounded-t-lg">
-                        {{ __('Login') }}
+{{--                    <div class="font-semibold bg-gray-700 text-gray-200 py-3 px-6 mb-0 rounded-t-lg">--}}
+{{--                        {{ __('Login') }}--}}
+{{--                    </div>--}}
+
+                    <div class="p-4">
+                        <img alt="" class="w-full" src="/img/wattch_guy/undraw_team_collaboration_8eoc.svg">
                     </div>
 
                     <form class="w-full p-6" method="POST" action="{{ route('login') }}">

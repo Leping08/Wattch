@@ -92,4 +92,13 @@ Route::middleware('auth')->group(function () {
     /* @see AssertionController::show() */
     Route::get('/assertions/{assertion}', 'AssertionController@show')->name('assertions.show');
 
+
+    /* @see SettingsAccountController::index() */
+    Route::get('/settings/account', 'SettingsAccountController@index')->name('settings.account.index');
+
+    /* @see SettingsBillingController::index() */
+    Route::get('/settings/billing', 'SettingsBillingController@index')->name('settings.billing.index');
+
+    /* @see SettingsNotificationController::index() */
+    Route::get('/settings/notifications', 'SettingsNotificationsController@index')->name('settings.notifications.index');
 });

@@ -29,26 +29,11 @@
                     @include('layouts.side_nav')
                 @endif
             </div>
-            <div class="ml-64 mt-16 p-4 w-full">
+            <div class="mt-16 p-4 w-full {{Auth::check() ? 'ml-64' : ''}}">
                 @yield('content')
             </div>
         </div>
     </div>
-
-
-{{--    <div class="min-h-screen">--}}
-{{--        <div>--}}
-{{--            @include('layouts.top_nav')--}}
-{{--            <div class="flex min-h-screen">--}}
-{{--                @if (Auth::check())--}}
-{{--                    @include('layouts.side_nav')--}}
-{{--                @endif--}}
-{{--                <div class="p-6 flex-auto">--}}
-{{--                    @yield('content')--}}
-{{--                </div>--}}
-{{--            </div>--}}
-{{--        </div>--}}
-{{--    </div>--}}
 </div>
 
 <!-- Scripts -->

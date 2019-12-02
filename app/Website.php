@@ -46,10 +46,10 @@ class Website extends Model implements Taskable
         parent::boot();
 
         static::addGlobalScope('user', function (Builder $builder) {
-            if (Auth::id() === config('auth.system_user_id')) { //This is the system user
-                return $builder;
-            } else { //This is a normal user
+            if (!(Auth::id() == config('auth.system_user_id'))) { //If not the system user apply user scoping
                 return $builder->where('user_id', Auth::id());
+            } else {
+                return $builder;
             }
         });
     }

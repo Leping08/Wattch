@@ -2,11 +2,11 @@
     <table class="w-full text-left table-collapse">
         <thead>
             <tr class="bg-gray-100 shadow">
-                <th class="text-sm font-semibold text-gray-700 p-2">Status</th>
-                <th class="text-sm font-semibold text-gray-700 p-2">Page</th>
-                <th class="text-sm font-semibold text-gray-700 p-2">Method</th>
-                <th class="text-sm font-semibold text-gray-700 p-2">Prams</th>
-                <th class="text-sm font-semibold text-gray-700 p-2">Time</th>
+                <th class="text-sm font-semibold text-gray-600 p-2">Status</th>
+                <th class="text-sm font-semibold text-gray-600 p-2">Page</th>
+                <th class="text-sm font-semibold text-gray-600 p-2">Method</th>
+                <th class="text-sm font-semibold text-gray-600 p-2">Prams</th>
+                <th class="text-sm font-semibold text-gray-600 p-2">Time</th>
             </tr>
         </thead>
         <tbody class="align-baseline">

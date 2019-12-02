@@ -15,6 +15,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Support\Facades\App;
+use Illuminate\Support\Facades\Log;
 
 class AnalyzePage implements ShouldQueue
 {
@@ -86,6 +87,9 @@ class AnalyzePage implements ShouldQueue
                     'request_stats_raw'     => []
                 ]);
             }
+        } catch (\Exception $exception) {
+            Log::error('Error running AnalyzePage for Page Id: ' . $this->page->id);
+            Log::error($exception->toString());
         }
     }
 

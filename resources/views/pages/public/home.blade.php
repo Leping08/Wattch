@@ -138,7 +138,7 @@
 
             <div class="mb-4 lg:mb-0 lg:w-1/3 lg:px-2">
                 <div class="text-center bg-white p-10 card">
-                    <h2 class="text-lg mb-4">Free</h2>
+                    <h2 class="text-lg mb-4">Babysitter</h2>
                     <div class="mb-6">
                         <span class="block text-5xl pb-2">$0</span>
                         <span class="text-sm text-grey">Monthly</span>
@@ -161,7 +161,7 @@
 
             <div class="mb-4 lg:mb-0 lg:w-1/3 lg:px-2">
                 <div class="text-center border bg-white p-10 lg:py-16 rounded-lg lg:shadow-lg hover:shadow-xl">
-                    <h2 class="text-lg mb-4">Basic</h2>
+                    <h2 class="text-lg mb-4">Security Guard</h2>
                     <div class="mb-6">
                         <span class="block text-5xl pb-2">$5</span>
                         <span class="text-sm text-grey">Monthly</span>
@@ -184,7 +184,7 @@
 
             <div class="mb-4 lg:mb-0 lg:w-1/3 lg:px-2">
                 <div class="text-center border bg-white p-10 rounded-lg hover:shadow-xl">
-                    <h2 class="text-lg mb-4">Pro</h2>
+                    <h2 class="text-lg mb-4">Personal Investigator</h2>
                     <div class="mb-6">
                         <span class="block text-5xl pb-2">$20</span>
                         <span class="text-sm text-grey">Monthly</span>

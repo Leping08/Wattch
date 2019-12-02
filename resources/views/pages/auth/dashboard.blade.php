@@ -13,7 +13,7 @@
                     ],
                     [
                         'title' => 'Assertions',
-                        'icon' => 'check',
+                        'icon' => 'format-list-checks',
                         'value' => $assertions_count,
                         'link' => '#'
                     ],
