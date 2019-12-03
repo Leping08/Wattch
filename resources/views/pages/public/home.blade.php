@@ -106,9 +106,7 @@
                     </div>
                 </div>--}}
                 @foreach($items as $key => $item)
-
-                    <div
-                        class="flex-1 max-w-sm card bg-white overflow-hidden m-4 hover:shadow-xl">
+                    <div class="flex-1 max-w-sm card bg-white overflow-hidden m-4">
                         <img class="w-full" src="/img/icons/{{$item['icon']}}" alt="">
                         <div class="px-6 py-4">
                             <div class="font-bold text-xl mb-2">{{$item['name']}}</div>
@@ -116,8 +114,7 @@
                         </div>
                         <div class="px-6 py-4">
                             @foreach($item['hashtags'] as $hashtag)
-                                <span
-                                    class="inline-block bg-gray-200 rounded-lg-full px-3 py-1 text-sm font-semibold text-gray-800 mr-2 shadow">#{{$hashtag}}</span>
+                                <span class="inline-block bg-gray-200 rounded-lg-full px-3 py-1 text-sm font-semibold text-gray-800 mr-2 shadow">#{{$hashtag}}</span>
                             @endforeach
                         </div>
                     </div>
@@ -138,10 +135,11 @@
 
             <div class="mb-4 lg:mb-0 lg:w-1/3 lg:px-2">
                 <div class="text-center bg-white p-10 card">
-                    <h2 class="text-lg mb-4">Babysitter</h2>
+                    <h2 class="text-lg mb-4 text-gray-800">Babysitter</h2>
                     <div class="mb-6">
-                        <span class="block text-5xl pb-2">$0</span>
-                        <span class="text-sm text-grey">Monthly</span>
+                        <span class="text-xl text-gray-600">$</span>
+                        <span class="text-3xl text-gray-800">5</span>
+                        <span class="text-sm text-gray-600">/mo</span>
                     </div>
                     <div class="border-t border-solid text-sm pb-10">
                         <div class="text-center border-b py-4">
@@ -160,11 +158,15 @@
             </div>
 
             <div class="mb-4 lg:mb-0 lg:w-1/3 lg:px-2">
-                <div class="text-center border bg-white p-10 lg:py-16 rounded-lg lg:shadow-lg hover:shadow-xl">
-                    <h2 class="text-lg mb-4">Security Guard</h2>
+                <div class="py-2 bg-teal-500 rounded-t-lg">
+
+                </div>
+                <div class="text-center bg-white py-16 rounded-t-none p-10 card">
+                    <h2 class="text-lg mb-4 text-gray-800">Security Guard</h2>
                     <div class="mb-6">
-                        <span class="block text-5xl pb-2">$5</span>
-                        <span class="text-sm text-grey">Monthly</span>
+                        <span class="text-xl text-gray-600">$</span>
+                        <span class="text-3xl text-gray-800">20</span>
+                        <span class="text-sm text-gray-600">/mo</span>
                     </div>
                     <div class="border-t border-solid text-sm pb-10">
                         <div class="text-center border-b py-4">
@@ -183,11 +185,12 @@
             </div>
 
             <div class="mb-4 lg:mb-0 lg:w-1/3 lg:px-2">
-                <div class="text-center border bg-white p-10 rounded-lg hover:shadow-xl">
-                    <h2 class="text-lg mb-4">Personal Investigator</h2>
+                <div class="text-center bg-white p-10 card">
+                    <h2 class="text-lg mb-4 text-gray-800">Personal Investigator</h2>
                     <div class="mb-6">
-                        <span class="block text-5xl pb-2">$20</span>
-                        <span class="text-sm text-grey">Monthly</span>
+                        <span class="text-xl text-gray-600">$</span>
+                        <span class="text-3xl text-gray-800">49</span>
+                        <span class="text-sm text-gray-600">/mo</span>
                     </div>
                     <div class="border-t border-solid text-sm pb-10">
                         <div class="text-center border-b py-4">

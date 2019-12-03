@@ -23,6 +23,7 @@
         "vue-template-compiler": "^2.6.10"
     },
     "dependencies": {
+        "@tailwindcss/custom-forms": "^0.2.1",
         "apexcharts": "^3.10.1",
         "in-viewport": "^3.6.0",
         "vue-apexcharts": "^1.5.1",

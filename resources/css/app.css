@@ -43,11 +43,16 @@
     @apply bg-teal-600 text-gray-100;
 }
 
-.card {
-    @apply object-contain rounded-lg shadow
+.btn-teal:focus {
+    @apply outline-none bg-teal-600 text-gray-100;
 }
-.card:hover {
-    @apply shadow-md
+
+.form-checkbox {
+    @apply shadow outline-none appearance-none border-teal-500 text-teal-500
+}
+
+.form-checkbox:focus {
+    @apply outline-none appearance-none border-teal-500 text-teal-500 border-2
 }
 
 .input {
@@ -55,7 +60,14 @@
 }
 
 .input:focus {
-    @apply border-teal-500
+    @apply border-teal-500 outline-none
+}
+
+.card {
+    @apply object-contain rounded-lg shadow
+}
+.card:hover {
+    @apply shadow-md
 }
 
 .card-overlap {
@@ -64,6 +76,10 @@
 
 .card-overlap:hover {
     @apply shadow-md
+}
+
+.h-96 {
+    height: 24rem;
 }
 
 .h-128 {

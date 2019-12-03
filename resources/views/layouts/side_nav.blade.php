@@ -12,7 +12,7 @@
                     'name' => 'Websites',
                     'url' => route('websites.index'),
                     'icon' => 'monitor-cellphone',
-                    'active' => \Illuminate\Support\Facades\Request::segment(1) == 'websites'
+                    'active' => (\Illuminate\Support\Facades\Request::segment(1) == 'websites') |  (\Illuminate\Support\Facades\Request::segment(1) == 'pages')
                 ],
                 [
                     'name' => "APIs",

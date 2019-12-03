@@ -12,6 +12,8 @@
 
         @include('pages.auth.settings.tab_nav')
 
-        @yield('settings_content')
+        <div class="bg-gray-100 card p-4 shadow">
+            @yield('settings_content')
+        </div>
     </div>
 @endsection

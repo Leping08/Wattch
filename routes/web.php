@@ -20,7 +20,7 @@ Auth::routes();
 /* Public Routes */
 Route::get('/', function () {
     return view('pages.public.home');
-});
+})->name('home');
 
 /* @see SignUpController::store() */
 Route::post('/sign-up', 'SignUpController@store');
@@ -95,6 +95,9 @@ Route::middleware('auth')->group(function () {
 
     /* @see SettingsAccountController::index() */
     Route::get('/settings/account', 'SettingsAccountController@index')->name('settings.account.index');
+
+    /* @see SettingsAccountController::store() */
+    Route::post('/settings/account', 'SettingsAccountController@store')->name('settings.account.store');
 
     /* @see SettingsBillingController::index() */
     Route::get('/settings/billing', 'SettingsBillingController@index')->name('settings.billing.index');
