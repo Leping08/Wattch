@@ -89,7 +89,10 @@ Route::middleware('auth')->group(function () {
     /* @see PageAssertionsController::store() */
     Route::post('/pages/{page}/assertions', 'PageAssertionsController@store')->name('pages.assertions.store');
 
-    /* @see AssertionController::show() */
+    /* @see AssertionResultController::index() */
+    Route::get('/assertions', 'AssertionResultController@index')->name('assertions.index');
+
+    /* @see AssertionResult::show() */
     Route::get('/assertions/{assertion}', 'AssertionController@show')->name('assertions.show');
 
 

@@ -6,8 +6,8 @@
             <div class="w-full max-w-sm">
                 <div class="flex flex-col break-words card bg-gray-100 mt-6">
 
-                    <div class="font-semibold bg-teal-600 text-gray-600 py-2 mb-0 rounded-t-lg italic">
-
+                    <div class="bg-teal-600 px-4 py-2 rounded-t-lg shadow">
+                        <span class="font-bold text-gray-200 no-underline">Login</span>
                     </div>
 
                     <div class="p-4">

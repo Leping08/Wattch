@@ -101,6 +101,14 @@ class Page extends Model implements Taskable
     }
 
     /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function latest_screenshot()
+    {
+        return $this->hasOne(Screenshot::class, 'page_id')->latest();
+    }
+
+    /**
      * @return string
      */
     public function getFullRouteAttribute()
