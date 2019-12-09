@@ -36,7 +36,7 @@ class Assert
     public static function run(string $route, string $assertionMethod, array $parameters = [])
     {
         try {
-            $client = new Client();
+            $client = resolve('HttpClient');
             $res = $client->request('GET', $route);
         } catch (\Exception $exception) {
             return [

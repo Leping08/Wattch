@@ -16,7 +16,8 @@
         "laravel/framework": "^6.0",
         "laravel/telescope": "^2.1",
         "laravel/tinker": "^1.0",
-        "spatie/ssl-certificate": "^1.13"
+        "spatie/ssl-certificate": "^1.13",
+        "symfony/translation-contracts": "^1.1.6"
     },
     "require-dev": {
         "beyondcode/laravel-dump-server": "^1.0",

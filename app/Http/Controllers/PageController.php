@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Page;
+use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 
 class PageController extends Controller

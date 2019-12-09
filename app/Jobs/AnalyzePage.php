@@ -41,7 +41,7 @@ class AnalyzePage implements ShouldQueue
      */
     public function handle()
     {
-        $client = app(Client::class);
+        $client = resolve('HttpClient');
 
         try{
             $response = $client->request('GET', $this->page->full_route, [
@@ -55,43 +55,32 @@ class AnalyzePage implements ShouldQueue
                 $handlerStats = $this->setFakeTransferStats(new Request('GET', 'https://yeet.com/'), $response);
             }
 
-            HttpResponse::create([
-                'page_id'               => $this->page->id,
-                'domain'                => $this->page->full_route,
-                'response_code'         => $response->getStatusCode(),
-                'ip'                    => $handlerStats->getHandlerStats()['primary_ip'],
-                'total_time'            => $handlerStats->getHandlerStats()['total_time'],
-                'headers_raw'           => json_encode($response->getHeaders()),
-                'request_stats_raw'     => json_encode($handlerStats->getHandlerStats())
-            ]);
+            $this->saveResponse($response, $handlerStats);
         } catch (RequestException $e) {
             if ($e->hasResponse()) {
                 $response = $e->getResponse();
-                HttpResponse::create([
-                    'page_id'               => $this->page->id,
-                    'domain'                => $this->page->full_route,
-                    'response_code'         => $response->getStatusCode(),
-                    'ip'                    => $handlerStats->getHandlerStats()['primary_ip'],
-                    'total_time'            => $handlerStats->getHandlerStats()['total_time'],
-                    'headers_raw'           => json_encode($response->getHeaders()),
-                    'request_stats_raw'     => json_encode($handlerStats->getHandlerStats())
-                ]);
-            } else {
-                HttpResponse::create([
-                    'page_id'               => null,
-                    'domain'                => null, //TODO get the domain to show up here
-                    'response_code'         => 0,
-                    'ip'                    => 0,
-                    'total_time'            => 0,
-                    'headers_raw'           => [],
-                    'request_stats_raw'     => []
-                ]);
+                $this->saveResponse($response, $handlerStats);
             }
         } catch (\Exception $exception) {
             Log::error('Error running AnalyzePage for Page Id: ' . $this->page->id);
-            Log::error($exception->toString());
+            Log::error($exception->toString() ?? 'Something went wrong');
         }
     }
+
+
+    public function saveResponse($response, $handlerStats = [])
+    {
+        HttpResponse::create([
+            'page_id'               => $this->page->id,
+            'domain'                => $this->page->full_route,
+            'response_code'         => $response->getStatusCode() ?? null,
+            'ip'                    => $handlerStats->getHandlerStats()['primary_ip'] ?? null,
+            'total_time'            => $handlerStats->getHandlerStats()['total_time'] ?? null,
+            'headers_raw'           => json_encode($response->getHeaders()) ?? null,
+            'request_stats_raw'     => json_encode($handlerStats->getHandlerStats()) ?? null
+        ]);
+    }
+
 
     /* This is only used for unit testing */
     public function setFakeTransferStats($client, $response)

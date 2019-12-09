@@ -15,7 +15,7 @@
                         'title' => 'Assertions',
                         'icon' => 'format-list-checks',
                         'value' => $assertions_count,
-                        'link' => '#'
+                        'link' => route('assertions.index')
                     ],
                     [
                         'title' => 'Alerts',
@@ -49,7 +49,7 @@
                     <dashboard-chart success-counts="{{$assertions_success_by_day}}" fail-counts="{{$assertions_fails_by_day}}"></dashboard-chart>
                 </div>
                 <div class="w-1/3 flex flex-col justify-around">
-                    <div class="border-b border-gray-300 h-full">
+                    <a href="{{ route('results.index', ['status_id' => 1]) }}" class="border-b border-gray-300 h-full cursor-pointer hover:shadow-md">
                         <div class="flex flex-col justify-between h-full">
                             <div></div>
                             <div class="text-center">
@@ -69,9 +69,9 @@
                             </div>
                             <div></div>
                         </div>
-                    </div>
+                    </a>
                     <div class="h-full">
-                        <div class="flex flex-col justify-between h-full">
+                        <a href="{{ route('results.index', ['status_id' => 2]) }}" class="flex flex-col justify-between h-full cursor-pointer hover:shadow-md">
                             <div></div>
                             <div class="text-center">
                                 <div>
@@ -89,7 +89,7 @@
                                 </div>
                             </div>
                             <div></div>
-                        </div>
+                        </a>
                     </div>
                 </div>
             </div>

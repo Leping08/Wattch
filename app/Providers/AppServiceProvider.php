@@ -6,6 +6,7 @@ use App\Observers\PageObserver;
 use App\Observers\WebsiteObserver;
 use App\Page;
 use App\Website;
+use GuzzleHttp\Client;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
 
@@ -18,7 +19,9 @@ class AppServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        //
+        app()->bind('HttpClient', function () {
+            return (new Client(['verify' => false]));
+        });
     }
 
     /**

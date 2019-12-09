@@ -50,6 +50,7 @@ Route::middleware('auth')->group(function () {
     Route::get('/profile', 'ProfileController@index')->name('profile');
 
 
+
     /* @see WebsiteController::index() */
     Route::get('/websites', 'WebsiteController@index')->name('websites.index');
 
@@ -66,6 +67,7 @@ Route::middleware('auth')->group(function () {
     Route::delete('/websites/{website}', 'WebsiteController@destroy')->name('websites.destroy');
 
 
+
     /* @see PageController::index() */
     Route::get('/pages', 'PageController@index')->name('pages.index');
 
@@ -76,11 +78,13 @@ Route::middleware('auth')->group(function () {
     Route::post('/pages', 'PageController@store')->name('pages.store');
 
 
+
     /* @see ScanWebsiteController::store() */
     Route::post('/scan/websites/{website}', 'ScanWebsiteController@store')->name('scan.websites');
 
     /* @see ScanPageController::store() */
     Route::post('/scan/pages/{page}', 'ScanPageController@store')->name('scan.pages');
+
 
 
     /* @see PageAssertionsController::index() */
@@ -89,11 +93,22 @@ Route::middleware('auth')->group(function () {
     /* @see PageAssertionsController::store() */
     Route::post('/pages/{page}/assertions', 'PageAssertionsController@store')->name('pages.assertions.store');
 
-    /* @see AssertionResultController::index() */
-    Route::get('/assertions', 'AssertionResultController@index')->name('assertions.index');
 
-    /* @see AssertionResult::show() */
+
+    /* @see AssertionController::index() */
+    Route::get('/assertions', 'AssertionController@index')->name('assertions.index');
+
+    /* @see AssertionController::show() */
     Route::get('/assertions/{assertion}', 'AssertionController@show')->name('assertions.show');
+
+
+
+    /* @see AssertionResultController::index() */
+    Route::get('/results', 'AssertionResultController@index')->name('results.index');
+
+    /* @see AssertionResultController::show() */
+    Route::get('/results/{result}', 'AssertionResultController@show')->name('results.show');
+
 
 
     /* @see SettingsAccountController::index() */
@@ -102,8 +117,12 @@ Route::middleware('auth')->group(function () {
     /* @see SettingsAccountController::store() */
     Route::post('/settings/account', 'SettingsAccountController@store')->name('settings.account.store');
 
+
+
     /* @see SettingsBillingController::index() */
     Route::get('/settings/billing', 'SettingsBillingController@index')->name('settings.billing.index');
+
+
 
     /* @see SettingsNotificationController::index() */
     Route::get('/settings/notifications', 'SettingsNotificationsController@index')->name('settings.notifications.index');

@@ -47,6 +47,6 @@ class Task extends Model
      */
     public function taskable()
     {
-        return $this->morphTo()->withoutGlobalScopes();
+        return $this->morphTo();
     }
 }

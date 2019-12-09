@@ -86,6 +86,10 @@
     height: 32rem;
 }
 
+.w-28 {
+    width: 7rem;
+}
+
 /**
  * This injects all of Tailwind's utility classes, generated based on your
  * config file.

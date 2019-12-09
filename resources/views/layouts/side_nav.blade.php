@@ -15,22 +15,28 @@
                     'active' => (\Illuminate\Support\Facades\Request::segment(1) == 'websites') |  (\Illuminate\Support\Facades\Request::segment(1) == 'pages')
                 ],
                 [
-                    'name' => "APIs",
-                    'url' => '/apis',
-                    'icon' => 'code-braces',
-                    'active' => \Illuminate\Support\Facades\Request::segment(1) == 'api'
-                ],
-                [
                     'name' => 'Assertions',
                     'url' => '/assertions',
                     'icon' => 'format-list-checks',
                     'active' => \Illuminate\Support\Facades\Request::segment(1) == 'assertions'
                 ],
                 [
+                    'name' => 'Results',
+                    'url' => route('results.index'),
+                    'icon' => 'clipboard-pulse-outline',
+                    'active' => \Illuminate\Support\Facades\Request::segment(1) == 'results'
+                ],
+                [
                     'name' => "Alerts",
                     'url' => '/alerts',
                     'icon' => 'bell-outline',
                     'active' => \Illuminate\Support\Facades\Request::segment(1) == 'alerts'
+                ],
+                [
+                    'name' => "API",
+                    'url' => '/apis',
+                    'icon' => 'code-braces',
+                    'active' => \Illuminate\Support\Facades\Request::segment(1) == 'api'
                 ],
                 [
                     'name' => "Settings",
