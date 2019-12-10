@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Assertion;
+use App\AssertionResult;
 use App\Page;
 use App\Policies\AssertionPolicy;
+use App\Policies\AssertionResultPolicy;
 use App\Policies\PagePolicy;
 use App\Policies\WebsitePolicy;
 use App\Website;
@@ -22,6 +24,7 @@ class AuthServiceProvider extends ServiceProvider
         Website::class => WebsitePolicy::class,
         Page::class => PagePolicy::class,
         Assertion::class => AssertionPolicy::class,
+        AssertionResult::class => AssertionResultPolicy::class,
     ];
 
     /**

@@ -24,12 +24,6 @@
                 }
             </script>
             <div class="flex">
-{{--                <div class="m-2">--}}
-{{--                    <img alt="" class="w-32" src="/img/icons/undraw_personal_settings_kihd.svg">--}}
-{{--                </div>--}}
-{{--                <div class="m-4 text-center">--}}
-{{--                    <span class="mdi mdi-filter-outline text-4xl text-gray-600 align-bottom"></span>--}}
-{{--                </div>--}}
                 <div class="flex-1 mx-2 my-4">
                     <label for="website_id" class="block text-gray-600 text-sm font-bold mb-2">
                         Website
@@ -101,7 +95,7 @@
                             {{$assertion_result->assertion->page->fullRoute}}
                         </div>
                         <div class="text-gray-700">
-                            {{$assertion_result->assertion->type->method}}
+                            {{$assertion_result->assertion->type->method}}({{\Illuminate\Support\Str::limit(implode(' ', $assertion_result->assertion->parameters))}})
                         </div>
                     </div>
                     <div class="flex flex-col justify-around mx-6">

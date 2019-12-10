@@ -75,6 +75,8 @@ class AssertionResultController extends Controller
 
     public function show(AssertionResult $result)
     {
+        $this->authorize('view', $result);
+
         $result->load(['assertion.type', 'assertion.page.website', 'assertion.page.latest_screenshot']);
         return $result;
     }
