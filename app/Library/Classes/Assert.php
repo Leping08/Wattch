@@ -41,7 +41,7 @@ class Assert
         } catch (\Exception $exception) {
             return [
                 'status' => false,
-                'error_message' => $exception->toString() ?? 'Something went wrong'
+                'error_message' => $exception->getMessage() ?? 'Something went wrong'
             ];
         }
 
@@ -58,7 +58,7 @@ class Assert
         } catch (\Exception $exception) {
             return [
                 'status' => false,
-                'error_message' => $exception->toString() ?? 'Something went wrong'
+                'error_message' => $exception->getMessage() ?? 'Something went wrong'
             ];
         }
     }
