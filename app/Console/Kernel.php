@@ -40,7 +40,7 @@ class Kernel extends ConsoleKernel
                     $task->taskable->execute();
                 } catch (\Exception $exception) {
                     Log::error('Error executing task Id: ' . $task->id);
-                    Log::error($exception->toString());
+                    Log::error($exception->getMessage());
                 }
             })->$frequency();
         }

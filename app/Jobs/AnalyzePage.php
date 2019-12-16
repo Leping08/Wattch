@@ -63,7 +63,7 @@ class AnalyzePage implements ShouldQueue
             }
         } catch (\Exception $exception) {
             Log::error('Error running AnalyzePage for Page Id: ' . $this->page->id);
-            Log::error($exception->toString() ?? 'Something went wrong');
+            Log::error($exception->getMessage() ?? 'Something went wrong');
         }
     }
 
