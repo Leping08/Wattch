@@ -45,9 +45,9 @@ class AssertionResultController extends Controller
         $end_date = $validData->has('end_date') ? Carbon::parse($validData->get('end_date')) : Carbon::now();
 
         $assertion_results = AssertionResult::with(['assertion.type', 'assertion.page.latest_screenshot', 'assertion.page.website'])
-//                                    ->whereHas('assertion.page.website', function ($query) use ($website) {
-//                                        $website ? $query->where('id', '=', $website->id) : $query;
-//                                    })
+                                    ->whereHas('assertion.page.website', function ($query) use ($website) {
+                                        $website ? $query->where('id', '=', $website->id) : $query;
+                                    })
                                     ->whereHas('assertion.page', function ($query) use ($page) {
                                         $page ? $query->where('id', '=', $page->id) : $query;
                                     })
@@ -78,6 +78,7 @@ class AssertionResultController extends Controller
         $this->authorize('view', $result);
 
         $result->load(['assertion.type', 'assertion.page.website', 'assertion.page.latest_screenshot']);
-        return $result;
+
+        return view('pages.auth.results.show', compact('result'));
     }
 }
