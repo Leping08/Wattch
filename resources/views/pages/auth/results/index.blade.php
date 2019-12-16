@@ -91,15 +91,15 @@
                         </div>
                     </div>
                     <div class="flex flex-auto flex-col justify-around mx-6">
-                        <div class="text-blue-700 text-sm italic">
+                        <div class="text-blue-600 text-sm italic">
                             {{$assertion_result->assertion->page->fullRoute}}
                         </div>
-                        <div class="text-gray-700">
-                            {{$assertion_result->assertion->type->method}}({{\Illuminate\Support\Str::limit(implode(' ', $assertion_result->assertion->parameters))}})
+                        <div class="">
+                            <span class="text-gray-600">{{$assertion_result->assertion->type->method}}(</span><span class="text-purple-700">{{\Illuminate\Support\Str::limit(implode(' ', $assertion_result->assertion->parameters))}}</span><span class="text-gray-600">)</span>
                         </div>
                     </div>
                     <div class="flex flex-col justify-around mx-6">
-                        <div class="text-gray-700 text-sm">
+                        <div class="text-gray-600 text-sm">
                             {{$assertion_result->created_at->diffForHumans()}}
                         </div>
                     </div>
