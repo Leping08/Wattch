@@ -31,7 +31,7 @@
                     </div>
                 </div>
                 <div class="flex-1 mt-12 xl:mt-0 px-6">
-                    <img class="w-2/3 float-right" src="/img/icons/server_down.png" alt="">
+                    <img class="w-2/3 float-right" src="/img/wattch_guy/undraw_server_down_s4lk.svg" alt="">
                 </div>
             </div>
 
@@ -43,7 +43,7 @@
                 $items = collect([
                     [
                         'name' => 'Analyze Your Data',
-                        'icon' => 'alert.png',
+                        'icon' => 'undraw_detailed_analysis_xn7y.svg',
                         'content' => 'Get notified when any of the websites you are tracking go down through email, text, slack and many other integrations.',
                         'hashtags' => [
                             'intheknow',
@@ -53,7 +53,7 @@
                     ],
                     [
                         'name' => 'SSL Monitoring',
-                        'icon' => 'ssl.png',
+                        'icon' => 'undraw_security_o890.svg',
                         'content' => 'Make sure the SSL certificates for websites you are tracking are up to date and are valid.',
                         'hashtags' => [
                             'https',
@@ -63,7 +63,7 @@
                     ],
                     [
                         'name' => 'Content Matching',
-                        'icon' => 'match.png',
+                        'icon' => 'undraw_up_to_date_rmbm.svg',
                         'content' => 'Match the content from any http call, ensuring the content you want is properly being sent over the wire.',
                         'hashtags' => [
                             'ttd',
@@ -72,7 +72,7 @@
                     ],
                     [
                         'name' => 'API Testing',
-                        'icon' => 'api.png',
+                        'icon' => 'undraw_code_typing_7jnv.svg',
                         'content' => 'Test API endpoints and ensure they are returning the expected content.',
                         'hashtags' => [
                             'ttd',
@@ -107,7 +107,7 @@
                 </div>--}}
                 @foreach($items as $key => $item)
                     <div class="flex-1 max-w-sm card bg-white overflow-hidden m-4">
-                        <img class="w-full" src="/img/icons/{{$item['icon']}}" alt="">
+                        <img class="w-full p-4" src="/img/icons/{{$item['icon']}}" alt="">
                         <div class="px-6 py-4">
                             <div class="font-bold text-xl mb-2">{{$item['name']}}</div>
                             <p class="text-gray-700 text-base">{{$item['content']}}</p>
