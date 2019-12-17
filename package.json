@@ -19,12 +19,12 @@
         "sass": "^1.23.7",
         "sass-loader": "^7.3.1",
         "tailwindcss": "^1.1.4",
-        "vue": "^2.5.17",
-        "vue-template-compiler": "^2.6.10"
+        "vue": "^2.6.11",
+        "vue-template-compiler": "^2.6.11"
     },
     "dependencies": {
         "@tailwindcss/custom-forms": "^0.2.1",
-        "apexcharts": "^3.10.1",
+        "apexcharts": "^3.11.0",
         "in-viewport": "^3.6.0",
         "vue-apexcharts": "^1.5.1",
         "vue-carousel": "^0.18.0"
