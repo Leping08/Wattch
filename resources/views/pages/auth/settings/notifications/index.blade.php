@@ -1,7 +1,7 @@
 @extends('pages.auth.settings.layout')
 
 @section('heading')
-    Notification Settings
+    Notifications Settings
 @endsection
 
 @section('settings_content')

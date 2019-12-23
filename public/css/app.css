@@ -1009,6 +1009,26 @@ video {
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)
 }
 
+.card-heading {
+  line-height: 1.25;
+  color: #718096;
+  font-style: italic;
+  font-size: 1.125rem;
+  font-weight: 700
+}
+
+.card-heading-border {
+  border-bottom-width: 1px;
+  border-color: #e2e8f0
+}
+
+.page-heading {
+  font-weight: 700;
+  color: #4a5568;
+  font-size: 1.25rem;
+  font-style: italic
+}
+
 .h-96 {
   height: 24rem;
 }

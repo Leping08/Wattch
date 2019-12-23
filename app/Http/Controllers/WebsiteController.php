@@ -11,7 +11,7 @@ class WebsiteController extends Controller
 {
     public function index()
     {
-        $websites = Website::with('pages.latest_http_response')->get();
+        $websites = Website::with(['pages.latest_http_response', 'home_page.latest_screenshot', 'latest_ssl_response'])->get();
 
         return view('pages.auth.websites.index', compact('websites'));
     }

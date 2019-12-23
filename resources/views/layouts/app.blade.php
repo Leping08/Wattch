@@ -33,6 +33,11 @@
                 @yield('content')
             </div>
         </div>
+        @if (!Auth::check())
+            <div>
+                @include('layouts.footer')
+            </div>
+        @endif
     </div>
 </div>
 

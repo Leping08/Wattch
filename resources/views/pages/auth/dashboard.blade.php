@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="">
-        <div class="flex">
+        <div class="flex mb-2">
             @php
                 $items = [
                     [
                         'title' => 'Websites',
-                        'icon' => 'monitor-dashboard',
+                        'icon' => 'monitor-cellphone',
                         'value' => $websites_count,
                         'link' => route('websites.index')
                     ],
@@ -44,7 +44,7 @@
         </div>
 
         <div class="flex">
-            <div class="card w-full bg-white mx-2 mt-4 flex">
+            <div class="card w-full bg-white m-2 flex">
                 <div class="w-full border-r border-gray-300">
                     <dashboard-chart success-counts="{{$assertions_success_by_day}}" fail-counts="{{$assertions_fails_by_day}}"></dashboard-chart>
                 </div>
@@ -96,8 +96,20 @@
         </div>
 
         <div class="flex">
-            <div class="card w-full bg-white mx-2 mt-4">
-                @include('pages.auth.components.tables.dashbaord_assertions_table')
+            <div class="card bg-white overflow-hidden w-full m-2">
+                <a href="{{ route('assertions.index') }}" class="card-heading-border py-2 px-6 cursor-pointer flex justify-between">
+                    <div>
+                        <span class="card-heading pb-2">Assertions</span>
+                    </div>
+                    <div>
+                        <span class="mdi mdi-format-list-checks text-2xl text-teal-600 align-bottom"></span>
+                    </div>
+                </a>
+                @forelse($latest_assertions as $assertion)
+                    @include('pages.auth.components.list.assertion-with-page-image')
+                @empty
+
+                @endforelse
             </div>
         </div>
     </div>

@@ -5,7 +5,7 @@
 
         <div class="flex justify-between m-2">
             <div>
-                <span class="font-bold text-gray-600 text-xl pb-2">Assertion Results</span>
+                <span class="page-heading pb-2">Results</span>
             </div>
             <div>
                 <span class="mdi mdi-clipboard-pulse-outline text-2xl text-teal-600 align-bottom"></span>
@@ -76,34 +76,9 @@
         </div>
 
 
-        <div class="card bg-gray-100 mb-6">
-            @forelse($assertion_results as $assertion_result)
-                <a href="{{ route('results.show', ['result' => $assertion_result]) }}" class="flex hover:bg-gray-300 border-b border-gray-300 cursor-pointer">
-                    <div class="text-center mx-6 my-2">
-                        <div>
-                            <img class="h-18 w-32 rounded shadow" alt="" src="{{$assertion_result->assertion->page->latest_screenshot->src}}">
-                        </div>
-                    </div>
-                    <div class="flex flex-col justify-around mx-6">
-                        <div>
-                            <span
-                                class="text-lg mdi {{$assertion_result->success ? 'mdi-checkbox-marked-circle-outline text-teal-500' : 'mdi-close-circle-outline text-red-500'}}"></span>
-                        </div>
-                    </div>
-                    <div class="flex flex-auto flex-col justify-around mx-6">
-                        <div class="text-blue-600 text-sm italic">
-                            {{$assertion_result->assertion->page->fullRoute}}
-                        </div>
-                        <div class="">
-                            <span class="text-gray-600">{{$assertion_result->assertion->type->method}}(</span><span class="text-purple-700">{{\Illuminate\Support\Str::limit(implode(' ', $assertion_result->assertion->parameters))}}</span><span class="text-gray-600">)</span>
-                        </div>
-                    </div>
-                    <div class="flex flex-col justify-around mx-6">
-                        <div class="text-gray-600 text-sm">
-                            {{$assertion_result->created_at->diffForHumans()}}
-                        </div>
-                    </div>
-                </a>
+        <div class="card bg-gray-100 mb-6 overflow-hidden">
+            @forelse($assertion_results as $result)
+                @include('pages.auth.components.list.results-with-page-image')
             @empty
                 <div>
 

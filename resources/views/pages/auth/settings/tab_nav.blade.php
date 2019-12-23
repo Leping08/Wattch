@@ -15,7 +15,7 @@
             'selected' => \Illuminate\Support\Facades\Route::currentRouteName() === 'settings.billing.index'
         ],
         [
-            'name' => 'Notification',
+            'name' => 'Notifications',
             'url' => route('settings.notifications.index'),
             'route_name' => 'dashboard',
             'icon' => 'bell-outline',

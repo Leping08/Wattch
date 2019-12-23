@@ -2,11 +2,12 @@
 
 @section('content')
     <div class="">
-        <div class="flex flex-wrap">
-            <div class="flex justify-between m-2 pb-4">
-                <div>
-                    <h1 class="font-bold text-gray-600 text-xl p-2">@yield('heading')</h1>
-                </div>
+        <div class="flex justify-between m-2 mb-4">
+            <div>
+                <span class="page-heading pb-2">Settings</span>
+            </div>
+            <div>
+                <span class="mdi mdi-settings text-2xl text-teal-600 align-bottom"></span>
             </div>
         </div>
 

@@ -4,19 +4,16 @@
     <div class="">
         <div class="flex justify-between m-2">
             <div class="">
-                <h1 class="font-bold text-gray-700 text-xl p-2">{{ $website->domain }}
+                <div class="page-heading text-xl p-2">{{ $website->domain }}
                     <a href="{{ $website->domain }}" target="_blank">
                         <span class="text-gray-600 mdi mdi-open-in-new"></span>
                     </a>
-                </h1>
+                </div>
             </div>
             <div class="">
                 <dropdown align="right" width="150px">
                     <template v-slot:trigger>
-                        <button
-                            class="card bg-white p-2 rounded-full text-lg focus:outline-none"
-                            v-pre
-                        >
+                        <button class="card bg-white p-2 rounded-full text-lg focus:outline-none">
                             <span class="mdi mdi-dots-vertical"></span>
                         </button>
                     </template>
@@ -35,19 +32,16 @@
 
         </div>
 
-        <div class="flex flex-wrap ">
+        <div class="flex flex-wrap">
             @foreach($website->pages as $page)
                 <div class="w-full sm:w-1/1 md:w-1/2 lg:w-1/3 p-3">
-                    <!--Metric Card-->
                     <a href="{{route('pages.show', ['page' => $page])}}">
                         <div class="mb-10">
                             @if($page->screenshots->last())
-                                <img class="object-contain rounded-lg hover:shadow-md shadow"
-                                     src="{{ asset($page->screenshots->last()->src) }}" alt="">
+                                <img class="object-contain rounded-lg hover:shadow-md shadow" src="{{ asset($page->screenshots->last()->src) }}" alt="">
                             @else
                                 <div class="rounded bg-white">
-                                    <img class="object-contain rounded-lg hover:shadow-md h-56"
-                                         src="/img/icons/undraw_surveillance_kqll.svg" alt="">
+                                    <img class="object-contain rounded-lg hover:shadow-md h-56" src="/img/wattch_guy/undraw_online_test_gba7.svg" alt="">
                                 </div>
                             @endif
                         </div>
@@ -76,38 +70,28 @@
                                 </div>
                             </div>
                             <div class="shadow w-full bg-red-700 rounded-bl-lg rounded-br-lg">
-                                <div
-                                    class="bg-teal-500 text-xs leading-none py-1 text-center text-white rounded-bl-lg rounded-br-lg h-3"
-                                    style="width: {{ $page->latest_http_response->valid() ? '100' : '0' }}%">
-                                </div>
+                                <div class="bg-teal-500 text-xs leading-none py-1 text-center text-white rounded-bl-lg rounded-br-lg h-3" style="width: {{ $page->latest_http_response->valid() ? '100' : '0' }}%"></div>
                             </div>
                         </div>
                     </a>
-                    <!--/Metric Card-->
                 </div>
             @endforeach
         </div>
 
-        <div class="flex flex-wrap ">
-            <div class="w-full sm:w-1/1 p-3">
-                <form action="{{ route('pages.store') }}" method="POST"
-                      class="bg-white card p-6 mb-4">
-                    @csrf()
-                    <label class="block text-gray-700 text-sm font-bold mb-2" for="route">
-                        Watch Page
-                    </label>
-                    <div class="mb-4 flex">
-                        <input
-                            class="input flex-1"
-                            id="route" type="text" name="route" placeholder="/about-us">
-                        <input class="" id="website" type="hidden" name="website_id" value="{{ $website->id }}">
-                        <button type="submit"
-                                class="btn-teal ml-4">
-                            Submit
-                        </button>
-                    </div>
-                </form>
-            </div>
+        <div class="w-full sm:w-1/1 p-2">
+            <form action="{{ route('pages.store') }}" method="POST" class="bg-white card p-6 mb-4">
+                @csrf()
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="route">
+                    Add Page
+                </label>
+                <div class="mb-4 flex">
+                    <input class="input flex-1" id="route" type="text" name="route" placeholder="/about-us">
+                    <input class="" id="website" type="hidden" name="website_id" value="{{ $website->id }}">
+                    <button type="submit" class="btn-teal ml-4">
+                        Submit
+                    </button>
+                </div>
+            </form>
         </div>
 
         <modal name="delete-modal">

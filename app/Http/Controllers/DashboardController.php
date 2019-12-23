@@ -14,7 +14,15 @@ class DashboardController extends Controller
     {
         $websites_count = Website::all()->count();
         $assertions_count = Assertion::all()->count();
-        $latest_assertions = AssertionResult::with(['assertion.type', 'assertion.page.website'])->orderBy('created_at', 'desc')->limit(25)->get();
+        $latest_results = AssertionResult::with(['assertion.type', 'assertion.page.website'])
+                                            ->orderBy('created_at', 'desc')
+                                            ->limit(5)
+                                            ->get();
+
+        $latest_assertions = Assertion::with(['page.latest_screenshot', 'type', 'results'])
+                                            ->orderBy('created_at', 'desc')
+                                            ->limit(5)
+                                            ->get();
 
         $assertions_results = AssertionResult::orderBy('created_at', 'desc')->whereDate('created_at', '>', Carbon::now()->subDays(30))->get();
 
@@ -32,6 +40,6 @@ class DashboardController extends Controller
                                     return $item->where('success', false)->count();
                                 });
 
-        return view('pages.auth.dashboard', compact('websites_count', 'assertions_count', 'latest_assertions', 'assertions_success_by_day', 'assertions_fails_by_day'));
+        return view('pages.auth.dashboard', compact('websites_count', 'latest_results', 'latest_assertions', 'assertions_count', 'assertions_success_by_day', 'assertions_fails_by_day'));
     }
 }

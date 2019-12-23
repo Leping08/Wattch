@@ -1,23 +1,25 @@
 <template>
-    <div>
-        <apexchart ref="chart" width="100%" type="area" :options="chartOptions" :series="series" />
+    <div class="">
+        <apexchart ref="chart" type="line" class="p-4" :height="20" :options="chartOptions" :series="series" />
     </div>
 </template>
 
 <script>
     export default {
-        props: ['responses'],
+        name: "AssertionSparkline",
+        props: ['results'],
         data() {
             return {
-                series: [
-                    {
-                        name: 'Response Time',
-                        type: 'area',
-                        data: []
-                    }
-                ],
+                series: [{
+                    name: 'Status',
+                    type: 'line',
+                    data: []
+                }],
                 chartOptions: {
                     chart: {
+                        sparkline: {
+                            enabled: true,
+                        },
                         toolbar: {
                             show: false,
                             tools: {
@@ -33,14 +35,26 @@
                     },
                     colors: ['#309795'],
                     stroke: {
-                        curve: 'smooth',
+                        curve: 'stepline',
                         width: 2
                     },
                     fill: {
-                        type: 'gradient',
+                        type: "gradient",
                         gradient: {
-                            opacityFrom: 0.75,
-                            opacityTo: 0.1
+                            shadeIntensity: 1,
+                            type: 'vertical',
+                            colorStops: [
+                                {
+                                    offset: 0,
+                                    color: '#319795',
+                                    opacity: 1
+                                },
+                                {
+                                    offset: 100,
+                                    color: '#f56565',
+                                    opacity: 1
+                                }
+                            ]
                         }
                     },
                     grid: {
@@ -66,25 +80,24 @@
                         }
                     },
                     yaxis: {
-                        tickAmount: 5,
-                        min: 0,
-                        max: 5,
-                        forceNiceScale: true,
-                        // title: {
-                        //     text: 'Response Time (Seconds)'
-                        // }
+                        tickAmount: 1
                     }
-                },
-                initalData: null
+                }
             }
         },
         created() {
-            for (let x of this.responses) {
-                this.series[0].data.push(x.total_time.toFixed(2));
+            for (let x of this.results) {
+                this.series[0].data.push(x.success);
                 this.chartOptions.xaxis.categories.push(Date.parse(x.created_at));
             }
 
-            this.chartOptions.yaxis.max = Math.ceil(Math.max(...this.series[0].data) + 1);
+            if(this.series[0].data.every(Boolean)){
+                this.chartOptions.fill.gradient.colorStops = [{
+                    offset: 0,
+                    color: '#319795',
+                    opacity: 1
+                }];
+            }
         },
     }
 </script>

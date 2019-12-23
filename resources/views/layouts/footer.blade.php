@@ -1,13 +1,15 @@
-<footer class="bg-gray-700 text-white bottom-0 w-full bottom-0">
+<footer class="bg-gray-700 text-white w-full">
     <div class="p-8 flex container mx-auto align-middle items-center">
-        <a href="{{ url('/') }}" class="mr-6 flex items-center">
-            <img src="/img/icons/wattch_icon_teal.png" class="flex-1" alt="" style="max-width: 15%;">
-            <span class="flex-1 text-2xl font-semibold text-white no-underline italic">{{ config('app.name', 'Laravel') }}</span>
+        <a href="{{ url('/') }}" class="flex-1 items-center">
+            <div class="flex items-center">
+                <img src="/img/wattch_guy/wattch_guy.svg" class="h-16" alt="">
+                <span class="text-2xl font-semibold text-white no-underline italic">{{ config('app.name', 'Laravel') }}</span>
+            </div>
         </a>
-        <div class="flex-auto italic text-center text-gray-200 inline-block">
-            Copyright © 2019 Wattch
+        <div class="flex-1 italic text-center text-gray-200 inline-block">
+            Copyright © {{ \Carbon\Carbon::now()->year }} Wattch
         </div>
-        <div class="flex-auto text-right text-gray-200">
+        <div class="flex-1 text-right text-gray-200">
             <ul class="">
                 <li class="p-1"><a class="" href="">About</a></li>
                 <li class="p-1"><a class="" href="">Contact Us</a></li>

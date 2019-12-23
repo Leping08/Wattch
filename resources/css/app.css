@@ -78,6 +78,18 @@
     @apply shadow-md
 }
 
+.card-heading {
+    @apply leading-tight text-gray-600 italic text-lg font-bold
+}
+
+.card-heading-border {
+    @apply border-b border-gray-300
+}
+
+.page-heading {
+    @apply font-bold text-gray-700 text-xl italic
+}
+
 .h-96 {
     height: 24rem;
 }

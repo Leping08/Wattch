@@ -19,7 +19,7 @@ Auth::routes();
 
 /* Public Routes */
 Route::get('/', function () {
-    return view('pages.public.home');
+    return Auth::check() ? redirect()->route('dashboard') :  view('pages.public.home');
 })->name('home');
 
 /* @see SignUpController::store() */

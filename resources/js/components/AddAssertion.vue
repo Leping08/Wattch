@@ -1,6 +1,6 @@
 <template>
     <div>
-        <div class="card bg-gray-100 hover:shadow my-4 p-4">
+        <div class="card bg-gray-100 hover:shadow m-4 p-4">
             <div class="">
                 <span class="text-blue-500">$response</span><span class="text-gray-600">-></span><span class="text-teal-700">{{ selected_assertion_type.method }}</span><span class="text-gray-600">(</span><span class="text-gray-700">{{ parameters }}</span><span class="text-gray-600">)</span>
             </div>
@@ -9,7 +9,7 @@
             </div>
         </div>
 
-        <div class="mb-4 flex">
+        <div class="flex m-4">
             <div class="inline-block relative w-64">
                 <select v-model="selected_type_id" id="assertion_type" name="assertion_type_id" class="block appearance-none w-full bg-white input px-4 py-2 pr-8 text-gray-600">
                     <template v-for="type in types">
