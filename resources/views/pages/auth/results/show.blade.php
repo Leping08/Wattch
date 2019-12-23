@@ -12,23 +12,23 @@
         </div>
 
         <div class="w-full mt-4 flex">
-            <div class="card text-gray-700 bg-gray-100 p-4">
+            <div class="card text-gray-700 bg-white p-4 w-full">
                 <div class="mb-4">
                     @if($result->success)
-                        <span class="text-2xl mdi mdi-checkbox-marked-circle-outline text-teal-500"></span>
+                        <span class="text-sm text-gray-600 italic">Status</span> <span class="text-2xl mdi mdi-checkbox-marked-circle-outline text-teal-500"></span>
                     @else
-                        <span class="text-2xl mdi mdi-close-circle-outline text-red-500"></span>
+                        <span class="text-sm text-gray-600 italic">Status</span> <span class="text-2xl mdi mdi-close-circle-outline text-red-500"></span>
                     @endif
                 </div>
-                @if(!$result->success)
-                    <div class="mb-4">
-                        <span class="mdi mdi-bell-alert-outline text-gray-600 text-lg"></span> {{$result->error_message}}
-                    </div>
-                @endif
-                <div class="">
-                    <div class="text-gray-600 mb-4">
-                        <span class="mdi mdi-clock-check-outline text-gray-600 text-lg"></span> {{$result->created_at->diffForHumans()}}, at {{$result->created_at}}
-                    </div>
+                <div class="mb-4">
+                    @if($result->success)
+                        <span class="text-sm text-gray-600 italic">Message</span> Success
+                    @else
+                        <span class="text-sm text-gray-600 italic">Message</span> <span class="mdi mdi-bell-alert-outline text-gray-600 text-lg"></span> {{$result->error_message}}
+                    @endif
+                </div>
+                <div class="mb-4">
+                    <span class="text-sm text-gray-600 italic">Result</span> <span class="text-gray-800">{{$result->created_at->diffForHumans()}}, at {{$result->created_at}}</span>
                 </div>
             </div>
         </div>
@@ -39,7 +39,7 @@
 
         <div class="mt-4">
             <a href="{{ route('assertions.show', ['assertion' => $result->assertion]) }}">
-                <div class="card bg-gray-100">
+                <div class="card bg-white">
                     <div class="flex justify-between card-heading-border py-2 px-6">
                         <div>
                             <span class="card-heading pb-2">Assertion</span>

@@ -1,4 +1,4 @@
-<a href="{{ route('results.index', ['page_id' => $assertion->page->id, 'website_id' => $assertion->page->website->id]) }}">
+<div>
     <div class="card bg-white flex-1">
         <div class="flex justify-between py-2 px-4 card-heading-border">
             <div>
@@ -22,4 +22,4 @@
             {{ $results->links() }}
         </div>
     </div>
-</a>
+</div>
