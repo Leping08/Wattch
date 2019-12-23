@@ -20,11 +20,13 @@ use Illuminate\Support\Carbon;
  * @property integer $id
  * @property string $name
  * @property string $method
+ * @property string $icon
  * @property string $description
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
  * @property-read Assertion $assertion
+ * @property string $icon_path
  */
 class AssertionType extends Model
 {
@@ -36,8 +38,16 @@ class AssertionType extends Model
     protected $fillable = [
         'name',
         'method',
+        'icon',
         'example',
         'description'
+    ];
+
+    /**
+     * @var array
+     */
+    protected $appends = [
+        'icon_path'
     ];
 
     /**
@@ -46,5 +56,15 @@ class AssertionType extends Model
     public function assertion()
     {
         return $this->belongsTo(Assertion::class);
+    }
+
+    /**
+     * Get the user's first name.
+     *
+     * @return string
+     */
+    public function getIconPathAttribute()
+    {
+        return asset('img/assertion_types/' . $this->icon);
     }
 }

@@ -60,8 +60,8 @@
             </div>
         </div>
 
-        <div class="shadow w-full bg-red-700 rounded-bl-lg rounded-br-lg">
-            <div class="bg-teal-500 py-1 rounded-bl-lg rounded-br-lg h-3" style="width: {{ $page->latest_http_response->valid() ? '100' : '0' }}%"></div>
-        </div>
+{{--        <div class="w-full bg-red-700 rounded-bl-lg rounded-br-lg">--}}
+{{--            <div class="bg-teal-500 py-1 rounded-bl-lg rounded-br-lg h-3" style="width: {{ $page->latest_http_response->valid() ? '100' : '0' }}%"></div>--}}
+{{--        </div>--}}
     </div>
 </a>

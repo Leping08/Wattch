@@ -51,7 +51,7 @@
                         </div>
                         <div class="m-4">
                             <button type="submit" class="btn-teal">
-                                Add
+                                Submit
                             </button>
                         </div>
                     </form>

@@ -1767,6 +1767,16 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "AddAssertion.vue",
   props: ['types'],
@@ -4186,129 +4196,144 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
-    _c("div", { staticClass: "card bg-gray-100 hover:shadow m-4 p-4" }, [
-      _c("div", {}, [
-        _c("span", { staticClass: "text-blue-500" }, [_vm._v("$response")]),
-        _c("span", { staticClass: "text-gray-600" }, [_vm._v("->")]),
-        _c("span", { staticClass: "text-teal-700" }, [
-          _vm._v(_vm._s(_vm.selected_assertion_type.method))
-        ]),
-        _c("span", { staticClass: "text-gray-600" }, [_vm._v("(")]),
-        _c("span", { staticClass: "text-gray-700" }, [
-          _vm._v(_vm._s(_vm.parameters))
-        ]),
-        _c("span", { staticClass: "text-gray-600" }, [_vm._v(")")])
+  return _c("div", { staticClass: "flex" }, [
+    _c("div", { staticClass: "flex-1" }, [
+      _c("div", { staticClass: "card bg-gray-100 hover:shadow m-4 p-4" }, [
+        _c("div", { staticClass: "flex" }, [
+          _c("div", { staticClass: "flex-1" }, [
+            _c("div", {}, [
+              _c("span", { staticClass: "text-blue-500" }, [
+                _vm._v("$response")
+              ]),
+              _c("span", { staticClass: "text-gray-600" }, [_vm._v("->")]),
+              _c("span", { staticClass: "text-teal-700" }, [
+                _vm._v(_vm._s(_vm.selected_assertion_type.method))
+              ]),
+              _c("span", { staticClass: "text-gray-600" }, [_vm._v("(")]),
+              _c("span", { staticClass: "text-gray-700" }, [
+                _vm._v(_vm._s(_vm.parameters))
+              ]),
+              _c("span", { staticClass: "text-gray-600" }, [_vm._v(")")])
+            ]),
+            _vm._v(" "),
+            _c("div", { staticClass: "mt-4" }, [
+              _c("span", { staticClass: "text-gray-700" }, [
+                _vm._v(_vm._s(_vm.selected_assertion_type.description))
+              ])
+            ])
+          ])
+        ])
       ]),
       _vm._v(" "),
-      _c("div", { staticClass: "mt-4" }, [
-        _c("span", { staticClass: "text-gray-700" }, [
-          _vm._v(_vm._s(_vm.selected_assertion_type.description))
-        ])
-      ])
-    ]),
-    _vm._v(" "),
-    _c("div", { staticClass: "flex m-4" }, [
-      _c("div", { staticClass: "inline-block relative w-64" }, [
-        _c(
-          "select",
-          {
+      _c("div", { staticClass: "flex m-4" }, [
+        _c("div", { staticClass: "inline-block relative w-64" }, [
+          _c(
+            "select",
+            {
+              directives: [
+                {
+                  name: "model",
+                  rawName: "v-model",
+                  value: _vm.selected_type_id,
+                  expression: "selected_type_id"
+                }
+              ],
+              staticClass:
+                "block appearance-none w-full bg-white input px-4 py-2 pr-8 text-gray-600",
+              attrs: { id: "assertion_type", name: "assertion_type_id" },
+              on: {
+                change: function($event) {
+                  var $$selectedVal = Array.prototype.filter
+                    .call($event.target.options, function(o) {
+                      return o.selected
+                    })
+                    .map(function(o) {
+                      var val = "_value" in o ? o._value : o.value
+                      return val
+                    })
+                  _vm.selected_type_id = $event.target.multiple
+                    ? $$selectedVal
+                    : $$selectedVal[0]
+                }
+              }
+            },
+            [
+              _vm._l(_vm.types, function(type) {
+                return [
+                  _c("option", { domProps: { value: type.id } }, [
+                    _vm._v(_vm._s(type.method))
+                  ])
+                ]
+              })
+            ],
+            2
+          ),
+          _vm._v(" "),
+          _c(
+            "div",
+            {
+              staticClass:
+                "pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
+            },
+            [
+              _c(
+                "svg",
+                {
+                  staticClass: "fill-current h-4 w-4 text-gray-500",
+                  attrs: {
+                    xmlns: "http://www.w3.org/2000/svg",
+                    viewBox: "0 0 20 20"
+                  }
+                },
+                [
+                  _c("path", {
+                    attrs: {
+                      d:
+                        "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
+                    }
+                  })
+                ]
+              )
+            ]
+          )
+        ]),
+        _vm._v(" "),
+        _c("div", { staticClass: "pl-4 flex-1" }, [
+          _c("input", {
             directives: [
               {
                 name: "model",
                 rawName: "v-model",
-                value: _vm.selected_type_id,
-                expression: "selected_type_id"
+                value: _vm.parameters,
+                expression: "parameters"
               }
             ],
-            staticClass:
-              "block appearance-none w-full bg-white input px-4 py-2 pr-8 text-gray-600",
-            attrs: { id: "assertion_type", name: "assertion_type_id" },
+            staticClass: "input flex-1",
+            attrs: {
+              id: "",
+              type: "text",
+              name: "parameters",
+              placeholder: _vm.selected_assertion_type.example
+            },
+            domProps: { value: _vm.parameters },
             on: {
-              change: function($event) {
-                var $$selectedVal = Array.prototype.filter
-                  .call($event.target.options, function(o) {
-                    return o.selected
-                  })
-                  .map(function(o) {
-                    var val = "_value" in o ? o._value : o.value
-                    return val
-                  })
-                _vm.selected_type_id = $event.target.multiple
-                  ? $$selectedVal
-                  : $$selectedVal[0]
-              }
-            }
-          },
-          [
-            _vm._l(_vm.types, function(type) {
-              return [
-                _c("option", { domProps: { value: type.id } }, [
-                  _vm._v(_vm._s(type.method))
-                ])
-              ]
-            })
-          ],
-          2
-        ),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            staticClass:
-              "pointer-events-none absolute inset-y-0 right-0 flex items-center px-2 text-gray-700"
-          },
-          [
-            _c(
-              "svg",
-              {
-                staticClass: "fill-current h-4 w-4 text-gray-500",
-                attrs: {
-                  xmlns: "http://www.w3.org/2000/svg",
-                  viewBox: "0 0 20 20"
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
                 }
-              },
-              [
-                _c("path", {
-                  attrs: {
-                    d:
-                      "M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"
-                  }
-                })
-              ]
-            )
-          ]
-        )
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "pl-4 flex-1" }, [
-        _c("input", {
-          directives: [
-            {
-              name: "model",
-              rawName: "v-model",
-              value: _vm.parameters,
-              expression: "parameters"
-            }
-          ],
-          staticClass: "input flex-1",
-          attrs: {
-            id: "",
-            type: "text",
-            name: "parameters",
-            placeholder: _vm.selected_assertion_type.example
-          },
-          domProps: { value: _vm.parameters },
-          on: {
-            input: function($event) {
-              if ($event.target.composing) {
-                return
+                _vm.parameters = $event.target.value
               }
-              _vm.parameters = $event.target.value
             }
-          }
-        })
+          })
+        ])
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "p-4" }, [
+      _c("img", {
+        staticClass: "h-32",
+        attrs: { src: _vm.selected_assertion_type.icon_path }
+      })
     ])
   ])
 }
