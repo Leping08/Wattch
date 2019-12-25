@@ -20,12 +20,26 @@
                     <template v-slot:default>
                         <form method="POST" action="">
                             @csrf
-                            <button type="submit"
-                                    class="block no-underline w-full text-left italic text-gray-600 hover:bg-gray-300 p-2">
+                            <button type="submit" class="block no-underline w-full text-left italic text-gray-600 hover:bg-gray-300 p-2">
                                 Run
                             </button>
                         </form>
 
+                        @if($assertion->muted())
+                            <form method="POST" action="">
+                                @csrf
+                                <button type="submit" class="block no-underline w-full text-left italic text-gray-600 hover:bg-gray-300 p-2">
+                                    Unmute
+                                </button>
+                            </form>
+                        @else
+                            <form method="POST" action="">
+                                @csrf
+                                <button type="submit" class="block no-underline w-full text-left italic text-gray-600 hover:bg-gray-300 p-2">
+                                    Mute
+                                </button>
+                            </form>
+                        @endif
                         <a class="block no-underline italic text-gray-600 hover:bg-gray-300 p-2"
                            href="#">Edit</a>
                         <a class="block no-underline italic text-gray-600 hover:bg-gray-300 p-2"
@@ -33,6 +47,10 @@
                     </template>
                 </dropdown>
             </div>
+        </div>
+
+        <div class="w-full mt-4">
+            @include('pages.auth.components.card.assertion', ['assertion' => $assertion])
         </div>
 
         <div class="mt-4">

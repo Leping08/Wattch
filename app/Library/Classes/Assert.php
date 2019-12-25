@@ -56,6 +56,9 @@ class Assert
                 'error_message' => null
             ];
         } catch (\Exception $exception) {
+
+
+
             return [
                 'status' => false,
                 'error_message' => $exception->getMessage() ?? 'Something went wrong'

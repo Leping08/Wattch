@@ -10,6 +10,9 @@ import Vue from 'vue';
 
 import VueCarousel from 'vue-carousel';
 import VueApexCharts from 'vue-apexcharts';
+import ToggleButton from 'vue-js-toggle-button';
+
+Vue.use(ToggleButton);
 Vue.use(VueCarousel);
 Vue.use(VueApexCharts);
 
@@ -33,6 +36,7 @@ Vue.component('count-up', require('./components/CountUp').default);
 Vue.component('assertion-chart', require('./components/AssertionChart').default);
 Vue.component('assertion-sparkline-chart', require('./components/AssertionSparkline').default);
 Vue.component('apexchart', VueApexCharts);
+
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to

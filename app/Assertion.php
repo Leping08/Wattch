@@ -21,6 +21,7 @@ use Illuminate\Support\Facades\Log;
  * @property integer $page_id
  * @property string $assertion_type_id
  * @property array $parameters
+ * @property Carbon $muted_at
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
@@ -48,6 +49,13 @@ class Assertion extends Model implements Taskable
      */
     protected $casts = [
         'parameters' => 'json'  //TODO: MAKE SURE SOMEONE CAN NOT RUN CODE FROM THIS
+    ];
+
+    /**
+     * @var array
+     */
+    protected $appends = [
+        'muted'
     ];
 
     protected static function boot()
@@ -106,5 +114,21 @@ class Assertion extends Model implements Taskable
     public function latest_result()
     {
         return $this->hasOne(AssertionResult::class)->latest();
+    }
+
+    /**
+     * @return User
+     */
+    public function user()
+    {
+        return $this->page->website->user;
+    }
+
+    /**
+     * @return Boolean
+     */
+    public function getMutedAttribute()
+    {
+        return $this->muted_at ? true : false;
     }
 }

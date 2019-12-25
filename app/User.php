@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Library\Traits\NotificationChannels;
 use App\Library\Traits\ProductHelpers;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
@@ -33,11 +34,12 @@ use Laravel\Cashier\Billable;
  * @property-read Product $product
  * @property-read Subscription $subscription
  * @property-read Feature $features
+ * @property-read NotificationChannel $notification_channels
  *
  */
 class User extends Authenticatable
 {
-    use Notifiable, Billable, SoftDeletes, ProductHelpers;
+    use Notifiable, Billable, SoftDeletes, ProductHelpers, NotificationChannels;
 
     /**
      * The attributes that are mass assignable.
@@ -83,5 +85,15 @@ class User extends Authenticatable
     public function subscription()
     {
         return $this->hasOne(Subscription::class, 'user_id'); //TODO this could have many
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\BelongsToMany
+     */
+    public function notification_channels()
+    {
+        return $this->belongsToMany(NotificationChannel::class, 'user_notification_channels', 'user_id', 'channel_id')
+                                                        ->using(UserNotificationChannel::class)
+                                                        ->withPivot(['settings', 'muted_at']);
     }
 }

@@ -14,7 +14,7 @@
 
     <link rel="stylesheet" href="//cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css">
 
-    <link rel="icon" type="image/png" sizes="96x96" href="/img/icons/wattch_icon_teal.png">
+    <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('/img/wattch_guy/wattch_guy.png') }}">
 </head>
 <body class="bg-gray-200 h-screen antialiased leading-none">
 

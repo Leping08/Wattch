@@ -18,7 +18,7 @@
                 </div>
             </form>
         </div>
-        <div class="mx-8 h-96">
+        <div class="flex mx-8 h-96">
             <img alt="" class="h-full" src="/img/icons/undraw_pay_online_b1hk.svg">
         </div>
     </div>
