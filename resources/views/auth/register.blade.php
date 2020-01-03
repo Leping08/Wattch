@@ -4,21 +4,26 @@
     <div class="container mx-auto">
         <div class="flex flex-wrap justify-center">
             <div class="w-full max-w-sm">
-                <div class="flex flex-col break-words bg-white border border-2 rounded shadow-md">
+                <script src="https://js.stripe.com/v3/" type="application/javascript"></script>
+                <div class="flex flex-col card bg-gray-100">
 
-                    <div class="font-semibold bg-gray-200 text-gray-700 py-3 px-6 mb-0">
-                        {{ __('Register') }}
+                    <div class="bg-teal-600 px-4 py-2 rounded-t-lg shadow">
+                        <span class="font-bold text-gray-200 no-underline">Sign Up</span>
                     </div>
 
-                    <form class="w-full p-6" method="POST" action="{{ route('register') }}">
+                    <div class="p-4">
+                        <img alt="" class="w-full" src="/img/wattch_guy/undraw_experience_design_eq3j.svg">
+                    </div>
+
+                    <form class="w-full p-6" id="payment_form" method="POST" action="{{ route('register') }}">
                         @csrf
 
                         <div class="flex flex-wrap mb-6">
-                            <label for="name" class="block text-gray-700 text-sm font-bold mb-2">
-                                {{ __('Name') }}:
+                            <label for="name" class="block text-gray-600 text-sm font-bold mb-2">
+                                <span class="mdi mdi-account-outline mr"></span> {{ __('Name') }}:
                             </label>
 
-                            <input id="name" type="text" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline{{ $errors->has('name') ? ' border-red-500' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
+                            <input id="name" type="text" class="input {{ $errors->has('name') ? ' border-red-500' : '' }}" name="name" value="{{ old('name') }}" required autofocus>
 
                             @if ($errors->has('name'))
                                 <p class="text-red-500 text-xs italic mt-4">
@@ -28,11 +33,11 @@
                         </div>
 
                         <div class="flex flex-wrap mb-6">
-                            <label for="email" class="block text-gray-700 text-sm font-bold mb-2">
-                                {{ __('E-Mail Address') }}:
+                            <label for="email" class="block text-gray-600 text-sm font-bold mb-2">
+                                <span class="mdi mdi-email-outline mr"></span> {{ __('E-Mail Address') }}:
                             </label>
 
-                            <input id="email" type="email" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline{{ $errors->has('email') ? ' border-red-500' : '' }}" name="email" value="{{ old('email') }}" required>
+                            <input id="email" type="email" class="input {{ $errors->has('email') ? ' border-red-500' : '' }}" name="email" value="{{ old('email') }}" required>
 
                             @if ($errors->has('email'))
                                 <p class="text-red-500 text-xs italic mt-4">
@@ -42,11 +47,11 @@
                         </div>
 
                         <div class="flex flex-wrap mb-6">
-                            <label for="password" class="block text-gray-700 text-sm font-bold mb-2">
-                                {{ __('Password') }}:
+                            <label for="password" class="block text-gray-600 text-sm font-bold mb-2">
+                                <span class="mdi mdi-lock-outline mr"></span> {{ __('Password') }}:
                             </label>
 
-                            <input id="password" type="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline{{ $errors->has('password') ? ' border-red-500' : '' }}" name="password" required>
+                            <input id="password" type="password" class="input {{ $errors->has('password') ? ' border-red-500' : '' }}" name="password" required>
 
                             @if ($errors->has('password'))
                                 <p class="text-red-500 text-xs italic mt-4">
@@ -56,27 +61,24 @@
                         </div>
 
                         <div class="flex flex-wrap mb-6">
-                            <label for="password-confirm" class="block text-gray-700 text-sm font-bold mb-2">
-                                {{ __('Confirm Password') }}:
+                            <label for="password-confirm" class="block text-gray-600 text-sm font-bold mb-2">
+                                <span class="mdi mdi-lock-outline mr"></span> {{ __('Confirm Password') }}:
                             </label>
 
-                            <input id="password-confirm" type="password" class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline" name="password_confirmation" required>
+                            <input id="password-confirm" type="password" class="input" name="password_confirmation" required>
                         </div>
 
-                        <div class="flex flex-wrap">
-                            <button type="submit" class="inline-block align-middle text-center select-none border font-bold whitespace-no-wrap py-2 px-4 rounded text-base leading-normal no-underline text-gray-100 bg-blue-500 hover:bg-blue-700">
-                                {{ __('Register') }}
-                            </button>
+                        <sign-up stripekey="{{ env('STRIPE_KEY') }}"></sign-up>
 
-                            <p class="w-full text-xs text-center text-gray-700 mt-8 -mb-4">
+                        <div class="flex flex-wrap">
+                            <p class="w-full text-xs text-center text-gray-700 mt-6 -mb-10">
                                 Already have an account?
-                                <a class="text-blue-500 hover:text-blue-700 no-underline" href="{{ route('login') }}">
+                                <a class="text-teal-500 hover:text-teal-700 no-underline" href="{{ route('login') }}">
                                     Login
                                 </a>
                             </p>
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>

@@ -61,7 +61,7 @@ class AnalyzeWebsite implements ShouldQueue
                 'website_id' => $this->website->id,
                 'ssl_valid' => 0,
                 'ssl_expires_in' => 0,
-                'ssl_raw' => json_encode(['error' => $e->getMessage()])
+                'ssl_raw' => json_encode(['error' => $e->getMessage()], JSON_PRETTY_PRINT)
             ]);
         }
     }

@@ -35,7 +35,6 @@ use Laravel\Cashier\Billable;
  * @property-read Subscription $subscription
  * @property-read Feature $features
  * @property-read NotificationChannel $notification_channels
- *
  */
 class User extends Authenticatable
 {
@@ -94,6 +93,15 @@ class User extends Authenticatable
     {
         return $this->belongsToMany(NotificationChannel::class, 'user_notification_channels', 'user_id', 'channel_id')
                                                         ->using(UserNotificationChannel::class)
-                                                        ->withPivot(['settings', 'muted_at']);
+                                                        ->withPivot(['settings', 'muted_at'])
+                                                        ->withTimestamps();
+    }
+
+    /**
+     * @return Product
+     */
+    public function product()
+    {
+        return $this->subscription->product ?? null;
     }
 }

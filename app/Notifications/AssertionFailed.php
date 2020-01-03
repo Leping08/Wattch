@@ -39,7 +39,7 @@ class AssertionFailed extends Notification
         $channels->push('database');
 
         //Get the user specific notification channels
-        $merged = $channels->merge($this->assertionResult->assertion->user()->via_notification_channels());
+        $merged = $channels->merge($this->assertionResult->assertion->user()->viaNotificationChannels());
 
         return $merged->toArray();
     }

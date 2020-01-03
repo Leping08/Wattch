@@ -3,8 +3,10 @@
 namespace App\Providers;
 
 use App\Observers\PageObserver;
+use App\Observers\UserObserver;
 use App\Observers\WebsiteObserver;
 use App\Page;
+use App\User;
 use App\Website;
 use GuzzleHttp\Client;
 use Illuminate\Pagination\Paginator;
@@ -33,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
     {
         Page::observe(PageObserver::class);
         Website::observe(WebsiteObserver::class);
+        User::observe(UserObserver::class);
         Paginator::defaultView('vendor.pagination.tailwind-default');
         Paginator::defaultSimpleView('vendor.pagination.tailwind-simple');
     }

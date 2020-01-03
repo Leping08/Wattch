@@ -9,6 +9,9 @@
         <div class="flex-1">
             <form method="POST" action="{{ route('settings.account.store') }}">
                 @csrf
+
+                <product-selector :current="{{ json_encode($currentProduct) }}" :products="{{ json_encode($products) }}"></product-selector>
+
                 <div class="flex flex-wrap mb-6">
                     <label for="name" class="block text-gray-600 text-sm font-bold mb-2">
                         <span class="mdi mdi-account-outline"></span> Name
@@ -42,7 +45,7 @@
                         <span class="mdi mdi-lock-outline"></span> {{ __('Password') }}
                     </label>
 
-                    <input id="password" type="password" class="input {{ $errors->has('password') ? ' border-red-500' : '' }}" name="password" required>
+                    <input id="password" type="password" class="input {{ $errors->has('password') ? ' border-red-500' : '' }}" name="password">
 
                     @if ($errors->has('password'))
                         <p class="text-red-500 text-xs italic mt-4">
@@ -56,7 +59,7 @@
                         <span class="mdi mdi-lock-outline"></span> {{ __('Password Confirmation') }}
                     </label>
 
-                    <input id="password_confirmation" type="password" class="input {{ $errors->has('password_confirmation') ? ' border-red-500' : '' }}" name="password_confirmation" required>
+                    <input id="password_confirmation" type="password" class="input {{ $errors->has('password_confirmation') ? ' border-red-500' : '' }}" name="password_confirmation">
 
                     @if ($errors->has('password_confirmation'))
                         <p class="text-red-500 text-xs italic mt-4">
@@ -67,7 +70,7 @@
 
                 <div class="flex flex-wrap items-center">
                     <button type="submit" class="btn-teal">
-                        {{ __('Update') }}
+                        {{ __('Save') }}
                     </button>
                 </div>
             </form>

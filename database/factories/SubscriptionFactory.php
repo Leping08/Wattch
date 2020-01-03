@@ -2,12 +2,13 @@
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
 
-use Illuminate\Support\Str;
+use App\Subscription;
+use App\User;
 use Faker\Generator as Faker;
 
-$factory->define(\App\Subscription::class, function (Faker $faker) {
+$factory->define(Subscription::class, function (Faker $faker) {
     return [
-        'user_id' => factory(\App\User::class)->create()->id,
+        'user_id' => factory(User::class)->create()->id,
         'name' => 'prod_' . $faker->lexify('??????????????'),
         'stripe_id' => 'sub_' . $faker->lexify('??????????????'),
         'stripe_status' => 'active',

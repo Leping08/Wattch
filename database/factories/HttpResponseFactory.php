@@ -4,13 +4,9 @@
 
 use App\HttpResponse;
 use App\Page;
-use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
 $factory->define(HttpResponse::class, function (Faker $faker) {
-
-    //$page = factory(Page::class)->create();
-
     return [
         'page_id' => factory(Page::class)->create()->id,
         'domain' => $faker->url,

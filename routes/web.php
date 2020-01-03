@@ -22,8 +22,11 @@ Route::get('/', function () {
     return Auth::check() ? redirect()->route('dashboard') :  view('pages.public.home');
 })->name('home');
 
+/* @see SignUpController::index() */
+Route::get('/sign-up', 'SignUpController@index')->name('sign-up.index');
+
 /* @see SignUpController::store() */
-Route::post('/sign-up', 'SignUpController@store');
+Route::post('/sign-up', 'SignUpController@store')->name('sign-up.store');
 
 Route::get('/about', function () {
     return view('pages.public.about'); //TODO: Add about page
@@ -119,11 +122,17 @@ Route::middleware('auth')->group(function () {
 
 
 
-    /* @see SettingsBillingController::index() */
-    Route::get('/settings/billing', 'SettingsBillingController@index')->name('settings.billing.index');
+    /* @see BillingController::index() */
+    Route::get('/settings/billing', 'Settings\BillingController@index')->name('settings.billing.index');
+
+    /* @see BillingController::store() */
+    Route::post('/settings/billing', 'Settings\BillingController@store')->name('settings.billing.store');
 
 
 
-    /* @see SettingsNotificationController::index() */
-    Route::get('/settings/notifications', 'SettingsNotificationsController@index')->name('settings.notifications.index');
+    /* @see NotificationController::index() */
+    Route::get('/settings/notifications', 'Settings\NotificationController@index')->name('settings.notifications.index');
+
+    /* @see NotificationController::store() */
+    Route::post('/settings/notifications', 'Settings\NotificationController@store')->name('settings.notifications.store');
 });

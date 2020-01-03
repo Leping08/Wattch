@@ -15,6 +15,7 @@ use Illuminate\Support\Carbon;
  *
  * @property integer $id
  * @property string $name
+ * @property string $price
  * @property string $stripe_plan
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -29,6 +30,7 @@ class Product extends Model
 
     protected $fillable = [
         'name',
+        'price',
         'stripe_plan'
     ];
 

@@ -19,7 +19,7 @@
                 <div class="italic mb-4">
                     <span class="mdi mdi-format-list-checks text-gray-600 text-lg"></span> <span class="text-gray-600">{{$assertion->type->method}}(</span><span class="text-purple-700">{{\Illuminate\Support\Str::limit(implode(' ', $assertion->parameters), 1000)}}</span><span class="text-gray-600">)</span>
                 </div>
-                @if($assertion->muted())
+                @if($assertion->muted)
                     <div class="text-gray-600 italic mb-4">
                         <span class="mdi mdi-bell-off-outline text-gray-600 text-lg"></span> Muted
                     </div>

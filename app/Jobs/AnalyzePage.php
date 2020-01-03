@@ -76,8 +76,8 @@ class AnalyzePage implements ShouldQueue
             'response_code'         => $response->getStatusCode() ?? null,
             'ip'                    => $handlerStats->getHandlerStats()['primary_ip'] ?? null,
             'total_time'            => $handlerStats->getHandlerStats()['total_time'] ?? null,
-            'headers_raw'           => json_encode($response->getHeaders()) ?? null,
-            'request_stats_raw'     => json_encode($handlerStats->getHandlerStats()) ?? null
+            'headers_raw'           => json_encode($response->getHeaders(), JSON_PRETTY_PRINT) ?? null,
+            'request_stats_raw'     => json_encode($handlerStats->getHandlerStats(), JSON_PRETTY_PRINT) ?? null
         ]);
     }
 

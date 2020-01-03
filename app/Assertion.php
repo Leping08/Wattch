@@ -28,6 +28,7 @@ use Illuminate\Support\Facades\Log;
  * @property-read Page $page
  * @property-read AssertionType $type
  * @property-read AssertionResult $results
+ * @property-read Task $tasks
  *
  */
 class Assertion extends Model implements Taskable

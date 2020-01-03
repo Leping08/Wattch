@@ -4,7 +4,6 @@
 
 use App\SslResponse;
 use App\Website;
-use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
 $factory->define(SslResponse::class, function (Faker $faker) {

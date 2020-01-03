@@ -28,6 +28,8 @@ class Kernel extends ConsoleKernel
      */
     protected function schedule(Schedule $schedule)
     {
+        $schedule->command('telescope:prune')->daily();
+
         //Login as the system user
         Auth::loginUsingId(config('auth.system_user_id'));
 

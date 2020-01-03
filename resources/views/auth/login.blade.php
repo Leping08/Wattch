@@ -19,7 +19,7 @@
 
                         <div class="flex flex-wrap mb-6">
                             <label for="email" class="block text-gray-600 text-sm font-bold mb-2">
-                                {{ __('E-Mail Address') }}:
+                                <span class="mdi mdi-email-outline mr"></span> {{ __('E-Mail Address') }}:
                             </label>
 
                             <input id="email" type="email" class="input {{ $errors->has('email') ? ' border-red-500' : '' }}" name="email" value="{{ old('email') }}" required autofocus>
@@ -33,7 +33,7 @@
 
                         <div class="flex flex-wrap mb-6">
                             <label for="password" class="block text-gray-600 text-sm font-bold mb-2">
-                                {{ __('Password') }}:
+                                <span class="mdi mdi-lock-outline mr"></span> {{ __('Password') }}:
                             </label>
 
                             <input id="password" type="password" class="input {{ $errors->has('password') ? ' border-red-500' : '' }}" name="password" required>

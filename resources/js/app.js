@@ -35,6 +35,10 @@ Vue.component('add-assertion', require('./components/AddAssertion').default);
 Vue.component('count-up', require('./components/CountUp').default);
 Vue.component('assertion-chart', require('./components/AssertionChart').default);
 Vue.component('assertion-sparkline-chart', require('./components/AssertionSparkline').default);
+Vue.component('product-selector', require('./components/ProductSelector').default);
+Vue.component('update-payment-method', require('./components/Stripe/UpdatePaymentMethod').default);
+Vue.component('sign-up', require('./components/Stripe/SignUp').default);
+Vue.component('sign-up-product-selector', require('./components/SignUpProductSelector').default);
 Vue.component('apexchart', VueApexCharts);
 
 

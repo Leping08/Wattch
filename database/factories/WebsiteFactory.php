@@ -4,7 +4,6 @@
 
 use App\Website;
 use App\User;
-use Illuminate\Support\Str;
 use Faker\Generator as Faker;
 
 $factory->define(Website::class, function (Faker $faker) {

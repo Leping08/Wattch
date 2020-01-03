@@ -16,6 +16,6 @@ class NotificationChannel extends Model
      */
     public function users()
     {
-        return $this->belongsToMany(User::class, 'user_notification_channels', 'channel_id', 'user_id')->whereNotNull('deleted_at');
+        return $this->belongsToMany(User::class, 'user_notification_channels', 'channel_id', 'user_id')->withTimestamps();
     }
 }

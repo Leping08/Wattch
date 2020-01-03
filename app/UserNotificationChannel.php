@@ -19,6 +19,7 @@ use Illuminate\Support\Facades\Auth;
  * @property integer $user_id
  * @property integer $channel_id
  * @property string $settings
+ * @property-read  boolean muted
  * @property Carbon $muted_at
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -38,13 +39,6 @@ class UserNotificationChannel extends Pivot
     /**
      * @var array
      */
-    protected $casts = [
-        'settings' => 'array'
-    ];
-
-    /**
-     * @var array
-     */
     protected $dates = [
         'muted_at'
     ];
@@ -53,7 +47,7 @@ class UserNotificationChannel extends Pivot
      * @var array
      */
     protected $fillable = [
-        'chanel_id',
+        'channel_id',
         'user_id',
         'settings',
         'muted_at'
@@ -101,5 +95,10 @@ class UserNotificationChannel extends Pivot
     public function notification_channel()
     {
         return $this->belongsTo(NotificationChannel::class, 'channel_id');
+    }
+
+    public function getSettingsAttribute($value)
+    {
+        return json_decode($value, true);
     }
 }

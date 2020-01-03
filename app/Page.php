@@ -28,6 +28,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property-read HttpResponse $latest_http_response
  * @property-read Screenshot $screenshots
  * @property-read Task $tasks
+ * @property-read Assertion $assertions
  * @property string $full_route
  * @property bool $passing
  *

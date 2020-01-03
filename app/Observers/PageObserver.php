@@ -2,6 +2,7 @@
 
 namespace App\Observers;
 
+use App\Assertion;
 use App\HttpResponse;
 use App\Page;
 use App\Screenshot;
@@ -66,6 +67,11 @@ class PageObserver
         foreach ($page->screenshots as $screenshot) {
             $screenshot->delete();
         }
+
+        //Delete any assertions related to the page
+        foreach ($page->assertions as $assertion) {
+            $assertion->delete();
+        }
     }
 
     /**
@@ -106,6 +112,16 @@ class PageObserver
 
         foreach ($screenshots as $screenshot) {
             $screenshot->restore();
+        }
+
+
+        //Restore any Assertions related to the page
+        $assertions = Assertion::withTrashed()
+            ->where('page_id', $page->id)
+            ->get();
+
+        foreach ($assertions as $assertion) {
+            $assertion->restore();
         }
     }
 

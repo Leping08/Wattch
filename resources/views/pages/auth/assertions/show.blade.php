@@ -25,7 +25,7 @@
                             </button>
                         </form>
 
-                        @if($assertion->muted())
+                        @if($assertion->muted)
                             <form method="POST" action="">
                                 @csrf
                                 <button type="submit" class="block no-underline w-full text-left italic text-gray-600 hover:bg-gray-300 p-2">

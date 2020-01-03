@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -11,7 +12,10 @@ class SettingsAccountController extends Controller
     public function index()
     {
         $user = Auth::user();
-        return view('pages.auth.settings.account.index', compact('user'));
+        $products = Product::all();
+        $currentProduct = Product::first();
+
+        return view('pages.auth.settings.account.index', compact('user', 'products', 'currentProduct'));
     }
 
     public function store(Request $request)

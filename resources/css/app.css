@@ -40,7 +40,7 @@
     @apply rounded-lg px-4 py-2 font-semibold leading-tight shadow text-teal-500 border border-teal-500 text-teal-600
 }
 .btn-teal:hover {
-    @apply bg-teal-600 text-gray-100;
+    @apply bg-teal-500 text-gray-100;
 }
 
 .btn-teal:focus {

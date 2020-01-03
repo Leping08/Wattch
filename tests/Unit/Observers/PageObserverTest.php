@@ -4,6 +4,7 @@
 namespace Tests\Unit\Observers;
 
 
+use App\Assertion;
 use App\Jobs\AnalyzePage;
 use App\Jobs\CaptureScreenshot;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
