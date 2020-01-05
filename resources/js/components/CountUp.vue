@@ -24,7 +24,6 @@
         },
         methods: {
             tick() {
-                console.log(this.increment);
                 if (this.count + this.increment >= this.to) {
                     this.count = this.to;
                     return clearInterval(this.interval);

@@ -3,6 +3,8 @@
 namespace App\Observers;
 
 use App\Assertion;
+use App\AssertionResult;
+use App\SslResponse;
 use App\Task;
 use Illuminate\Support\Facades\Log;
 
@@ -16,6 +18,8 @@ class AssertionObserver
      */
     public function created(Assertion $assertion)
     {
+        $assertion->execute();
+
         Task::create([
             'taskable_type' => 'App\Assertion',
             'taskable_id' => $assertion->id,
@@ -64,6 +68,25 @@ class AssertionObserver
     public function restored(Assertion $assertion)
     {
         Log::info('Restoring Assertion Id: ' . $assertion->id);
+
+        //Restore any Results related to the assertion
+        $results = AssertionResult::withTrashed()
+            ->where('assertion_id', $assertion->id)
+            ->get();
+
+        foreach ($results as $result) {
+            $result->restore();
+        }
+
+        //Restore any tasks related to the assertion
+        $tasks = Task::withTrashed()
+            ->where('taskable_type', 'App\Assertion')
+            ->where('taskable_id', $assertion->id)
+            ->get();
+
+        foreach ($tasks as $task) {
+            $task->restore();
+        }
     }
 
     /**

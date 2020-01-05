@@ -9,6 +9,7 @@ class ScanPageController extends Controller
 {
     public function store(Page $page)
     {
+        $this->authorize('view', $page);
         $page->execute();
         return redirect()->back();
     }

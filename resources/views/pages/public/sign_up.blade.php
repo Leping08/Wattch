@@ -10,23 +10,21 @@
                 'icon' => '/img/icons/undraw_baby_ja7a.svg',
                 'features' => [
                     '10 Websites',
-                    'Assertions',
+                    'Assertions/6 Hours',
                     'Screenshots',
-                    'Downtime Alerts',
-                    'Analytics',
+                    'Downtime Alerts'
                 ]
             ],
             [
                 'id' => 2,
                 'name' => 'Security Guard',
-                'price' => 2499,
+                'price' => 3499,
                 'icon' => '/img/icons/undraw_security_o890.svg',
                 'features' => [
                     '100 Websites',
-                    'Assertions',
+                    'Assertions/Hourly',
                     'Screenshots',
                     'Downtime Alerts',
-                    'Analytics',
                     'SSL Monitoring',
                     'Domain Expiration Monitoring',
                 ]
@@ -34,18 +32,17 @@
             [
                 'id' => 3,
                 'name' => 'Private Investigator',
-                'price' => 4999,
+                'price' => 9999,
                 'icon' => '/img/icons/undraw_surveillance_kqll.svg',
                 'features' => [
-                    '∞ Websites',
-                    'Assertions',
+                    '1000 Websites',
+                    'Assertions/10 Min',
                     'Screenshots',
                     'Downtime Alerts',
-                    'Analytics',
                     'SSL Monitoring',
                     'Domain Expiration Monitoring',
-                    'API Monitoring',
-                    'Support'
+                    '3 Month Record Retention',
+                    'Assertions API'
                 ]
             ]
         ];
@@ -138,7 +135,7 @@
                             <sign-up stripekey="{{ env('STRIPE_KEY') }}"></sign-up>
 
                             <div class="flex flex-wrap">
-                                <p class="w-full text-xs text-center text-gray-700 mt-6">
+                                <p class="w-full text-xs text-center text-gray-600 mt-6">
                                     Already have an account?
                                     <a class="text-teal-500 hover:text-teal-700 no-underline" href="{{ route('login') }}">
                                         Login

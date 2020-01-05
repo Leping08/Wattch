@@ -9,6 +9,7 @@ class ScanWebsiteController extends Controller
 {
     public function store(Website $website)
     {
+        $this->authorize('view', $website);
         $website->execute();
         return redirect()->back();
     }

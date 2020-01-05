@@ -21,15 +21,15 @@
                     </div>
                     <div>
                         @forelse($paymentMethods as $paymentMethod)
-                            <div class="flex py-4 px-4">
+                            <div class="flex p-4">
                                 <div class="flex-1">
                                     <span class="text-gray-700">
                                         <span class="">{{ \Illuminate\Support\Str::title($paymentMethod->card->brand) }} •••• {{ $paymentMethod->card->last4 }}</span>
                                         <span class="ml-6">{{ $paymentMethod->card->exp_month }} / {{ $paymentMethod->card->exp_year }}</span>
                                     </span>
                                 </div>
-                                <div class="px-2">
-                                    <button class="btn-teal -m-2 text-sm py-1 px-2">Change</button>
+                                <div class="pl-2">
+                                    <a href="#change-card" class="bg-transparent hover:shadow p-1 rounded-full text-2xl focus:outline-none"><span class="mdi mdi-pencil-outline text-gray-600"></span></a>
                                 </div>
                             </div>
                         @empty
@@ -38,11 +38,6 @@
                     </div>
                 </div>
             </div>
-
-{{--            <form method="POST" id="payment_form" class="mt-4" action="{{ route('settings.billing.store') }}">--}}
-{{--                @csrf--}}
-{{--                <update-payment-method stripekey="{{ $stripePubKey }}" :intent="{{ json_encode($user->createSetupIntent()) }}"></update-payment-method>--}}
-{{--            </form>--}}
 
             <div class="card bg-white mt-4">
                 <div class="flex justify-between card-heading-border py-2 px-4">
@@ -85,4 +80,16 @@
             <img alt="" class="h-full" src="/img/icons/undraw_pay_online_b1hk.svg">
         </div>
     </div>
+
+    <modal name="change-card">
+        <div class="p-4">
+            <div class="pb-2">
+                <span class="card-heading">Change card on file</span>
+            </div>
+            <form method="POST" id="payment_form" class="mt-4" action="{{ route('settings.billing.store') }}">
+                @csrf
+                <update-payment-method stripekey="{{ $stripePubKey }}" :intent="{{ json_encode(auth()->user()->createSetupIntent()) }}"></update-payment-method>
+            </form>
+        </div>
+    </modal>
 @endsection

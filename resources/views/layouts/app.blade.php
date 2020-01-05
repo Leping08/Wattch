@@ -26,10 +26,12 @@
         <div class="flex">
             <div>
                 @if (Auth::check())
-                    @include('layouts.side_nav')
+                    <div class="fixed mt-0 lg:mt-16 w-0 lg:w-64 min-h-screen bg-gray-100 shadow-md pt-4 hidden lg:block">
+                        @include('layouts.side_nav')
+                    </div>
                 @endif
             </div>
-            <div class="mt-16 p-4 w-full {{Auth::check() ? 'ml-64' : ''}}">
+            <div class="mt-16 p-4 w-full {{Auth::check() ? 'ml-0 lg:ml-64' : ''}}">
                 @yield('content')
             </div>
         </div>

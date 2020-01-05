@@ -67,14 +67,13 @@
                             @if (Route::has('register'))
                                 <p class="w-full text-xs text-center text-gray-600 mt-8 -mb-4">
                                     Don't have an account?
-                                    <a class="text-teal-600 hover:text-teal-700 no-underline" href="{{ route('register') }}">
-                                        Register
+                                    <a class="text-teal-600 hover:text-teal-700 no-underline" href="{{ route('sign-up.index') }}">
+                                        Sign Up
                                     </a>
                                 </p>
                             @endif
                         </div>
                     </form>
-
                 </div>
             </div>
         </div>

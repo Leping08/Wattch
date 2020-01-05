@@ -1,19 +1,20 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Settings;
 
+use App\Http\Controllers\Controller;
 use App\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
-class SettingsAccountController extends Controller
+class AccountController extends Controller
 {
     public function index()
     {
         $user = Auth::user();
         $products = Product::all();
-        $currentProduct = Product::first();
+        $currentProduct = $user->product();
 
         return view('pages.auth.settings.account.index', compact('user', 'products', 'currentProduct'));
     }
@@ -39,6 +40,8 @@ class SettingsAccountController extends Controller
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password'])
         ])->save();
+
+        //TODO Change stripe subscription
 
         session()->flash('success', 'Account Updated');
         return redirect()->route('settings.account.index');

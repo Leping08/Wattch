@@ -85,7 +85,6 @@
                     if (result.error) {
                         this.stripeError = result.error.message;
                     } else {
-                        console.log(result);
                         this.payment_method_id = result.paymentMethod.id;
                         this.$nextTick(function () {
                             document.getElementById('sign_up').submit();

@@ -33,6 +33,6 @@ class Subscription extends \Laravel\Cashier\Subscription
      */
     public function product()
     {
-        return $this->hasOne(Product::class, 'stripe_plan', 'stripe_plan');
+        return $this->hasOne(Product::class, 'stripe_plan', 'name');
     }
 }

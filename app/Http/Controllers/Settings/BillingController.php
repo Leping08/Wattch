@@ -25,12 +25,10 @@ class BillingController extends Controller
             }
         }
 
-        $products = Product::all();
-        $currentProduct = $user->product();
         $intent = $user->createSetupIntent();
         $stripePubKey = env('STRIPE_KEY');
 
-        return view('pages.auth.settings.billing.index', compact('currentProduct', 'products', 'intent', 'stripePubKey', 'user', 'paymentMethods', 'invoices'));
+        return view('pages.auth.settings.billing.index', compact('intent', 'stripePubKey', 'user', 'paymentMethods', 'invoices'));
     }
 
     public function store(Request $request)

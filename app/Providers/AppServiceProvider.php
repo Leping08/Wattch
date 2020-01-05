@@ -2,6 +2,8 @@
 
 namespace App\Providers;
 
+use App\Assertion;
+use App\Observers\AssertionObserver;
 use App\Observers\PageObserver;
 use App\Observers\UserObserver;
 use App\Observers\WebsiteObserver;
@@ -33,6 +35,7 @@ class AppServiceProvider extends ServiceProvider
      */
     public function boot()
     {
+        Assertion::observe(AssertionObserver::class);
         Page::observe(PageObserver::class);
         Website::observe(WebsiteObserver::class);
         User::observe(UserObserver::class);

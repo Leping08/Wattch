@@ -39,6 +39,7 @@ Vue.component('product-selector', require('./components/ProductSelector').defaul
 Vue.component('update-payment-method', require('./components/Stripe/UpdatePaymentMethod').default);
 Vue.component('sign-up', require('./components/Stripe/SignUp').default);
 Vue.component('sign-up-product-selector', require('./components/SignUpProductSelector').default);
+Vue.component('mobile-nav', require('./components/MobileNav').default);
 Vue.component('apexchart', VueApexCharts);
 
 

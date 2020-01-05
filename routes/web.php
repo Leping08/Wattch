@@ -50,8 +50,6 @@ Route::middleware('auth')->group(function () {
     /* @see DashboardController::index() */
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-    Route::get('/profile', 'ProfileController@index')->name('profile');
-
 
 
     /* @see WebsiteController::index() */
@@ -114,11 +112,11 @@ Route::middleware('auth')->group(function () {
 
 
 
-    /* @see SettingsAccountController::index() */
-    Route::get('/settings/account', 'SettingsAccountController@index')->name('settings.account.index');
+    /* @see AccountController::index() */
+    Route::get('/settings/account', 'Settings\AccountController@index')->name('settings.account.index');
 
-    /* @see SettingsAccountController::store() */
-    Route::post('/settings/account', 'SettingsAccountController@store')->name('settings.account.store');
+    /* @see AccountController::store() */
+    Route::post('/settings/account', 'Settings\AccountController@store')->name('settings.account.store');
 
 
 

@@ -25,13 +25,6 @@ class PageAssertionsController extends Controller
         return view('pages.auth.page_assertions.index', compact('page', 'types'));
     }
 
-    public function show(Page $page, Assertion $assertion)
-    {
-        //TODO: Not sure if 2 authorize's are needed here or not
-        $this->authorize('view', $assertion);
-        $this->authorize('view', $page);
-    }
-
     public function store(Request $request)
     {
         $request->validate([
