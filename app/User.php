@@ -92,9 +92,9 @@ class User extends Authenticatable
     public function notification_channels()
     {
         return $this->belongsToMany(NotificationChannel::class, 'user_notification_channels', 'user_id', 'channel_id')
-                                                        ->using(UserNotificationChannel::class)
-                                                        ->withPivot(['settings', 'muted_at'])
-                                                        ->withTimestamps();
+            ->using(UserNotificationChannel::class)
+            ->withPivot(['settings', 'muted_at'])
+            ->withTimestamps();
     }
 
     /**

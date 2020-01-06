@@ -25,10 +25,10 @@ class SignUpController extends Controller
             'payment_method_id' => ['required']
         ]);
 
-        /* @var $product Product **/
+        /* @var $product Product * */
         $product = Product::find($validData['product_id']);
 
-        /* @var $user User **/
+        /* @var $user User * */
         $user = User::create([
             'name' => $validData['name'],
             'email' => $validData['email'],

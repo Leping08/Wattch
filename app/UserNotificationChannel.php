@@ -26,7 +26,6 @@ use Illuminate\Support\Facades\Auth;
  * @property Carbon $deleted_at
  *
  */
-
 class UserNotificationChannel extends Pivot
 {
     use SoftDeletes;

@@ -99,7 +99,7 @@ class Website extends Model implements Taskable
      */
     public function getLinkAttribute(): string
     {
-        return '/website/' . $this->id;
+        return '/website/'.$this->id;
     }
 
     /**

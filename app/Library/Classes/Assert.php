@@ -27,9 +27,9 @@ class Assert
      * The assertion methods come from the laravel testing docs
      * https://laravel.com/docs/master/http-tests
      *
-     * @param string $route
-     * @param string $assertionMethod
-     * @param array $parameters
+     * @param  string  $route
+     * @param  string  $assertionMethod
+     * @param  array  $parameters
      * @return array
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -56,9 +56,6 @@ class Assert
                 'error_message' => null
             ];
         } catch (\Exception $exception) {
-
-
-
             return [
                 'status' => false,
                 'error_message' => $exception->getMessage() ?? 'Something went wrong'

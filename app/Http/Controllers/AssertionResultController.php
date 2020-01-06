@@ -44,26 +44,28 @@ class AssertionResultController extends Controller
         $start_date = $validData->has('start_date') ? Carbon::parse($validData->get('start_date')) : Carbon::now()->subDays(30);
         $end_date = $validData->has('end_date') ? Carbon::parse($validData->get('end_date')) : Carbon::now();
 
-        $assertion_results = AssertionResult::with(['assertion.type', 'assertion.page.latest_screenshot', 'assertion.page.website'])
-                                    ->whereHas('assertion.page.website', function ($query) use ($website) {
-                                        $website ? $query->where('id', '=', $website->id) : $query;
-                                    })
-                                    ->whereHas('assertion.page', function ($query) use ($page) {
-                                        $page ? $query->where('id', '=', $page->id) : $query;
-                                    })
-                                    ->where(function ($query) use ($status) {
-                                        if ($status->get('name') == 'Successful') {
-                                            return $query->where('success', '=', true);
-                                        } elseif ($status->get('name') == 'Failed') {
-                                            return $query->where('success', '=', false);
-                                        } else {
-                                            return $query;
-                                        }
-                                    })
-                                    ->whereBetween('created_at', [$start_date, $end_date])
-                                    ->orderBy('created_at', 'desc')
-                                    ->paginate(15)
-                                    ->appends(request()->query());
+        $assertion_results = AssertionResult::with([
+            'assertion.type', 'assertion.page.latest_screenshot', 'assertion.page.website'
+        ])
+            ->whereHas('assertion.page.website', function ($query) use ($website) {
+                $website ? $query->where('id', '=', $website->id) : $query;
+            })
+            ->whereHas('assertion.page', function ($query) use ($page) {
+                $page ? $query->where('id', '=', $page->id) : $query;
+            })
+            ->where(function ($query) use ($status) {
+                if ($status->get('name') == 'Successful') {
+                    return $query->where('success', '=', true);
+                } elseif ($status->get('name') == 'Failed') {
+                    return $query->where('success', '=', false);
+                } else {
+                    return $query;
+                }
+            })
+            ->whereBetween('created_at', [$start_date, $end_date])
+            ->orderBy('created_at', 'desc')
+            ->paginate(15)
+            ->appends(request()->query());
 
         //This is used to populate the filter dropdowns
         $websites = Website::all();

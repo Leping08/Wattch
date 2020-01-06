@@ -114,7 +114,7 @@ class Page extends Model implements Taskable
      */
     public function getFullRouteAttribute()
     {
-        return $this->remove_trailing_slashes($this->website->domain) . $this->route;
+        return $this->remove_trailing_slashes($this->website->domain).$this->route;
     }
 
     /**

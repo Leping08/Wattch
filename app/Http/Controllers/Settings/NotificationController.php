@@ -40,7 +40,7 @@ class NotificationController extends Controller
         if ($validatedData['email']) {
             $currentSettingsEmail = $user->notificationEmailAddress();
             if (!($validatedData['email'] === $currentSettingsEmail)) { //The user has changed the email
-                Log::info("User Id $user->id is changing notification email from $currentSettingsEmail to " . $validatedData['email']);
+                Log::info("User Id $user->id is changing notification email from $currentSettingsEmail to ".$validatedData['email']);
                 $channel = $user->getNotificationChannel('mail');
                 $channel->settings = json_encode([
                     'email' => $validatedData['email']
@@ -65,7 +65,7 @@ class NotificationController extends Controller
         if ($validatedData['slack_webhook']) {
             $currentSlackWebhookUrl = $user->slackWebhookUrl();
             if (!($validatedData['slack_webhook'] === $currentSlackWebhookUrl)) { //The user has changed the email
-                Log::info("User Id $user->id is changing their slack webhook url from $currentSlackWebhookUrl to " . $validatedData['slack_webhook']);
+                Log::info("User Id $user->id is changing their slack webhook url from $currentSlackWebhookUrl to ".$validatedData['slack_webhook']);
                 $channel = $user->getNotificationChannel('slack');
                 $channel->settings = json_encode([
                     'webhook_url' => $validatedData['slack_webhook']

@@ -65,6 +65,6 @@ class AssertionType extends Model
      */
     public function getIconPathAttribute()
     {
-        return asset('img/assertion_types/' . $this->icon);
+        return asset('img/assertion_types/'.$this->icon);
     }
 }
