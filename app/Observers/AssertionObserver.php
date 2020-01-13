@@ -18,7 +18,7 @@ class AssertionObserver
      */
     public function created(Assertion $assertion)
     {
-        $assertion->execute();
+        //$assertion->execute();
 
         Task::create([
             'taskable_type' => 'App\Assertion',

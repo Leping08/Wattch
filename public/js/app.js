@@ -2351,9 +2351,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['name']
 });
@@ -2495,7 +2492,6 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
-//
 //
 //
 //
@@ -2874,7 +2870,7 @@ exports = module.exports = __webpack_require__(/*! ../../../node_modules/css-loa
 
 
 // module
-exports.push([module.i, "\n.overlay {\n    visibility: hidden;\n    background: rgba(0, 0, 0, .3);\n    transition: opacity .3s;\n}\n.overlay:target {\n    visibility: visible;\n    opacity: 1;\n}\n.modal {\n    width: 500px;\n}\n.modal .close {\n    position: absolute;\n    top: 15px;\n    right: 15px;\n}\n.overlay .cancel {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n}\n", ""]);
+exports.push([module.i, "\n.overlay {\n    visibility: hidden;\n    background: rgba(0, 0, 0, .4);\n    transition: opacity .3s;\n}\n.overlay:target {\n    visibility: visible;\n    opacity: 1;\n}\n.modal {\n    width: 500px;\n}\n.overlay .cancel {\n    position: absolute;\n    width: 100%;\n    height: 100%;\n}\n", ""]);
 
 // exports
 
@@ -5927,29 +5923,30 @@ var render = function() {
         "div",
         {
           staticClass:
-            "modal relative rounded-lg bg-white p-4 shadow max-w-5xl m-4"
+            "w-full md:w-1/2 lg:w-1/3 relative rounded-lg bg-white p-4 m-4"
         },
-        [
-          _vm._t("default"),
-          _vm._v(" "),
-          _c("footer", { staticClass: "flex mt-8" }, [_vm._t("footer")], 2),
-          _vm._v(" "),
-          _c(
-            "a",
-            {
-              staticClass:
-                "close text-gray-600 text-2xl no-underline hover:text-gray-800",
-              attrs: { href: "#" }
-            },
-            [_vm._v("×")]
-          )
-        ],
+        [_vm._t("default"), _vm._v(" "), _vm._m(0)],
         2
       )
     ]
   )
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "a",
+      {
+        staticClass:
+          "absolute top-0 right-0 m-2 text-gray-600 text-lg no-underline hover:text-gray-800",
+        attrs: { href: "#" }
+      },
+      [_c("span", { staticClass: "mdi mdi-close" })]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -6009,22 +6006,24 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [
+  return _c("div", {}, [
+    _c("input", {
+      attrs: { type: "hidden", id: "product_id", name: "product_id" },
+      domProps: { value: _vm.selected_product.id }
+    }),
+    _vm._v(" "),
     _c(
       "div",
-      { staticClass: "flex mb-4" },
-      [
-        _c("input", {
-          attrs: { type: "hidden", id: "product_id", name: "product_id" },
-          domProps: { value: _vm.selected_product.id }
-        }),
-        _vm._v(" "),
-        _vm._l(_vm.products, function(product, index) {
-          return _c("div", { staticClass: "mb-4 lg:mb-0 lg:w-1/3 lg:px-2" }, [
+      { staticClass: "flex flex-wrap" },
+      _vm._l(_vm.products, function(product, index) {
+        return _c(
+          "div",
+          { staticClass: "p-2 lg:w-1/3 md:w-full sm:w-full w-full relative" },
+          [
             _c(
               "div",
               {
-                staticClass: "text-center bg-white p-8 card",
+                staticClass: "text-center bg-white lg:p-8 p-4 card",
                 class: _vm.activeClasses(product.id),
                 on: {
                   click: function($event) {
@@ -6060,10 +6059,10 @@ var render = function() {
                 ])
               ]
             )
-          ])
-        })
-      ],
-      2
+          ]
+        )
+      }),
+      0
     )
   ])
 }
@@ -6073,7 +6072,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("div", { staticClass: "flex" }, [
-      _c("div", { staticClass: "absolute -mt-6" }, [
+      _c("div", { staticClass: "absolute right-0 top-0 p-4" }, [
         _c("span", {
           staticClass: "mdi mdi-check-circle text-teal-500 text-2xl"
         })

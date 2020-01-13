@@ -3,22 +3,22 @@
 
         {{-- Previous Page Link --}}
         @if ($paginator->onFirstPage())
-            <li class="disabled">
+            <li class="disabled p-2">
                 <span class="btn-teal bg-gray-400 opacity-50 cursor-not-allowed">@lang('pagination.previous')</span>
             </li>
         @else
-            <li>
+            <li class="p-2">
                 <a class="btn-teal bg-gray-100" href="{{ $paginator->previousPageUrl() }}" rel="prev">@lang('pagination.previous')</a>
             </li>
         @endif
 
         {{-- Next Page Link --}}
         @if ($paginator->hasMorePages())
-            <li>
+            <li class="p-2">
                 <a class="btn-teal bg-gray-100" href="{{ $paginator->nextPageUrl() }}" rel="next">@lang('pagination.next')</a>
             </li>
         @else
-            <li class="disabled ">
+            <li class="disabled p-2">
                 <span class="btn-teal bg-gray-400 opacity-50 cursor-not-allowed">@lang('pagination.next')</span>
             </li>
         @endif

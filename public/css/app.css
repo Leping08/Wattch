@@ -1041,6 +1041,37 @@ video {
   width: 7rem;
 }
 
+.add-btn-teal {
+  background-color: #38b2ac;
+  padding: 0.5rem;
+  border-radius: 9999px;
+  cursor: pointer;
+  color: #f7fafc;
+  border-color: #38b2ac;
+  border-width: 1px;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)
+}
+
+.add-btn-teal:hover {
+  color: #38b2ac;
+  background-color: #f7fafc;
+  box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)
+}
+
+.label {
+  display: block;
+  color: #718096;
+  font-size: 0.875rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem
+}
+
+@media (min-width: 768px) {
+  .add-btn-teal {
+    padding: 0.75rem
+  }
+}
+
 /**
  * This injects all of Tailwind's utility classes, generated based on your
  * config file.

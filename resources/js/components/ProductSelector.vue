@@ -1,16 +1,15 @@
 <template>
-    <div>
-        <div class="flex mb-4">
-            <input type="hidden" id="product_id" name="product_id" :value="selected_product.id">
-
-            <div v-for="(product, index) in products" class="mb-4 lg:mb-0 lg:w-1/3 lg:px-2">
-                <div class="text-center bg-white p-8 card" :class="activeClasses(product.id)" @click="selected_product = product">
+    <div class="">
+        <input type="hidden" id="product_id" name="product_id" :value="selected_product.id">
+        <div class="flex flex-wrap">
+            <div v-for="(product, index) in products" class="p-2 lg:w-1/3 md:w-full sm:w-full w-full relative">
+                <div class="text-center bg-white lg:p-8 p-4 card" :class="activeClasses(product.id)" @click="selected_product = product">
                     <div class="flex" v-if="selected_product.id === product.id">
                         <div class="flex-1">
 
                         </div>
                         <div class="flex">
-                            <div class="absolute -mt-6">
+                            <div class="absolute right-0 top-0 p-4">
                                 <span class="mdi mdi-check-circle text-teal-500 text-2xl"></span>
                             </div>
                         </div>

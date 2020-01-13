@@ -46,7 +46,7 @@ class Website extends Model implements Taskable
         parent::boot();
 
         static::addGlobalScope('user', function (Builder $builder) {
-            if (!(Auth::id() == config('auth.system_user_id'))) { //If not the system user apply user scoping
+            if (Auth::check()) {
                 return $builder->where('user_id', Auth::id());
             } else {
                 return $builder;
@@ -83,7 +83,7 @@ class Website extends Model implements Taskable
      */
     public function latest_ssl_response()
     {
-        return $this->hasOne(SslResponse::class, 'website_id')->latest();
+        return $this->hasOne(SslResponse::class, 'website_id')->latest('id');
     }
 
     /**

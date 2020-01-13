@@ -64,7 +64,7 @@ class AssertionResultController extends Controller
             })
             ->whereBetween('created_at', [$start_date, $end_date])
             ->orderBy('created_at', 'desc')
-            ->paginate(15)
+            ->simplePaginate(10)
             ->appends(request()->query());
 
         //This is used to populate the filter dropdowns

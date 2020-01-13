@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="mx-auto">
+    <div class="relative lg:p-4 md:p-2 sm:p-2 p-2">
         <div class="flex justify-between m-2">
             <div>
                 <span class="page-heading pb-2">Assertions</span>

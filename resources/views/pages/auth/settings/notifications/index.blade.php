@@ -58,8 +58,8 @@
                 </div>
             </form>
         </div>
-        <div class="flex mx-8 h-96">
-            <img alt="" class="h-full" src="/img/icons/undraw_notify_88a4.svg">
+        <div class="w-1/3 lg:block md:hidden sm:hidden hidden">
+            <img alt="" class="w-full" src="/img/icons/undraw_notify_88a4.svg">
         </div>
     </div>
 @endsection

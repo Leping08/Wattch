@@ -82,7 +82,7 @@ class Page extends Model implements Taskable
      */
     public function latest_http_response()
     {
-        return $this->hasOne(HttpResponse::class, 'page_id')->latest();
+        return $this->hasOne(HttpResponse::class, 'page_id')->latest('id');
     }
 
     /**
@@ -106,7 +106,7 @@ class Page extends Model implements Taskable
      */
     public function latest_screenshot()
     {
-        return $this->hasOne(Screenshot::class, 'page_id')->latest();
+        return $this->hasOne(Screenshot::class, 'page_id')->latest('id');
     }
 
     /**

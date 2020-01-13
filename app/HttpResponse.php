@@ -19,6 +19,7 @@ use Illuminate\Support\Str;
  * @property string $domain
  * @property integer $response_code
  * @property string $ip
+ * @property float $total_time
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at

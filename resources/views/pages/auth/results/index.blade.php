@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="mx-auto">
+    <div class="lg:p-4 md:p-2 sm:p-2 p-2">
 
         <div class="flex justify-between m-2">
             <div>
@@ -86,7 +86,7 @@
             @endforelse
         </div>
 
-        <div class="flex justify-around">
+        <div class="flex justify-around w-full">
             {{ $assertion_results->links() }}
         </div>
     </div>

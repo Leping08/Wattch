@@ -1,7 +1,7 @@
 <?php
 
 
-namespace Tests\Feature\dashboard;
+namespace Tests\Feature\Dashboard;
 
 
 use App\Assertion;
@@ -11,7 +11,7 @@ use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
 
-class DashboardTest extends TestCase
+class IndexTest extends TestCase
 {
     use DatabaseMigrations;
 

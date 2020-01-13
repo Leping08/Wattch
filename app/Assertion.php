@@ -41,8 +41,8 @@ class Assertion extends Model implements Taskable
     protected $fillable = [
         'page_id',
         'assertion_type_id',
-        'name',
-        'parameters'
+        'parameters',
+        'muted_at'
     ];
 
     /**
@@ -50,6 +50,13 @@ class Assertion extends Model implements Taskable
      */
     protected $casts = [
         'parameters' => 'json'  //TODO: MAKE SURE SOMEONE CAN NOT RUN CODE FROM THIS
+    ];
+
+    /**
+     * @var array
+     */
+    protected $dates = [
+        'muted_at'
     ];
 
     /**
@@ -114,7 +121,7 @@ class Assertion extends Model implements Taskable
      */
     public function latest_result()
     {
-        return $this->hasOne(AssertionResult::class)->latest();
+        return $this->hasOne(AssertionResult::class)->latest('id');
     }
 
     /**

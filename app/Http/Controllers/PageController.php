@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Page;
+use App\Website;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 
@@ -46,6 +47,10 @@ class PageController extends Controller
         $website_id = $request['website_id'];
         $route = $request['route'];
 
+        $website = Website::findOrFail($website_id);
+
+        $this->authorize('view', $website);
+
         $page = Page::where('website_id', $website_id)
             ->where('route', $route)
             ->get();
@@ -62,5 +67,16 @@ class PageController extends Controller
             session()->flash('warning', 'That page already exists');
             return redirect()->route('websites.show', ['website' => $website_id]);
         }
+    }
+
+    public function destroy(Page $page)
+    {
+        $this->authorize('delete', $page);
+
+        $website = $page->website;
+
+        $page->delete();
+
+        return redirect()->route('websites.show', ['website' => $website]);
     }
 }

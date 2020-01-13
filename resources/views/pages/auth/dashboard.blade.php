@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="">
-        <div class="flex mb-2">
+    <div class="p-2">
+        <div class="flex my-2">
             @php
                 $items = [
                     [

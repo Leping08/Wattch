@@ -102,6 +102,23 @@
     width: 7rem;
 }
 
+.add-btn-teal {
+    @apply bg-teal-500 p-2 rounded-full cursor-pointer text-gray-100 border-teal-500 border shadow
+}
+
+.add-btn-teal:hover {
+    @apply text-teal-500 bg-gray-100 shadow
+}
+
+.label {
+    @apply block text-gray-600 text-sm font-bold mb-2
+}
+
+@screen md {
+    .add-btn-teal {
+        @apply p-3
+    }
+}
 /**
  * This injects all of Tailwind's utility classes, generated based on your
  * config file.

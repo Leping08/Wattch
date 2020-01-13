@@ -78,6 +78,9 @@ Route::middleware('auth')->group(function () {
     /* @see PageController::store() */
     Route::post('/pages', 'PageController@store')->name('pages.store');
 
+    /* @see PageController::destroy() */
+    Route::delete('/pages/{page}', 'PageController@destroy')->name('pages.destroy');
+
 
 
     /* @see ScanWebsiteController::store() */

@@ -1,8 +1,8 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="">
-        <div class="flex justify-between m-2">
+    <div class="p-4">
+        <div class="flex justify-between">
             <div>
                 <div class="page-heading p-2">{{ $page->full_route }}
                     <a href="{{ $page->full_route }}" target="_blank">
@@ -35,7 +35,7 @@
                 </dropdown>
             </div>
         </div>
-        <div class="z-0 m-2 mt-4">
+        <div class="z-0 mt-2 p-2">
             @if(count($page->screenshots))
                 <carousel :loop="true" :auto-play="true" :per-page="1" pagination-active-color="#38b1ac" pagination-color="#4a5568">
                     @foreach($page->screenshots as $screenshot)
@@ -64,9 +64,9 @@
             @endif
         </div>
 
-        <div class="flex">
-            <div class="flex-1">
-                <div class="card bg-white m-2">
+        <div class="lg:flex md:flex-wrap flex-wrap p-2">
+            <div class="flex-1 lg:w-1/2 md:w-full w-full">
+                <div class="card bg-white lg:mr-2 mr-0">
                     <div class="flex justify-between card-heading-border py-2 px-4">
                         <div>
                             <span class="card-heading pb-2">Response Time</span>
@@ -78,8 +78,8 @@
                     <page-chat :responses="{{ $page->http_responses }}"></page-chat>
                 </div>
             </div>
-            <div class="flex-1">
-                <div class="card bg-white m-2">
+            <div class="flex-1 lg:w-1/2 md:w-full w-full">
+                <div class="card bg-white lg:mt-0 mt-4 lg:ml-2 ml-0">
                     <a href="{{ route('pages.assertions.index', ['page' => $page]) }}">
                         <div class="flex justify-between card-heading-border py-2 px-4">
                             <div>
@@ -108,12 +108,16 @@
 
 
     <modal name="delete-modal">
-        <h1 class="font-bold text-xl mb-4">Delete Page</h1>
-        <p>Are you sure you want to delete the page <span
-                class="text-teal-600 italic font-bold">{{ $page->route }}</span> ?</p>
-        <template v-slot:footer>
-            <a href="#" class="btn-teal mr-2">Cancel</a>
-            <a href="#" class="btn-teal bg-red-500 hover:bg-red-600">Delete</a> {{--TODO Get delete to work--}}
-        </template>
+        <div class="p-2">
+            <div class="text-gray-600 italic">Are you sure you want to this page?</div>
+            <div class="flex pt-4">
+                <a href="#" class="btn-teal mr-2">Cancel</a>
+                <form action="{{ route('pages.destroy', ['page' => $page]) }}" method="POST">
+                    @csrf
+                    @method('delete')
+                    <button type="submit" class="btn-teal text-red-500 border-red-500 hover:bg-red-500">Delete</button>
+                </form>
+            </div>
+        </div>
     </modal>
 @endsection

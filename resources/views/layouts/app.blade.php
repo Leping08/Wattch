@@ -19,11 +19,11 @@
 <body class="bg-gray-200 h-screen antialiased leading-none">
 
 <div id="app">
-    <div class="h-screen">
+    <div class="">
         <div>
             @include('layouts.top_nav')
         </div>
-        <div class="flex">
+        <div class="flex h-full">
             <div>
                 @if (Auth::check())
                     <div class="fixed mt-0 lg:mt-16 w-0 lg:w-64 min-h-screen bg-gray-100 shadow-md pt-4 hidden lg:block">
@@ -31,7 +31,7 @@
                     </div>
                 @endif
             </div>
-            <div class="mt-16 p-4 w-full {{Auth::check() ? 'ml-0 lg:ml-64' : ''}}">
+            <div class="mt-16 w-full {{Auth::check() ? 'ml-0 lg:ml-64' : ''}}">
                 @yield('content')
             </div>
         </div>
