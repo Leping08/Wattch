@@ -64,8 +64,17 @@
                                     </div>
                                 </div>
                             </div>
+
+                            @php
+                                if ($page->fails + $page->successes > 0) {
+                                    $percent = (($page->successes / ($page->fails + $page->successes)) * 100);
+                                } else {
+                                    $percent = 100;
+                                }
+                            @endphp
+
                             <div class="shadow w-full bg-red-700 rounded-bl-lg rounded-br-lg">
-                                <div class="bg-teal-500 text-xs leading-none py-1 text-center text-white rounded-bl-lg rounded-br-lg h-3" style="width: 100%"></div>
+                                <div class="bg-teal-500 text-xs leading-none py-1 text-center text-white rounded-bl-lg rounded-br-lg h-3 {{$percent > 97 ? 'rounded-br-lg' : ''}}" style="width: {{ $percent }}%"></div>
                             </div>
                         </div>
                     </a>

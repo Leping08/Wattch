@@ -57,7 +57,7 @@ class StoreTest extends TestCase
         $this->assertCount(0, Website::all());
     }
 
-    /** @test */ //TODO Add assertion for case where user can not sign up the same website twice
+    /** @test */
     public function a_can_not_add_the_same_website_twice()
     {
         $user = factory(User::class)->create();

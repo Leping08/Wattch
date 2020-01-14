@@ -4,7 +4,11 @@
 namespace Tests\Feature\Website;
 
 
+use App\Assertion;
+use App\AssertionResult;
+use App\AssertionType;
 use App\HttpResponse;
+use App\Library\Classes\Assert;
 use App\Page;
 use App\User;
 use App\Website;
@@ -140,5 +144,48 @@ class ShowTest extends TestCase
         $this->get(route('websites.show', ['website' => $website]))
             ->assertStatus(200)
             ->assertSeeText($page->route);
+    }
+
+    /** @test */
+    public function a_user_can_see_status_bar_for_a_page()
+    {
+        $user = factory(User::class)->create();
+        $this->be($user);
+
+        $this->fakeHttpResponse();
+
+        $website = factory(Website::class)->create([
+            'user_id' => $user->id
+        ]);
+
+        $page = $website->pages->first();
+
+        $assertionType = AssertionType::first();
+
+        $assertion1 = factory(Assertion::class)->create([
+            'page_id' => $page->id,
+            'assertion_type_id' => $assertionType->id,
+            'parameters' => 'test'
+        ]);
+
+        $assertion2 = factory(Assertion::class)->create([
+            'page_id' => $page->id,
+            'assertion_type_id' => $assertionType->id,
+            'parameters' => 'test'
+        ]);
+
+        factory(AssertionResult::class)->create([
+            'assertion_id' => $assertion1->id,
+            'success' => true
+        ]);
+
+        factory(AssertionResult::class)->create([
+            'assertion_id' => $assertion2->id,
+            'success' => false
+        ]);
+
+        $this->get(route('websites.show', ['website' => $website]))
+            ->assertStatus(200)
+            ->assertSee('50%');
     }
 }

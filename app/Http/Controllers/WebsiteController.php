@@ -42,7 +42,24 @@ class WebsiteController extends Controller
     {
         $this->authorize('view', $website);
 
-        $website->load(['pages.latest_http_response', 'tasks']);
+        $website->load(['pages.latest_http_response', 'pages.assertions.latest_result', 'tasks']);
+
+        $website->pages->each(function ($page) {
+            $successes = 0;
+            $fails = 0;
+            foreach ($page->assertions as $assertion) {
+                if ($assertion->latest_result) {
+                    if ($assertion->latest_result->success) {
+                        $successes++;
+                    } else {
+                        $fails++;
+                    }
+                }
+            }
+            $page['successes'] = $successes;
+            $page['fails'] = $fails;
+            return $page;
+        });
 
         return view('pages.auth.websites.show', compact('website'));
     }
