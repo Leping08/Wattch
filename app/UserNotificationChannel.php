@@ -64,7 +64,7 @@ class UserNotificationChannel extends Pivot
         parent::boot();
 
         static::addGlobalScope('user', function (Builder $builder) {
-            if (!(Auth::id() == config('auth.system_user_id'))) { //If not the system user apply user scoping
+            if (Auth::check()) {
                 return $builder->where('user_id', Auth::id());
             } else {
                 return $builder;
