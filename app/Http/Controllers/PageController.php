@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Page;
 use App\Website;
+use Carbon\Carbon;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
 
@@ -20,19 +21,18 @@ class PageController extends Controller
 
         $page = $page->load([
             'website',
-            'screenshots',
-            'assertions.latest_result',
+            'screenshots'=> function ($query) {
+                $query->orderBy('created_at', 'desc')->whereDate('created_at', '>', Carbon::now()->subDays(30));
+            },
+            'assertions.latest_result' => function ($query) {
+                $query->orderBy('created_at', 'desc')->whereDate('created_at', '>', Carbon::now()->subDays(30));
+            },
             'assertions.type',
             'http_responses' => function ($query) {
                 $query->orderBy('created_at', 'desc')
-                    ->take(50);
+                    ->take(100);
             }
         ]);
-
-        $page['routes'] = $page::where('website_id', $page->website->id)
-            ->orderBy('created_at', 'desc')
-            ->take(10)
-            ->get();
 
         return view('pages.auth.pages.show', compact('page'));
     }

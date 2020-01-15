@@ -44,7 +44,7 @@ class AssertionObserver
      * @param  \App\Assertion  $assertion
      * @return void
      */
-    public function deleted(Assertion $assertion)
+    public function deleting(Assertion $assertion)
     {
         Log::info('Deleting Assertion Id: ' . $assertion->id);
 

@@ -50,9 +50,10 @@ class WebsiteObserver
      * @param \App\Website $website
      * @return void
      */
-    public function deleted(Website $website)
+    public function deleting(Website $website)
     {
         Log::info('Deleting Website Id: ' . $website->id);
+        Log::info('Pages Count: ' . $website->pages->count());
 
         //Delete any Pages related to the website
         foreach ($website->pages as $page) {

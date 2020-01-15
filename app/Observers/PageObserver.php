@@ -49,7 +49,7 @@ class PageObserver
      * @param Page $page
      * @return void
      */
-    public function deleted(Page $page)
+    public function deleting(Page $page)
     {
         Log::info('Deleting Page Id: ' . $page->id);
 

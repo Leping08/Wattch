@@ -16,8 +16,10 @@
                 <div class="w-full sm:w-1/1 md:w-1/2 lg:w-1/3 p-2">
                     <a href="{{route('websites.show', ['website' => $website])}}">
                         <div class="mb-10">
-                            @if($website->home_page->latest_screenshot)
-                                <img class="object-contain rounded-lg hover:shadow-md shadow" src="{{ asset($website->home_page->latest_screenshot->src) }}" alt="">
+                            @if($website->home_page)
+                                @if($website->home_page->latest_screenshot)
+                                    <img class="object-contain rounded-lg hover:shadow-md shadow" src="{{ asset($website->home_page->latest_screenshot->src) }}" alt="">
+                                @endif
                             @else
                                 <div class="rounded bg-white">
                                     <img class="object-contain rounded-lg hover:shadow-md h-56 w-full pb-8" src="{{ asset('img/wattch_guy/undraw_online_test_gba7.svg') }}" alt="">
