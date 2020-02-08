@@ -21,7 +21,7 @@ class NotificationTest extends TestCase
     /** @test */
     public function it_only_uses_active_channels_for_that_user()
     {
-        $user = factory(\App\User::class)->create();
+        $user = factory(User::class)->create();
         $this->be($user);
 
         $this->assertCount(0, $user->viaNotificationChannels());
@@ -42,13 +42,13 @@ class NotificationTest extends TestCase
         $this->assertCount(1, $user->viaNotificationChannels());
 
 
-//        $site = factory(\App\Website::class)->create([
+//        $site = factory(Website::class)->create([
 //            'user_id' => $user
 //        ]);
 //
 //        $page = $site->pages->first();
 //
-//        $assertion = factory(\App\Assertion::class)->create([
+//        $assertion = factory(Assertion::class)->create([
 //            'page_id' => $page->id,
 //            'assertion_type_id' => 2,
 //            'parameters' => [404]

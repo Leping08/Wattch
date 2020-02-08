@@ -7,7 +7,9 @@ namespace Tests\Feature\Website;
 use App\Assertion;
 use App\AssertionResult;
 use App\Page;
+use App\Screenshot;
 use App\SslResponse;
+use App\User;
 use App\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
@@ -20,7 +22,7 @@ class IndexTest extends TestCase
     /** @test */
     public function a_user_can_only_see_the_websites_index_if_they_are_logged_in()
     {
-        $user = factory(\App\User::class)->create();
+        $user = factory(User::class)->create();
         $this->be($user);
 
         $this->get(route('websites.index'))
@@ -37,10 +39,10 @@ class IndexTest extends TestCase
     /** @test */
     public function a_user_can_only_see_the_websites_assigned_to_them()
     {
-        $user1 = factory(\App\User::class)->create();
+        $user1 = factory(User::class)->create();
         $this->be($user1);
 
-        $user2 = factory(\App\User::class)->create();
+        $user2 = factory(User::class)->create();
 
         $website1 = factory(Website::class)->create([
             'user_id' => $user1->id,
@@ -67,7 +69,7 @@ class IndexTest extends TestCase
     /** @test */
     public function a_user_can_see_the_page_count_for_each_website()
     {
-        $user = factory(\App\User::class)->create();
+        $user = factory(User::class)->create();
         $this->be($user);
 
         $website1 = factory(Website::class)->create([
@@ -94,7 +96,7 @@ class IndexTest extends TestCase
     /** @test */
     public function a_user_can_see_when_the_ssl_expires_for_a_website()
     {
-        $user = factory(\App\User::class)->create();
+        $user = factory(User::class)->create();
         $this->be($user);
 
         $website = factory(Website::class)->create([
@@ -114,7 +116,7 @@ class IndexTest extends TestCase
     /** @test */
     public function a_user_can_see_when_the_websites_ssl_is_already_expired_or_was_never_set_up()
     {
-        $user = factory(\App\User::class)->create();
+        $user = factory(User::class)->create();
         $this->be($user);
 
         $website = factory(Website::class)->create([
@@ -135,11 +137,20 @@ class IndexTest extends TestCase
     /** @test */
     public function a_user_can_see_the_latest_screenshot_for_the_homepage_of_the_website()
     {
-        $user = factory(\App\User::class)->create();
+        $user = factory(User::class)->create();
         $this->be($user);
 
         $website = factory(Website::class)->create([
             'user_id' => $user->id
+        ]);
+
+        $page = factory(Page::class)->create([
+            'website_id' => $website->id,
+            'route' => '/'
+        ]);
+
+        $screenshot = factory(Screenshot::class)->create([
+            'page_id' => $page->id
         ]);
 
         $this->get(route('websites.index'))
@@ -150,14 +161,17 @@ class IndexTest extends TestCase
     /** @test */
     public function a_user_can_see_status_bar_for_a_website()
     {
-        $user = factory(\App\User::class)->create();
+        $user = factory(User::class)->create();
         $this->be($user);
 
         $website = factory(Website::class)->create([
             'user_id' => $user->id
         ]);
 
-        $page = $website->pages->first();
+        $page = factory(Page::class)->create([
+            'website_id' => $website->id,
+            'route' => '/'
+        ]);
 
         $assertion1 = factory(Assertion::class)->create([
             'page_id' => $page->id

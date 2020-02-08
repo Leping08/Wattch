@@ -1909,7 +1909,20 @@ __webpack_require__.r(__webpack_exports__);
           }
         },
         yaxis: {
-          tickAmount: 1
+          tickAmount: 1,
+          labels: {
+            style: {
+              colors: ['#78909C'],
+              cssClass: 'italic'
+            },
+            formatter: function formatter(val, index) {
+              if (val === 0) {
+                return 'Failure';
+              } else {
+                return 'Success';
+              }
+            }
+          }
         }
       }
     };
@@ -1924,7 +1937,8 @@ __webpack_require__.r(__webpack_exports__);
         var x = _step.value;
         this.series[0].data.push(x.success);
         this.chartOptions.xaxis.categories.push(Date.parse(x.created_at));
-      }
+      } //If all values the data array are true set the color to green only
+
     } catch (err) {
       _didIteratorError = true;
       _iteratorError = err;
@@ -1940,10 +1954,25 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
 
-    if (this.series[0].data.every(Boolean)) {
+    if (this.series[0].data.every(function (x) {
+      return x === 1;
+    })) {
+      this.chartOptions.colors = ['#319795'];
       this.chartOptions.fill.gradient.colorStops = [{
         offset: 0,
         color: '#319795',
+        opacity: 1
+      }];
+    } //If all values the data array are false set the color to red only
+
+
+    if (this.series[0].data.every(function (x) {
+      return x === 0;
+    })) {
+      this.chartOptions.colors = ['#f56565'];
+      this.chartOptions.fill.gradient.colorStops = [{
+        offset: 0,
+        color: '#f56565',
         opacity: 1
       }];
     }
@@ -2054,7 +2083,8 @@ __webpack_require__.r(__webpack_exports__);
         var x = _step.value;
         this.series[0].data.push(x.success);
         this.chartOptions.xaxis.categories.push(Date.parse(x.created_at));
-      }
+      } //If all values the data array are true set the color to green only
+
     } catch (err) {
       _didIteratorError = true;
       _iteratorError = err;
@@ -2070,10 +2100,23 @@ __webpack_require__.r(__webpack_exports__);
       }
     }
 
-    if (this.series[0].data.every(Boolean)) {
+    if (this.series[0].data.every(function (x) {
+      return x === 1;
+    })) {
       this.chartOptions.fill.gradient.colorStops = [{
         offset: 0,
         color: '#319795',
+        opacity: 1
+      }];
+    } //If all values the data array are false set the color to red only
+
+
+    if (this.series[0].data.every(function (x) {
+      return x === 0;
+    })) {
+      this.chartOptions.fill.gradient.colorStops = [{
+        offset: 0,
+        color: '#f56565',
         opacity: 1
       }];
     }

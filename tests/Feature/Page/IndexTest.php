@@ -11,10 +11,11 @@ use App\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
+use Tests\traits\MockHttpCalls;
 
 class IndexTest extends TestCase
 {
-    use DatabaseMigrations;
+    use DatabaseMigrations, MockHttpCalls;
 
     /** @test */
     public function a_user_can_only_see_the_page_index_if_they_are_logged_in()
@@ -35,30 +36,34 @@ class IndexTest extends TestCase
     /** @test */
     public function a_user_can_only_see_the_page_of_a_website_they_own()
     {
-        $user1 = factory(User::class)->create();
-        $this->be($user1);
+        $this->fakeHttpResponse();
 
+        $user1 = factory(User::class)->create();
         $user2 = factory(User::class)->create();
 
+        $this->be($user1);
         $website1 = factory(Website::class)->create([
             'user_id' => $user1->id,
             'domain' => 'http://deltavcreative.com/'
         ]);
 
+        $page1 = factory(Page::class)->create([
+            'website_id' => $website1->id,
+            'route' => '/website_1_route'
+        ]);
+
+        $this->be($user2);
         $website2 = factory(Website::class)->create([
             'user_id' => $user2->id,
             'domain' => 'http://racingvods.com/'
         ]);
 
-        $page1 = factory(Page::class)->create([
-            'website_id' => $website1->id,
-            'route' => 'website_1_route'
-        ]);
-
         $page2 = factory(Page::class)->create([
             'website_id' => $website2->id,
-            'route' => 'website_2_route'
+            'route' => '/website_2_route'
         ]);
+
+        $this->be($user1);
 
         $this->get(route('websites.show', ['website' => $website1->id]))
             ->assertSeeText('website_1_route')
@@ -81,17 +86,17 @@ class IndexTest extends TestCase
 
         $page1 = factory(Page::class)->create([
             'website_id' => $website->id,
-            'route' => 'route1'
+            'route' => '/route1'
         ]);
 
         $page2 = factory(Page::class)->create([
             'website_id' => $website->id,
-            'route' => 'route2'
+            'route' => '/route2'
         ]);
 
         $page3 = factory(Page::class)->create([
             'website_id' => $website->id,
-            'route' => 'route3'
+            'route' => '/route3'
         ]);
 
         $this->get(route('websites.show', ['website' => $website->id]))
@@ -113,7 +118,7 @@ class IndexTest extends TestCase
 
         $page = factory(Page::class)->create([
             'website_id' => $website->id,
-            'route' => 'route1'
+            'route' => '/route1'
         ]);
 
         $response = factory(HttpResponse::class)->create([

@@ -18,7 +18,7 @@ class AssertionObserver
      */
     public function created(Assertion $assertion)
     {
-        //$assertion->execute();
+        $assertion->execute();
 
         Task::create([
             'taskable_type' => 'App\Assertion',
@@ -39,7 +39,7 @@ class AssertionObserver
     }
 
     /**
-     * Handle the assertion "deleted" event.
+     * Handle the assertion "deleting" event.
      *
      * @param  \App\Assertion  $assertion
      * @return void

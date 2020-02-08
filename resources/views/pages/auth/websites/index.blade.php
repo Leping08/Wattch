@@ -62,7 +62,7 @@
                             @endphp
 
                             <div class="shadow w-full bg-red-700 rounded-bl-lg rounded-br-lg">
-                                <div class="bg-teal-500 text-xs leading-none py-1 text-center text-white rounded-bl-lg h-3 {{$percent > 97 ? 'rounded-br-lg' : ''}}" style="width: {{ $percent }}%"></div>
+                                <div class="bg-teal-500 text-xs leading-none py-1 text-center text-white rounded-bl-lg h-3 rounded-br-lg" style="width: {{ $percent }}%"></div>
                             </div>
                         </div>
                     </a>

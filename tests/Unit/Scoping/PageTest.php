@@ -4,6 +4,7 @@
 namespace Tests\Unit\Scoping;
 
 use App\Page;
+use App\User;
 use App\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
@@ -21,38 +22,48 @@ class PageTest extends TestCase
 
         $this->assertCount(0, Page::all());
 
-        $user_1 = factory(\App\User::class)->create(); //This is the system user and does not have scoping
-        $user_2 = factory(\App\User::class)->create();
-        $user_3 = factory(\App\User::class)->create();
+        $user_1 = factory(User::class)->create();
+        $user_2 = factory(User::class)->create();
+
+
+        $this->be($user_1);
+        $website_1 = factory(Website::class)->create([
+            'user_id' => $user_1
+        ]);
+        $page_1 = factory(Page::class)->create([
+            'website_id' => $website_1->id
+        ]);
+        $this->assertCount(1, Page::all());
+
 
         $this->be($user_2);
-        $site_2 = factory(\App\Website::class)->create([
+        $website_2 = factory(Website::class)->create([
             'user_id' => $user_2
         ]);
-        $this->assertCount(1, Page::all());
-
-        $this->be($user_3);
-        factory(\App\Website::class)->create([
-            'user_id' => $user_3
+        $page_2 = factory(Page::class)->create([
+            'website_id' => $website_2->id
         ]);
         $this->assertCount(1, Page::all());
 
-        $this->be($user_2);
-        factory(\App\Page::class)->create([
-            'website_id' => $site_2->id
+
+        $this->be($user_1);
+        factory(Page::class)->create([
+            'website_id' => $website_1->id,
+            'route' => '/test'
         ]);
         $this->assertCount(2, Page::all());
 
-        $this->be($user_3);
+        $this->be($user_2);
         $this->assertCount(1, Page::all());
 
         $this->be($user_2);
-        factory(\App\Page::class)->create([
-            'website_id' => $site_2->id
+        factory(Page::class)->create([
+            'website_id' => $website_2->id,
+            'route' => '/test'
         ]);
-        $this->assertCount(3, Page::all());
+        $this->assertCount(2, Page::all());
 
-        $this->be($user_3);
-        $this->assertCount(1, Page::all());
+        $this->be($user_1);
+        $this->assertCount(2, Page::all());
     }
 }

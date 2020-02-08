@@ -4,6 +4,7 @@
 namespace Tests\Feature\Website;
 
 
+use App\User;
 use App\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
@@ -16,10 +17,10 @@ class DeleteTest extends TestCase
     /** @test */
     public function a_user_can_only_destroy_a_website_if_they_own_it()
     {
-        $user1 = factory(\App\User::class)->create();
+        $user1 = factory(User::class)->create();
         $this->be($user1);
 
-        $user2 = factory(\App\User::class)->create();
+        $user2 = factory(User::class)->create();
 
         $website1 = factory(Website::class)->create([
             'user_id' => $user1->id

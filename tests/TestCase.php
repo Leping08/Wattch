@@ -18,20 +18,4 @@ abstract class TestCase extends BaseTestCase
 
         $this->seed();
     }
-
-
-    /**
-     * @return Website
-     */
-    public function createUserAndWebsite()
-    {
-        $user = factory(\App\User::class)->create();
-        $this->be($user);
-
-        $site = factory(\App\Website::class)->create([
-            'user_id' => $user
-        ]);
-
-        return $site;
-    }
 }

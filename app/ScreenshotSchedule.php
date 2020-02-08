@@ -26,6 +26,9 @@ class ScreenshotSchedule extends Model implements Taskable
 {
     use SoftDeletes;
 
+    protected $fillable = [
+        'page_id'
+    ];
     //TODO: Add some sort of scope here
 
     /**

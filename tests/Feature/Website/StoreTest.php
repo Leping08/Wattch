@@ -8,10 +8,11 @@ use App\User;
 use App\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
+use Tests\traits\MockHttpCalls;
 
 class StoreTest extends TestCase
 {
-    use DatabaseMigrations;
+    use DatabaseMigrations, MockHttpCalls;
 
     /** @test */
     public function a_user_can_add_a_website_by_hitting_the_website_store_route()
@@ -58,14 +59,16 @@ class StoreTest extends TestCase
     }
 
     /** @test */
-    public function a_can_not_add_the_same_website_twice()
+    public function a_user_can_not_add_the_same_website_twice()
     {
+        $this->fakeHttpResponse();
+
         $user = factory(User::class)->create();
         $this->be($user);
 
         $data = [
-            'user_id' => $user,
-            'website' => 'https://wattch.io/'
+            'website' => 'https://www.google.com/',
+            'user_id' => $user
         ];
 
         $this->post(route('websites.store'), $data)

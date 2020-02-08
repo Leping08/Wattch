@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Website::class, function (Faker $faker) {
     return [
-        'user_id' => factory(User::class)->create()->id,
+        'user_id' => factory(User::class),
         'domain' => config('website.test_site')
     ];
 });

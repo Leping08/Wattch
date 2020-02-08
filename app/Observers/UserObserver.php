@@ -49,7 +49,7 @@ class UserObserver
     }
 
     /**
-     * Handle the user "deleted" event.
+     * Handle the user "deleting" event.
      *
      * @param \App\User $user
      * @return void

@@ -4,10 +4,13 @@
 namespace Tests\Unit\Observers;
 
 
-use App\Assertion;
+use App\HttpResponse;
 use App\Jobs\AnalyzePage;
-use App\Jobs\CaptureScreenshot;
+use App\ScreenshotSchedule;
+use App\Task;
+use App\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
+use App\Page;
 use Tests\TestCase;
 use Tests\traits\MockHttpCalls;
 
@@ -16,37 +19,76 @@ class PageObserverTest extends TestCase
     use DatabaseMigrations, MockHttpCalls;
 
     /** @test */
-//    public function created_it_should_execute_a_analyze_page_job()
-//    {
-//        $this->fakeHttpResponse();
-//
-//        $this->expectsJobs(AnalyzePage::class);
-//
-//        $site = factory(\App\Website::class)->create();
-//    }
-
-    /** @test */
-    public function created_it_should_execute_a_capture_a_screen_shot_job()
+    public function created_it_should_execute_a_analyze_page_job()
     {
         $this->fakeHttpResponse();
 
-        $this->expectsJobs(CaptureScreenshot::class);
+        $this->expectsJobs(AnalyzePage::class);
 
-        $site = factory(\App\Website::class)->create();
+        $website = factory(Website::class)->create();
+
+        $page = factory(Page::class)->create([
+            'website_id' => $website->id
+        ]);
     }
+
+    /** @test */
+    public function created_it_should_create_a_screenshot_schedule_model_for_the_page()
+    {
+        $this->fakeHttpResponse();
+
+        $this->assertCount(0, ScreenshotSchedule::all());
+
+        $website = factory(Website::class)->create();
+
+        $page = factory(Page::class)->create([
+            'website_id' => $website->id
+        ]);
+
+        $this->assertCount(1, ScreenshotSchedule::all());
+    }
+
+//    /** @test */
+//    public function created_it_should_execute_a_capture_a_screen_shot_job()
+//    {
+//        $this->fakeHttpResponse();
+//
+//        $this->expectsJobs(CaptureScreenshot::class);
+//
+//        $site = factory(Website::class)->create();
+//    }
+//
+//    /** @test */
+//    public function created_it_should_create_a_screenshot_schedule_recurring_task()
+//    {
+//        $this->fakeHttpResponse();
+//
+//        $site = factory(Website::class)->create();
+//
+//        $page = factory(Page::class)->create([
+//            'website_id' => $site->id
+//        ]);
+//
+//        $tasks = Task::where('taskable_type', 'App\ScreenshotSchedule')->where('taskable_id', $page->id)->get();
+//
+//        $this->assertEquals(1, $tasks->count());
+//    }
 
     /** @test */
     public function created_it_should_create_a_recurring_task()
     {
         $this->fakeHttpResponse();
 
-        $site = $this->createUserAndWebsite();
+        $this->assertCount(0, Task::where('taskable_type', 'App\Page')->get());
 
-        $page = $site->pages->first();
+        $website = factory(Website::class)->create();
 
-        $tasks = \App\Task::where('taskable_type', 'App\Page')->where('taskable_id', $page->id)->get();
+        $page = factory(Page::class)->create([
+            'website_id' => $website->id,
+            'route' => '/'
+        ]);
 
-        $this->assertEquals(1, $tasks->count());
+        $this->assertCount(1, Task::where('taskable_type', 'App\Page')->get());
     }
 
     /** @test */
@@ -54,96 +96,80 @@ class PageObserverTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = $this->createUserAndWebsite();
+        $website = factory(Website::class)->create();
 
-        $page = $site->pages->first();
-
-        $page->route = '/news';
+        $page = factory(Page::class)->create([
+            'website_id' => $website->id,
+            'route' => '/'
+        ]);
 
         $this->expectsJobs(AnalyzePage::class);
 
-        $page->save();
-    }
-
-    /** @test */
-    public function updated_it_should_execute_a_capture_a_screen_shot_job()
-    {
-        $this->fakeHttpResponse();
-
-        $site = $this->createUserAndWebsite();
-
-        $page = $site->pages->first();
-
         $page->route = '/news';
-
-        $this->expectsJobs(CaptureScreenshot::class);
-
         $page->save();
     }
 
     /** @test */
-    public function deleted_it_should_delete_all_http_responses_tasks_and_screenshots()
+    public function deleted_it_should_delete_all_http_responses()
     {
         $this->fakeHttpResponse();
 
-        $site = $this->createUserAndWebsite();
+        $website = factory(Website::class)->create();
 
-        $page = $site->pages->first();
-
-        $page->execute();
+        $page = factory(Page::class)->create([
+            'website_id' => $website->id,
+            'route' => '/'
+        ]);
 
         $this->assertEquals(1, $page->http_responses->count());
-        $this->assertEquals(1, $page->tasks->count());
-        $this->assertEquals(1, $page->screenshots->count());
-
-        $this->assertEquals(1, \App\HttpResponse::all()->count());
-        $this->assertEquals(1,
-            \App\Task::where('taskable_type', 'App\Page')->where('taskable_id', $page->id)->get()->count());
-        $this->assertEquals(1, \App\Screenshot::all()->count());
 
         $page->delete();
 
-        $this->assertEquals(0, \App\HttpResponse::all()->count());
-        $this->assertEquals(0,
-            \App\Task::where('taskable_type', 'App\Page')->where('taskable_id', $page->id)->get()->count());
-        $this->assertEquals(0, \App\Screenshot::all()->count());
+        $this->assertEquals(0, HttpResponse::all()->count());
     }
 
     /** @test */
-    public function restored_it_should_restore_all_http_responses_tasks_and_screenshots()
+    public function deleted_it_should_delete_all_tasks()
     {
         $this->fakeHttpResponse();
 
-        $site = $this->createUserAndWebsite();
+        $website = factory(Website::class)->create();
 
-        $page = $site->pages->first();
+        $page = factory(Page::class)->create([
+            'website_id' => $website->id,
+            'route' => '/'
+        ]);
 
-        $page->execute();
-
-        $this->assertEquals(1, $page->http_responses->count());
         $this->assertEquals(1, $page->tasks->count());
-        $this->assertEquals(1, $page->screenshots->count());
-
-        $this->assertEquals(1, \App\HttpResponse::all()->count());
-        $this->assertEquals(1,
-            \App\Task::where('taskable_type', 'App\Page')->where('taskable_id', $page->id)->get()->count());
-        $this->assertEquals(1, \App\Screenshot::all()->count());
 
         $page->delete();
 
-        $this->assertEquals(0, \App\HttpResponse::all()->count());
-        $this->assertEquals(0,
-            \App\Task::where('taskable_type', 'App\Page')->where('taskable_id', $page->id)->get()->count());
-        $this->assertEquals(0, \App\Screenshot::all()->count());
+        $this->assertEquals(0, Task::where('taskable_type', 'App\Page')->where('taskable_id', $page->id)->get()->count());
+    }
 
-        $this->assertEquals(1, \App\Page::withTrashed()->get()->count());
+    /** @test */
+    public function deleted_it_should_delete_all_screenshot_schedules()
+    {
+        $this->fakeHttpResponse();
 
-        $page = \App\Page::withTrashed()->first();
-        $page->restore();
+        $website = factory(Website::class)->create();
 
-        $this->assertEquals(1, \App\Page::all()->count());
-        $this->assertEquals(2, \App\HttpResponse::all()->count());
-        $this->assertEquals(1, \App\Task::where('taskable_type', 'App\Page')->where('taskable_id', $page->id)->get()->count());
-        $this->assertEquals(2, \App\Screenshot::all()->count());
+        $page = factory(Page::class)->create([
+            'website_id' => $website->id,
+            'route' => '/'
+        ]);
+
+        $this->assertCount(1, ScreenshotSchedule::all());
+
+        $page->delete();
+
+        $this->assertCount(0, ScreenshotSchedule::all());
+    }
+
+    /** @test */
+    public function restored_it_should_restore_all_http_responses_tasks_screenshot_schedules_and_screenshots()
+    {
+        //TODO figure out how to deal with restoring a page
+        $this->assertTrue(True);
     }
 }

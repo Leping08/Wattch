@@ -91,10 +91,20 @@
                 this.chartOptions.xaxis.categories.push(Date.parse(x.created_at));
             }
 
-            if(this.series[0].data.every(Boolean)){
+            //If all values the data array are true set the color to green only
+            if(this.series[0].data.every(x => x === 1)){
                 this.chartOptions.fill.gradient.colorStops = [{
                     offset: 0,
                     color: '#319795',
+                    opacity: 1
+                }];
+            }
+
+            //If all values the data array are false set the color to red only
+            if(this.series[0].data.every(x => x === 0)){
+                this.chartOptions.fill.gradient.colorStops = [{
+                    offset: 0,
+                    color: '#f56565',
                     opacity: 1
                 }];
             }

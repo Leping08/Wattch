@@ -15,7 +15,7 @@ class NotificationTest extends TestCase
     /** @test */
     public function a_user_can_update_their_notification_settings_by_using_the_notifications_settings_form()
     {
-        $user = factory(\App\User::class)->create();
+        $user = factory(User::class)->create();
         $this->be($user);
 
         $user = User::first();

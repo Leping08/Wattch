@@ -29,6 +29,7 @@ use Illuminate\Database\Eloquent\Builder;
  * @property-read Screenshot $screenshots
  * @property-read Task $tasks
  * @property-read Assertion $assertions
+ * @property-read ScreenshotSchedule $screenshotSchedule
  * @property string $full_route
  * @property bool $passing
  *
@@ -120,6 +121,7 @@ class Page extends Model implements Taskable
     /**
      * @param $url
      * @return string
+     * @see remove_trailing_slashes
      */
     public function remove_trailing_slashes($url)
     {
@@ -165,5 +167,13 @@ class Page extends Model implements Taskable
     public function assertions()
     {
         return $this->hasMany(Assertion::class);
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\hasOne
+     */
+    public function screenshotSchedule()
+    {
+        return $this->hasOne(ScreenshotSchedule::class);
     }
 }

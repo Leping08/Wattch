@@ -4,6 +4,7 @@
 namespace Tests\Feature\Page;
 
 
+use App\Page;
 use App\User;
 use App\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -67,20 +68,20 @@ class StoreTest extends TestCase
         ];
 
         $website1->refresh();
-        $this->assertCount(1, $website1->pages);
+        $this->assertCount(0, $website1->pages);
 
         $this->post(route('pages.store', $data1))
             ->assertStatus(302)
             ->assertRedirect(route('websites.show', ['website' => $website1->id]));
 
         $website1->refresh();
-        $this->assertCount(2, $website1->pages);
+        $this->assertCount(1, $website1->pages);
 
         $this->post(route('pages.store', $data2))
             ->assertStatus(404);
 
         $website1->refresh();
-        $this->assertCount(2, $website1->pages);
+        $this->assertCount(1, $website1->pages);
     }
 
 
@@ -92,6 +93,11 @@ class StoreTest extends TestCase
 
         $website = factory(Website::class)->create([
             'user_id' => $user->id
+        ]);
+
+        $page = factory(Page::class)->create([
+            'website_id' => $website->id,
+            'route' => '/'
         ]);
 
         $website->refresh();

@@ -114,7 +114,9 @@ class ShowTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        $page = $website->pages->first();
+        $page = factory(Page::class)->create([
+            'website_id' => $website->id
+        ]);
 
         $response = factory(HttpResponse::class)->create([
             'page_id' => $page->id,
@@ -139,7 +141,9 @@ class ShowTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        $page = $website->pages->first();
+        $page = factory(Page::class)->create([
+            'website_id' => $website->id
+        ]);
 
         $this->get(route('websites.show', ['website' => $website]))
             ->assertStatus(200)
@@ -158,20 +162,22 @@ class ShowTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        $page = $website->pages->first();
+        $page = factory(Page::class)->create([
+            'website_id' => $website->id
+        ]);
 
         $assertionType = AssertionType::first();
 
         $assertion1 = factory(Assertion::class)->create([
             'page_id' => $page->id,
             'assertion_type_id' => $assertionType->id,
-            'parameters' => 'test'
+            'parameters' => ['test']
         ]);
 
         $assertion2 = factory(Assertion::class)->create([
             'page_id' => $page->id,
             'assertion_type_id' => $assertionType->id,
-            'parameters' => 'test'
+            'parameters' => ['test']
         ]);
 
         factory(AssertionResult::class)->create([

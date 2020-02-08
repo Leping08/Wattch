@@ -6,6 +6,7 @@ namespace Tests\Feature\Dashboard;
 
 use App\Assertion;
 use App\Page;
+use App\User;
 use App\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +19,7 @@ class IndexTest extends TestCase
     /** @test */
     public function a_user_can_only_see_the_dashboard_if_they_are_logged_in()
     {
-        $user = factory(\App\User::class)->create();
+        $user = factory(User::class)->create();
         $this->be($user);
 
         $this->get(route('dashboard'))
@@ -35,7 +36,7 @@ class IndexTest extends TestCase
     /** @test */
     public function a_user_can_sees_the_counts_on_the_dashboard()
     {
-        $user = factory(\App\User::class)->create();
+        $user = factory(User::class)->create();
         $this->be($user);
 
         $website = factory(Website::class)->create([
@@ -67,14 +68,14 @@ class IndexTest extends TestCase
     /** @test */
     public function a_user_can_see_the_last_5_assertions_on_the_dashboard_page()
     {
-        $user = factory(\App\User::class)->create();
+        $user = factory(User::class)->create();
         $this->be($user);
 
         $website = factory(Website::class)->create([
             'user_id' => $user->id
         ]);
 
-        $pages = factory(Page::class, 10)->create([
+        $pages = factory(Page::class, 5)->create([
             'website_id' => $website->id
         ]);
 

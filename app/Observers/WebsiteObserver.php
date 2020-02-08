@@ -21,10 +21,10 @@ class WebsiteObserver
         $website->execute();
 
         //TODO Add logic to not generate more then one home page for a website
-        Page::create([
-            'website_id' => $website->id,
-            'route' => '/'
-        ]);
+//        Page::create([
+//            'website_id' => $website->id,
+//            'route' => '/'
+//        ]);
 
         Task::create([
             'taskable_type' => 'App\Website',
@@ -45,7 +45,7 @@ class WebsiteObserver
     }
 
     /**
-     * Handle the website "deleted" event.
+     * Handle the website "deleting" event.
      *
      * @param \App\Website $website
      * @return void

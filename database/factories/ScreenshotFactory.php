@@ -10,7 +10,7 @@ use Faker\Generator as Faker;
 $factory->define(Screenshot::class, function (Faker $faker) {
     return [
         'uuid' => (string) Str::uuid(),
-        'page_id' => factory(Page::class)->create()->id,
+        'page_id' => factory(Page::class),
         'src' => $faker->imageUrl(1920, 1080)
     ];
 });

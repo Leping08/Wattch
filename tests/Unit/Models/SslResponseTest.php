@@ -2,7 +2,9 @@
 
 namespace Tests\Unit\Models;
 
+use App\Page;
 use App\SslResponse;
+use App\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Tests\traits\MockHttpCalls;
@@ -16,10 +18,14 @@ class SslResponseTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $site = $this->createUserAndWebsite();
+        $website = factory(Website::class)->create();
+
+        $page = factory(Page::class)->create([
+            'website_id' => $website->id
+        ]);
 
         $ssl = SslResponse::first();
 
-        $this->assertInstanceOf(\App\Website::class, $ssl->website);
+        $this->assertInstanceOf(Website::class, $ssl->website);
     }
 }

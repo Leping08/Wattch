@@ -22,7 +22,7 @@ class PageController extends Controller
         $page = $page->load([
             'website',
             'screenshots'=> function ($query) {
-                $query->orderBy('created_at', 'desc')->whereDate('created_at', '>', Carbon::now()->subDays(30));
+                $query->orderBy('created_at', 'desc')->take(5);
             },
             'assertions.latest_result' => function ($query) {
                 $query->orderBy('created_at', 'desc')->whereDate('created_at', '>', Carbon::now()->subDays(30));

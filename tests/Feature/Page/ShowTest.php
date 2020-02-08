@@ -5,6 +5,8 @@ namespace Tests\Feature\Page;
 
 
 use App\Assertion;
+use App\Page;
+use App\Screenshot;
 use App\User;
 use App\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
@@ -25,8 +27,9 @@ class ShowTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        $website->refresh();
-        $page = $website->pages->first();
+        $page = factory(Page::class)->create([
+            'website_id' => $website->id
+        ]);
 
         $this->get(route('pages.show', ['page' => $page]))
             ->assertStatus(200);
@@ -51,17 +54,19 @@ class ShowTest extends TestCase
             'user_id' => $user1->id
         ]);
 
-        $website1->refresh();
-        $page1 = $website1->pages->first();
+        $page1 = factory(Page::class)->create([
+            'website_id' => $website1->id
+        ]);
+
+        $this->be($user2);
 
         $website2 = factory(Website::class)->create([
             'user_id' => $user2->id
         ]);
 
-        $this->be($user2);
-
-        $website2->refresh();
-        $page2 = $website2->pages->first();
+        $page2 = factory(Page::class)->create([
+            'website_id' => $website2->id
+        ]);
 
         $this->be($user1);
 
@@ -82,8 +87,19 @@ class ShowTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        $website->refresh();
-        $page = $website->pages->first();
+        $page = factory(Page::class)->create([
+            'website_id' => $website->id
+        ]);
+
+        $page = factory(Page::class)->create([
+            'website_id' => $website->id
+        ]);
+
+        $screenshot = factory(Screenshot::class)->create([
+            'page_id' => $page->id
+        ]);
+
+        $page->fresh();
 
         $this->get(route('pages.show', ['page' => $page]))
             ->assertStatus(200)
@@ -100,8 +116,9 @@ class ShowTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        $website->refresh();
-        $page = $website->pages->first();
+        $page = factory(Page::class)->create([
+            'website_id' => $website->id
+        ]);
 
         $this->get(route('pages.show', ['page' => $page]))
             ->assertStatus(200)
@@ -118,8 +135,9 @@ class ShowTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        $website->refresh();
-        $page = $website->pages->first();
+        $page = factory(Page::class)->create([
+            'website_id' => $website->id
+        ]);
 
         $assertion = factory(Assertion::class)->create([
             'page_id' => $page->id,
@@ -142,8 +160,9 @@ class ShowTest extends TestCase
             'user_id' => $user->id
         ]);
 
-        $website->refresh();
-        $page = $website->pages->first();
+        $page = factory(Page::class)->create([
+            'website_id' => $website->id
+        ]);
 
 
         $this->get(route('pages.show', ['page' => $page]))

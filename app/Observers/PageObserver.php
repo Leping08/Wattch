@@ -6,6 +6,7 @@ use App\Assertion;
 use App\HttpResponse;
 use App\Page;
 use App\Screenshot;
+use App\ScreenshotSchedule;
 use App\Task;
 use Illuminate\Support\Facades\Log;
 
@@ -21,12 +22,14 @@ class PageObserver
     {
         $page->execute();
 
-        $page->screenshot();
-
         Task::create([
             'taskable_type' => 'App\Page',
             'taskable_id' => $page->id,
             'frequency' => 'hourly'
+        ]);
+
+        $schedule = ScreenshotSchedule::create([
+            'page_id' => $page->id
         ]);
     }
 
@@ -39,12 +42,10 @@ class PageObserver
     public function updated(Page $page)
     {
         $page->execute();
-
-        $page->screenshot();
     }
 
     /**
-     * Handle the page "deleted" event.
+     * Handle the page "deleting" event.
      *
      * @param Page $page
      * @return void
@@ -71,6 +72,11 @@ class PageObserver
         //Delete any assertions related to the page
         foreach ($page->assertions as $assertion) {
             $assertion->delete();
+        }
+
+        //Delete any screenshot schedules related to the page
+        if($page->screenshotSchedule) {
+            $page->screenshotSchedule->delete();
         }
     }
 
@@ -122,6 +128,16 @@ class PageObserver
 
         foreach ($assertions as $assertion) {
             $assertion->restore();
+        }
+
+
+        //Restore any ScreenshotSchedules related to the page
+        $screenshotSchedules = ScreenshotSchedule::withTrashed()
+            ->where('page_id', $page->id)
+            ->get();
+
+        foreach ($screenshotSchedules as $screenshotSchedule) {
+            $screenshotSchedule->restore();
         }
     }
 

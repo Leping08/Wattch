@@ -8,7 +8,7 @@ use Faker\Generator as Faker;
 
 $factory->define(Subscription::class, function (Faker $faker) {
     return [
-        'user_id' => factory(User::class)->create()->id,
+        'user_id' => factory(User::class),
         'name' => 'prod_' . $faker->lexify('??????????????'),
         'stripe_id' => 'sub_' . $faker->lexify('??????????????'),
         'stripe_status' => 'active',
