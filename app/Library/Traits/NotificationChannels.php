@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Library\Traits;
-
 
 use App\NotificationChannel;
 use App\UserNotificationChannel;
@@ -14,7 +12,7 @@ use Illuminate\Support\Facades\Log;
 trait NotificationChannels
 {
     /**
-     * All of the notification channels for the user
+     * All of the notification channels for the user.
      * @return Collection
      */
     public function viaNotificationChannels()
@@ -25,7 +23,7 @@ trait NotificationChannels
     }
 
     /**
-     * Route notifications for the Slack channel
+     * Route notifications for the Slack channel.
      * @return string
      */
     public function slackWebhookUrl()
@@ -34,7 +32,7 @@ trait NotificationChannels
     }
 
     /**
-     * The email for the users notifications
+     * The email for the users notifications.
      * @return string
      */
     public function notificationEmailAddress()
@@ -45,9 +43,9 @@ trait NotificationChannels
     }
 
     /**
-     * Check if the chanel is muted or not
+     * Check if the chanel is muted or not.
      * @param  string  $channel
-     * @return boolean
+     * @return bool
      */
     public function notificationChannelMuted($channel) //TODO I dont think this works like this
     {
@@ -55,7 +53,7 @@ trait NotificationChannels
     }
 
     /**
-     * Get the correct UserNotificationChannel
+     * Get the correct UserNotificationChannel.
      * @param  string  $channel
      * @return UserNotificationChannel
      */
@@ -67,9 +65,9 @@ trait NotificationChannels
     }
 
     /**
-     * Get the correct UserNotificationChannel
+     * Get the correct UserNotificationChannel.
      * @param  string  $channel
-     * @param  boolean  $state
+     * @param  bool  $state
      */
     public function toggleSetting($channel, $state)
     {
@@ -82,7 +80,7 @@ trait NotificationChannels
                 $user_notification_channel->save();
             }
         } else { //Stats is off so the user wants the notifications muted
-            if (!$user_notification_channel->muted) { //If the channel is muted
+            if (! $user_notification_channel->muted) { //If the channel is muted
                 Log::info("Updating the $channel notification toggle for User Id $this->id to be active");
                 $user_notification_channel->muted_at = Carbon::now();
                 $user_notification_channel->save();

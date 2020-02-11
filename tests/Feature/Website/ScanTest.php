@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Tests\Feature\Website;
-
 
 use App\Jobs\AnalyzeWebsite;
 use App\User;
@@ -22,12 +20,12 @@ class ScanTest extends TestCase
 
         $this->be($user1);
         $website1 = factory(Website::class)->create([
-            'user_id' => $user1->id
+            'user_id' => $user1->id,
         ]);
 
         $this->be($user2);
         $website2 = factory(Website::class)->create([
-            'user_id' => $user2->id
+            'user_id' => $user2->id,
         ]);
 
         $this->be($user1);
@@ -45,7 +43,6 @@ class ScanTest extends TestCase
             ->assertStatus(404);
     }
 
-
     /** @test */
     public function a_analyze_website_job_is_dispatched_when_the_user_hits_the_scan_website_route()
     {
@@ -53,7 +50,7 @@ class ScanTest extends TestCase
 
         $this->be($user);
         $website = factory(Website::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $this->expectsJobs(AnalyzeWebsite::class);

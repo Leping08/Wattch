@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Tests\Feature\Website;
-
 
 use App\User;
 use App\Website;
@@ -23,7 +21,7 @@ class StoreTest extends TestCase
         $this->assertCount(0, $user->websites);
 
         $data = [
-            'website' => 'https://www.google.com/'
+            'website' => 'https://www.google.com/',
         ];
 
         $this->post(route('websites.store'), $data)
@@ -48,7 +46,7 @@ class StoreTest extends TestCase
         $this->assertCount(0, Website::all());
 
         $data = [
-            'website' => 'bad website url'
+            'website' => 'bad website url',
         ];
 
         $this->post(route('websites.store'), $data)
@@ -68,7 +66,7 @@ class StoreTest extends TestCase
 
         $data = [
             'website' => 'https://www.google.com/',
-            'user_id' => $user
+            'user_id' => $user,
         ];
 
         $this->post(route('websites.store'), $data)

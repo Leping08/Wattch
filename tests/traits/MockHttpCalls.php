@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Tests\traits;
-
 
 use GuzzleHttp\Client;
 use GuzzleHttp\Psr7\Response;

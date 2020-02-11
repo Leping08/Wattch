@@ -11,6 +11,7 @@ class ScanWebsiteController extends Controller
     {
         $this->authorize('view', $website);
         $website->execute();
+
         return redirect()->back();
     }
 }

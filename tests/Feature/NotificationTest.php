@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Tests\Feature;
-
 
 use App\AssertionType;
 use App\Notifications\AssertionFailed;
@@ -41,7 +39,6 @@ class NotificationTest extends TestCase
 
         $this->assertCount(1, $user->viaNotificationChannels());
 
-
 //        $site = factory(Website::class)->create([
 //            'user_id' => $user
 //        ]);
@@ -61,7 +58,6 @@ class NotificationTest extends TestCase
 //
 //        // Assert a notification was sent to the given user
 //        Notification::assertSentTo($user, AssertionFailed::class);
-
 
 //        Notification::assertSentTo($user, AssertionFailed::class, function ($notification, $channels) use ($user) {
 //            $mailData = $notification->toMail($user)->toArray();

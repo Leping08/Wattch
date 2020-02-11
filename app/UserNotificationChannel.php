@@ -11,20 +11,19 @@ use Illuminate\Support\Facades\Auth;
 /**
  * This is the pivot model for notification channels and users.
  * It also contains the user speciffic channel settings.
- * Ex Webhook url's, Phone Numbers, Override email addresses
+ * Ex Webhook url's, Phone Numbers, Override email addresses.
  *
  * An Eloquent Model: 'UserNotificationChannel'
  *
- * @property integer $id
- * @property integer $user_id
- * @property integer $channel_id
+ * @property int $id
+ * @property int $user_id
+ * @property int $channel_id
  * @property string $settings
- * @property-read  boolean muted
+ * @property-read  bool muted
  * @property Carbon $muted_at
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
- *
  */
 class UserNotificationChannel extends Pivot
 {
@@ -39,7 +38,7 @@ class UserNotificationChannel extends Pivot
      * @var array
      */
     protected $dates = [
-        'muted_at'
+        'muted_at',
     ];
 
     /**
@@ -49,14 +48,14 @@ class UserNotificationChannel extends Pivot
         'channel_id',
         'user_id',
         'settings',
-        'muted_at'
+        'muted_at',
     ];
 
     /**
      * @var array
      */
     protected $appends = [
-        'muted'
+        'muted',
     ];
 
     protected static function boot()
@@ -73,7 +72,7 @@ class UserNotificationChannel extends Pivot
     }
 
     /**
-     * @return Boolean
+     * @return bool
      */
     public function getMutedAttribute()
     {

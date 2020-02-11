@@ -15,8 +15,8 @@ use Illuminate\Support\Carbon;
  *
  * An Eloquent Model: 'AssertionResult'
  *
- * @property integer $id
- * @property integer $assertion_id
+ * @property int $id
+ * @property int $assertion_id
  * @property bool $success
  * @property string $error_message
  * @property Carbon $created_at
@@ -34,7 +34,7 @@ class AssertionResult extends Model
     protected $fillable = [
         'assertion_id',
         'success',
-        'error_message'
+        'error_message',
     ];
 
     /**
@@ -43,9 +43,8 @@ class AssertionResult extends Model
     protected $dates = [
         'created_at',
         'updated_at',
-        'deleted_at'
+        'deleted_at',
     ];
-
 
     protected static function boot()
     {

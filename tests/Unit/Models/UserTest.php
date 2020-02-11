@@ -24,11 +24,11 @@ class UserTest extends TestCase
         $this->be($user);
 
         $site = factory(Website::class)->create([
-            'user_id' => $user
+            'user_id' => $user,
         ]);
 
         $site2 = factory(Website::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         foreach ($user->websites as $site) {
@@ -43,13 +43,13 @@ class UserTest extends TestCase
         $this->be($user);
 
         $subscription = factory(Subscription::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $this->assertInstanceOf(Subscription::class, $user->subscription);
     }
 
-    /** @test */   /* TODO: Fix this test */
+    /* @test */   /* TODO: Fix this test */
 //    public function it_has_a_product_through_a_subscription()
 //    {
 //        $user = factory(User::class)->create();
@@ -67,7 +67,7 @@ class UserTest extends TestCase
 //        $this->assertInstanceOf(Product::class, $user->product());
 //    }
 
-    /** @test */   /* TODO: Fix this test */
+    /* @test */   /* TODO: Fix this test */
 //    public function it_has_a_features_through_a_product()
 //    {
 //        $user = factory(User::class)->create();

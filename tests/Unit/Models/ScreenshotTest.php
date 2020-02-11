@@ -22,11 +22,11 @@ class ScreenshotTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $screenshot = factory(Screenshot::class)->create([
-            'page_id' => $page->id
+            'page_id' => $page->id,
         ]);
 
         $this->assertInstanceOf(Page::class, $screenshot->page);

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
@@ -10,7 +9,6 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Redirect;
-
 
 class NotificationController extends Controller
 {
@@ -39,15 +37,15 @@ class NotificationController extends Controller
         //Email update logic
         if ($validatedData['email']) {
             $currentSettingsEmail = $user->notificationEmailAddress();
-            if (!($validatedData['email'] === $currentSettingsEmail)) { //The user has changed the email
+            if (! ($validatedData['email'] === $currentSettingsEmail)) { //The user has changed the email
                 Log::info("User Id $user->id is changing notification email from $currentSettingsEmail to ".$validatedData['email']);
                 $channel = $user->getNotificationChannel('mail');
                 $channel->settings = json_encode([
-                    'email' => $validatedData['email']
+                    'email' => $validatedData['email'],
                 ], JSON_PRETTY_PRINT);
                 $channel->save();
                 Log::info("Email successfully updated for User Id $user->id");
-                //TODO Flash message
+            //TODO Flash message
             } else {
                 Log::info("User Id $user->id did not update their email");
                 //TODO Flash message
@@ -64,15 +62,15 @@ class NotificationController extends Controller
         //Slack Webhook logic
         if ($validatedData['slack_webhook']) {
             $currentSlackWebhookUrl = $user->slackWebhookUrl();
-            if (!($validatedData['slack_webhook'] === $currentSlackWebhookUrl)) { //The user has changed the email
+            if (! ($validatedData['slack_webhook'] === $currentSlackWebhookUrl)) { //The user has changed the email
                 Log::info("User Id $user->id is changing their slack webhook url from $currentSlackWebhookUrl to ".$validatedData['slack_webhook']);
                 $channel = $user->getNotificationChannel('slack');
                 $channel->settings = json_encode([
-                    'webhook_url' => $validatedData['slack_webhook']
+                    'webhook_url' => $validatedData['slack_webhook'],
                 ], JSON_PRETTY_PRINT);
                 $channel->save();
                 Log::info("Slack webhook url successfully updated for User Id $user->id");
-                //TODO Flash message
+            //TODO Flash message
             } else {
                 Log::info("User Id $user->id did not update their slack webhook url");
                 //TODO Flash message

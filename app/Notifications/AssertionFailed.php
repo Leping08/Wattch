@@ -15,7 +15,6 @@ class AssertionFailed extends Notification
 
     protected $assertionResult;
 
-
     /**
      * AssertionFailed constructor.
      * @param AssertionResult $assertionResult
@@ -73,7 +72,7 @@ class AssertionFailed extends Notification
                     ->fields([
                         'Assertion' => $this->assertionResult->assertion->type->method,
                         'Page' => $this->assertionResult->assertion->page->full_route,
-                        'Message' => $this->assertionResult->error_message
+                        'Message' => $this->assertionResult->error_message,
                     ]);
             })
             ->warning();
@@ -88,7 +87,7 @@ class AssertionFailed extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => $this->assertionResult->error_message
+            'message' => $this->assertionResult->error_message,
         ];
     }
 }

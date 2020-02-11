@@ -12,7 +12,7 @@ class WebsiteController extends Controller
     {
         $websites = Website::with([
             'pages.latest_http_response', 'home_page.latest_screenshot', 'latest_ssl_response',
-            'pages.assertions.latest_result'
+            'pages.assertions.latest_result',
         ])->get();
 
         //Calculate the percentage of successful and failing assertions foreach website
@@ -32,6 +32,7 @@ class WebsiteController extends Controller
             }
             $website['successes'] = $successes;
             $website['fails'] = $fails;
+
             return $website;
         });
 
@@ -58,6 +59,7 @@ class WebsiteController extends Controller
             }
             $page['successes'] = $successes;
             $page['fails'] = $fails;
+
             return $page;
         });
 
@@ -71,7 +73,7 @@ class WebsiteController extends Controller
                 'required',
                 'max:1000',
                 'regex:/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/i',
-            ]
+            ],
         ]);
 
         $duplicateSite = Website::where('domain', $request['website'])->get();
@@ -90,10 +92,11 @@ class WebsiteController extends Controller
 
         $website = Website::create([
             'user_id' => auth()->id(),
-            'domain' => $request['website']
+            'domain' => $request['website'],
         ]);
 
         session()->flash('success', "{$website->domain} has been added!");
+
         return redirect()->route('websites.index');
     }
 

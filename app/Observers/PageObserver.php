@@ -25,11 +25,11 @@ class PageObserver
         Task::create([
             'taskable_type' => Page::class,
             'taskable_id' => $page->id,
-            'frequency' => 'hourly'
+            'frequency' => 'hourly',
         ]);
 
         $schedule = ScreenshotSchedule::create([
-            'page_id' => $page->id
+            'page_id' => $page->id,
         ]);
     }
 
@@ -52,7 +52,7 @@ class PageObserver
      */
     public function deleting(Page $page)
     {
-        Log::info('Deleting Page Id: ' . $page->id);
+        Log::info('Deleting Page Id: '.$page->id);
 
         //Delete any http_responses related to the page
         foreach ($page->http_responses as $response) {
@@ -75,7 +75,7 @@ class PageObserver
         }
 
         //Delete any screenshot schedules related to the page
-        if($page->screenshotSchedule) {
+        if ($page->screenshotSchedule) {
             $page->screenshotSchedule->delete();
         }
     }
@@ -88,7 +88,7 @@ class PageObserver
      */
     public function restored(Page $page)
     {
-        Log::info('Restoring Page Id: ' . $page->id);
+        Log::info('Restoring Page Id: '.$page->id);
 
         //Restore any HttpResponses related to the page
         $https = HttpResponse::withTrashed()
@@ -98,7 +98,6 @@ class PageObserver
         foreach ($https as $http) {
             $http->restore();
         }
-
 
         //Restore any Tasks related to the page
         $tasks = Task::withTrashed()
@@ -110,7 +109,6 @@ class PageObserver
             $task->restore();
         }
 
-
         //Restore any Screenshots related to the page
         $screenshots = Screenshot::withTrashed()
             ->where('page_id', $page->id)
@@ -120,7 +118,6 @@ class PageObserver
             $screenshot->restore();
         }
 
-
         //Restore any Assertions related to the page
         $assertions = Assertion::withTrashed()
             ->where('page_id', $page->id)
@@ -129,7 +126,6 @@ class PageObserver
         foreach ($assertions as $assertion) {
             $assertion->restore();
         }
-
 
         //Restore any ScreenshotSchedules related to the page
         $screenshotSchedules = ScreenshotSchedule::withTrashed()

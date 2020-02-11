@@ -6,14 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
-
 /**
  * A model for a product. This groups features
  * and unlocks sections in the UI.
  *
  * An Eloquent Model: 'Product'
  *
- * @property integer $id
+ * @property int $id
  * @property string $name
  * @property string $price
  * @property string $stripe_plan
@@ -22,7 +21,6 @@ use Illuminate\Support\Carbon;
  * @property Carbon $deleted_at
  * @property-read User $users
  * @property-read Feature $features
- *
  */
 class Product extends Model
 {
@@ -31,7 +29,7 @@ class Product extends Model
     protected $fillable = [
         'name',
         'price',
-        'stripe_plan'
+        'stripe_plan',
     ];
 
     /**

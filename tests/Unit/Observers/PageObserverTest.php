@@ -1,16 +1,14 @@
 <?php
 
-
 namespace Tests\Unit\Observers;
-
 
 use App\HttpResponse;
 use App\Jobs\AnalyzePage;
+use App\Page;
 use App\ScreenshotSchedule;
 use App\Task;
 use App\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use App\Page;
 use Tests\TestCase;
 use Tests\traits\MockHttpCalls;
 
@@ -28,7 +26,7 @@ class PageObserverTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
     }
 
@@ -42,7 +40,7 @@ class PageObserverTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $this->assertCount(1, ScreenshotSchedule::all());
@@ -85,7 +83,7 @@ class PageObserverTest extends TestCase
 
         $page = factory(Page::class)->create([
             'website_id' => $website->id,
-            'route' => '/'
+            'route' => '/',
         ]);
 
         $this->assertCount(1, Task::where('taskable_type', Page::class)->get());
@@ -100,7 +98,7 @@ class PageObserverTest extends TestCase
 
         $page = factory(Page::class)->create([
             'website_id' => $website->id,
-            'route' => '/'
+            'route' => '/',
         ]);
 
         $this->expectsJobs(AnalyzePage::class);
@@ -118,7 +116,7 @@ class PageObserverTest extends TestCase
 
         $page = factory(Page::class)->create([
             'website_id' => $website->id,
-            'route' => '/'
+            'route' => '/',
         ]);
 
         $this->assertEquals(1, $page->http_responses->count());
@@ -137,7 +135,7 @@ class PageObserverTest extends TestCase
 
         $page = factory(Page::class)->create([
             'website_id' => $website->id,
-            'route' => '/'
+            'route' => '/',
         ]);
 
         $this->assertEquals(1, $page->tasks->count());
@@ -156,7 +154,7 @@ class PageObserverTest extends TestCase
 
         $page = factory(Page::class)->create([
             'website_id' => $website->id,
-            'route' => '/'
+            'route' => '/',
         ]);
 
         $this->assertCount(1, ScreenshotSchedule::all());
@@ -170,6 +168,6 @@ class PageObserverTest extends TestCase
     public function restored_it_should_restore_all_http_responses_tasks_screenshot_schedules_and_screenshots()
     {
         //TODO figure out how to deal with restoring a page
-        $this->assertTrue(True);
+        $this->assertTrue(true);
     }
 }

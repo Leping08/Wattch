@@ -13,16 +13,15 @@ use Illuminate\Support\Carbon;
  *
  * An Eloquent Model: 'SslResponse'
  *
- * @property integer $id
- * @property integer $website_id
- * @property boolean $ssl_valid
- * @property integer $ssl_expires_in
+ * @property int $id
+ * @property int $website_id
+ * @property bool $ssl_valid
+ * @property int $ssl_expires_in
  * @property string $ssl_raw
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
  * @property-read Website $website
- *
  */
 class SslResponse extends Model
 {
@@ -36,9 +35,8 @@ class SslResponse extends Model
     ];
 
     protected $casts = [
-        'ssl_raw' => 'array'
+        'ssl_raw' => 'array',
     ];
-
 
     protected static function boot()
     {

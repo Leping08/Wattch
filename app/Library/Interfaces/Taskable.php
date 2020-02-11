@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Library\Interfaces;
-
 
 interface Taskable
 {

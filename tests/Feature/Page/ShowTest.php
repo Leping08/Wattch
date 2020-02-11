@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Tests\Feature\Page;
-
 
 use App\Assertion;
 use App\Page;
@@ -24,11 +22,11 @@ class ShowTest extends TestCase
         $this->be($user);
 
         $website = factory(Website::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $this->get(route('pages.show', ['page' => $page]))
@@ -41,7 +39,6 @@ class ShowTest extends TestCase
             ->assertRedirect(route('login'));
     }
 
-
     /** @test */
     public function a_user_can_only_view_a_page_details_for_websites_they_own()
     {
@@ -51,21 +48,21 @@ class ShowTest extends TestCase
         $user2 = factory(User::class)->create();
 
         $website1 = factory(Website::class)->create([
-            'user_id' => $user1->id
+            'user_id' => $user1->id,
         ]);
 
         $page1 = factory(Page::class)->create([
-            'website_id' => $website1->id
+            'website_id' => $website1->id,
         ]);
 
         $this->be($user2);
 
         $website2 = factory(Website::class)->create([
-            'user_id' => $user2->id
+            'user_id' => $user2->id,
         ]);
 
         $page2 = factory(Page::class)->create([
-            'website_id' => $website2->id
+            'website_id' => $website2->id,
         ]);
 
         $this->be($user1);
@@ -84,19 +81,19 @@ class ShowTest extends TestCase
         $this->be($user);
 
         $website = factory(Website::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $screenshot = factory(Screenshot::class)->create([
-            'page_id' => $page->id
+            'page_id' => $page->id,
         ]);
 
         $page->fresh();
@@ -113,11 +110,11 @@ class ShowTest extends TestCase
         $this->be($user);
 
         $website = factory(Website::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $this->get(route('pages.show', ['page' => $page]))
@@ -132,16 +129,16 @@ class ShowTest extends TestCase
         $this->be($user);
 
         $website = factory(Website::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $assertion = factory(Assertion::class)->create([
             'page_id' => $page->id,
-            'assertion_type_id' => 1
+            'assertion_type_id' => 1,
         ]);
 
         $this->get(route('pages.show', ['page' => $page]))
@@ -157,13 +154,12 @@ class ShowTest extends TestCase
         $this->be($user);
 
         $website = factory(Website::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
-
 
         $this->get(route('pages.show', ['page' => $page]))
             ->assertStatus(200)

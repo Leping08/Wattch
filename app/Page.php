@@ -5,20 +5,20 @@ namespace App;
 use App\Jobs\AnalyzePage;
 use App\Jobs\CaptureScreenshot;
 use App\Library\Interfaces\Taskable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Database\Eloquent\Builder;
 
 /**
  * A page for a website. This is a route for a website.
- * Ex: '/about-us'
+ * Ex: '/about-us'.
  *
  * An Eloquent Model: 'Page'
  *
- * @property integer $id
- * @property integer $website_id
+ * @property int $id
+ * @property int $website_id
  * @property string $route
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -32,7 +32,6 @@ use Illuminate\Database\Eloquent\Builder;
  * @property-read ScreenshotSchedule $screenshotSchedule
  * @property string $full_route
  * @property bool $passing
- *
  */
 class Page extends Model implements Taskable
 {
@@ -43,14 +42,14 @@ class Page extends Model implements Taskable
      */
     protected $fillable = [
         'website_id',
-        'route'
+        'route',
     ];
 
     /**
      * @var array
      */
     protected $casts = [
-        'passing' => 'boolean'
+        'passing' => 'boolean',
     ];
 
     protected static function boot()

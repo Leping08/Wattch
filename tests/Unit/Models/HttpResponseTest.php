@@ -21,11 +21,11 @@ class HttpResponseTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $response = factory(HttpResponse::class)->create([
-            'page_id' => $page->id
+            'page_id' => $page->id,
         ]);
 
         $this->assertInstanceOf(Page::class, $response->page);
@@ -39,11 +39,11 @@ class HttpResponseTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $response = factory(HttpResponse::class)->create([
-            'page_id' => $page->id
+            'page_id' => $page->id,
         ]);
 
         $this->assertTrue($response->valid());
