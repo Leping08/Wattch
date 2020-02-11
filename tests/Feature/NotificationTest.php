@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\AssertionType;
+use App\Models\AssertionType;
 use App\Notifications\AssertionFailed;
-use App\User;
-use App\UserNotificationChannel;
+use App\Models\User;
+use App\Models\UserNotificationChannel;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Notification;

@@ -11,7 +11,7 @@ class AssertionTypesSeeder extends Seeder
      */
     public function run()
     {
-        \App\AssertionType::create([
+        \App\Models\AssertionType::create([
             'name' => 'Assert See',
             'method' => 'assertSee',
             'icon' => 'undraw_annotation_7das.svg',
@@ -19,7 +19,7 @@ class AssertionTypesSeeder extends Seeder
             'description' => 'Assert that the given string is on the page',
         ]);
 
-        \App\AssertionType::create([
+        \App\Models\AssertionType::create([
             'name' => 'Assert Status',
             'method' => 'assertStatus',
             'icon' => 'undraw_server_status_5pbv.svg',
@@ -27,7 +27,7 @@ class AssertionTypesSeeder extends Seeder
             'description' => 'Assert a status code is returned for the page',
         ]);
 
-        \App\AssertionType::create([
+        \App\Models\AssertionType::create([
             'name' => 'Assert Redirect',
             'method' => 'assertRedirect',
             'icon' => 'undraw_moving_forward_lhhd.svg',
@@ -35,7 +35,7 @@ class AssertionTypesSeeder extends Seeder
             'description' => 'Assert that the page responds with a redirect to a given URL',
         ]);
 
-        \App\AssertionType::create([
+        \App\Models\AssertionType::create([
             'name' => 'Assert Unauthorized',
             'method' => 'assertUnauthorized',
             'icon' => 'undraw_unlock_24mb.svg',
@@ -43,7 +43,7 @@ class AssertionTypesSeeder extends Seeder
             'description' => 'Assert that the response has an unauthorized (401) status code',
         ]);
 
-        \App\AssertionType::create([
+        \App\Models\AssertionType::create([
             'name' => 'Assert Don\'t See',
             'method' => 'assertDontSee',
             'icon' => 'undraw_close_tab_uk6g.svg',

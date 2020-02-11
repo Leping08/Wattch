@@ -2,9 +2,9 @@
 
 namespace Tests\Unit\Models;
 
-use App\Page;
-use App\SslResponse;
-use App\Website;
+use App\Models\Page;
+use App\Models\SslResponse;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Tests\traits\MockHttpCalls;

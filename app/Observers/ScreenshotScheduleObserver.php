@@ -2,8 +2,8 @@
 
 namespace App\Observers;
 
-use App\ScreenshotSchedule;
-use App\Task;
+use App\Models\ScreenshotSchedule;
+use App\Models\Task;
 use Illuminate\Support\Facades\Log;
 
 class ScreenshotScheduleObserver
@@ -11,7 +11,7 @@ class ScreenshotScheduleObserver
     /**
      * Handle the screenshot schedule "created" event.
      *
-     * @param  \App\ScreenshotSchedule  $screenshotSchedule
+     * @param  \App\Models\ScreenshotSchedule  $screenshotSchedule
      * @return void
      */
     public function created(ScreenshotSchedule $screenshotSchedule)
@@ -28,7 +28,7 @@ class ScreenshotScheduleObserver
     /**
      * Handle the screenshot schedule "updated" event.
      *
-     * @param  \App\ScreenshotSchedule  $screenshotSchedule
+     * @param  \App\Models\ScreenshotSchedule  $screenshotSchedule
      * @return void
      */
     public function updated(ScreenshotSchedule $screenshotSchedule)
@@ -39,7 +39,7 @@ class ScreenshotScheduleObserver
     /**
      * Handle the screenshot schedule "deleting" event.
      *
-     * @param  \App\ScreenshotSchedule  $screenshotSchedule
+     * @param  \App\Models\ScreenshotSchedule  $screenshotSchedule
      * @return void
      */
     public function deleting(ScreenshotSchedule $screenshotSchedule)
@@ -50,7 +50,7 @@ class ScreenshotScheduleObserver
     /**
      * Handle the screenshot schedule "restored" event.
      *
-     * @param  \App\ScreenshotSchedule  $screenshotSchedule
+     * @param  \App\Models\ScreenshotSchedule  $screenshotSchedule
      * @return void
      */
     public function restored(ScreenshotSchedule $screenshotSchedule)
@@ -61,7 +61,7 @@ class ScreenshotScheduleObserver
     /**
      * Handle the screenshot schedule "force deleted" event.
      *
-     * @param  \App\ScreenshotSchedule  $screenshotSchedule
+     * @param  \App\Models\ScreenshotSchedule  $screenshotSchedule
      * @return void
      */
     public function forceDeleted(ScreenshotSchedule $screenshotSchedule)

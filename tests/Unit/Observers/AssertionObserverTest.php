@@ -2,12 +2,12 @@
 
 namespace Tests\Unit\Observers;
 
-use App\Assertion;
-use App\AssertionResult;
+use App\Models\Assertion;
+use App\Models\AssertionResult;
 use App\Jobs\AnalyzeAssertion;
-use App\Page;
-use App\Task;
-use App\Website;
+use App\Models\Page;
+use App\Models\Task;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Tests\traits\MockHttpCalls;
@@ -37,7 +37,7 @@ class AssertionObserverTest extends TestCase
     /** @test */
     public function created_it_should_create_a_recurring_task()
     {
-        $this->assertCount(0, Task::where('taskable_type', \App\Assertion::class)->get());
+        $this->assertCount(0, Task::where('taskable_type', \App\Models\Assertion::class)->get());
 
         $this->fakeHttpResponse();
 
@@ -51,7 +51,7 @@ class AssertionObserverTest extends TestCase
             'page_id' => $page->id,
         ]);
 
-        $this->assertCount(1, Task::where('taskable_type', \App\Assertion::class)->get());
+        $this->assertCount(1, Task::where('taskable_type', \App\Models\Assertion::class)->get());
     }
 
     /** @test */
@@ -114,7 +114,7 @@ class AssertionObserverTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $this->assertCount(0, Task::where('taskable_type', \App\Assertion::class)->get());
+        $this->assertCount(0, Task::where('taskable_type', \App\Models\Assertion::class)->get());
 
         $website = factory(Website::class)->create();
 
@@ -126,12 +126,12 @@ class AssertionObserverTest extends TestCase
             'page_id' => $page->id,
         ]);
 
-        $this->assertCount(1, Task::where('taskable_type', \App\Assertion::class)->get());
+        $this->assertCount(1, Task::where('taskable_type', \App\Models\Assertion::class)->get());
 
         $assertion->refresh();
         $assertion->delete();
 
-        $this->assertCount(0, Task::where('taskable_type', \App\Assertion::class)->get());
+        $this->assertCount(0, Task::where('taskable_type', \App\Models\Assertion::class)->get());
     }
 
     /** @test */

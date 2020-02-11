@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use App\Page;
-use App\Screenshot;
+use App\Models\Page;
+use App\Models\Screenshot;
 use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;

@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\AssertionResult;
-use App\Page;
-use App\Website;
+use App\Models\AssertionResult;
+use App\Models\Page;
+use App\Models\Website;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 

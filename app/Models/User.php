@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Library\Traits\NotificationChannels;
 use App\Library\Traits\ProductHelpers;

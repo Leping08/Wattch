@@ -1,8 +1,8 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-use App\Assertion;
-use App\AssertionResult;
+use App\Models\Assertion;
+use App\Models\AssertionResult;
 use Faker\Generator as Faker;
 
 $factory->define(AssertionResult::class, function (Faker $faker) {

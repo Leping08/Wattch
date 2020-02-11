@@ -3,8 +3,8 @@
 namespace Tests\Feature\Website;
 
 use App\Jobs\AnalyzeWebsite;
-use App\User;
-use App\Website;
+use App\Models\User;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 

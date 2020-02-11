@@ -2,14 +2,14 @@
 
 namespace App\Providers;
 
-use App\Assertion;
-use App\AssertionResult;
-use App\Page;
+use App\Models\Assertion;
+use App\Models\AssertionResult;
+use App\Models\Page;
 use App\Policies\AssertionPolicy;
 use App\Policies\AssertionResultPolicy;
 use App\Policies\PagePolicy;
 use App\Policies\WebsitePolicy;
-use App\Website;
+use App\Models\Website;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 use Illuminate\Support\Facades\Gate;
 

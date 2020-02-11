@@ -37,7 +37,7 @@ class ScanWebsites extends Command
      */
     public function handle()
     {
-        foreach (\App\Website::all() as $website) {
+        foreach (\App\Models\Website::all() as $website) {
             $website->execute();
         }
     }

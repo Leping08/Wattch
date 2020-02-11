@@ -2,9 +2,9 @@
 
 namespace Tests\Unit\Models;
 
-use App\HttpResponse;
-use App\Page;
-use App\Website;
+use App\Models\HttpResponse;
+use App\Models\Page;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Tests\traits\MockHttpCalls;

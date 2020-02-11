@@ -2,12 +2,12 @@
 
 namespace Tests\Unit\Observers;
 
-use App\HttpResponse;
+use App\Models\HttpResponse;
 use App\Jobs\AnalyzePage;
-use App\Page;
-use App\ScreenshotSchedule;
-use App\Task;
-use App\Website;
+use App\Models\Page;
+use App\Models\ScreenshotSchedule;
+use App\Models\Task;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Tests\traits\MockHttpCalls;
@@ -67,7 +67,7 @@ class PageObserverTest extends TestCase
 //            'website_id' => $site->id
 //        ]);
 //
-//        $tasks = Task::where('taskable_type', 'App\ScreenshotSchedule')->where('taskable_id', $page->id)->get();
+//        $tasks = Task::where('taskable_type', 'App\Models\ScreenshotSchedule')->where('taskable_id', $page->id)->get();
 //
 //        $this->assertEquals(1, $tasks->count());
 //    }
@@ -77,7 +77,7 @@ class PageObserverTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $this->assertCount(0, Task::where('taskable_type', \App\Page::class)->get());
+        $this->assertCount(0, Task::where('taskable_type', \App\Models\Page::class)->get());
 
         $website = factory(Website::class)->create();
 
@@ -86,7 +86,7 @@ class PageObserverTest extends TestCase
             'route' => '/',
         ]);
 
-        $this->assertCount(1, Task::where('taskable_type', \App\Page::class)->get());
+        $this->assertCount(1, Task::where('taskable_type', \App\Models\Page::class)->get());
     }
 
     /** @test */
@@ -142,7 +142,7 @@ class PageObserverTest extends TestCase
 
         $page->delete();
 
-        $this->assertEquals(0, Task::where('taskable_type', \App\Page::class)->where('taskable_id', $page->id)->get()->count());
+        $this->assertEquals(0, Task::where('taskable_type', \App\Models\Page::class)->where('taskable_id', $page->id)->get()->count());
     }
 
     /** @test */

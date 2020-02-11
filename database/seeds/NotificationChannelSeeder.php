@@ -11,12 +11,12 @@ class NotificationChannelSeeder extends Seeder
      */
     public function run()
     {
-        \App\NotificationChannel::create([
+        \App\Models\NotificationChannel::create([
             'name' => 'mail',
             'config' => null,
         ]);
 
-        \App\NotificationChannel::create([
+        \App\Models\NotificationChannel::create([
             'name' => 'slack',
             'config' => null,
         ]);

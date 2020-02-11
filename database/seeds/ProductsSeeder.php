@@ -12,17 +12,17 @@ class ProductsSeeder extends Seeder
      */
     public function run()
     {
-        \App\Product::create([
+        \App\Models\Product::create([
             'name' => 'Free',
             'stripe_plan' => 'plan_FxGYWZAZDnb46I',
         ]);
 
-        \App\Product::create([
+        \App\Models\Product::create([
             'name' => 'Basic',
             'stripe_plan' => 'plan_Fv1JsDdJ6hGCUS',
         ]);
 
-        \App\Product::create([
+        \App\Models\Product::create([
             'name' => 'Pro',
             'stripe_plan' => 'plan_Fv1JRE0rl9ig2O',
         ]);

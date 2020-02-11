@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Jobs\AnalyzePage;
 use App\Jobs\CaptureScreenshot;

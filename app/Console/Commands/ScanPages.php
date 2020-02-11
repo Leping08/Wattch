@@ -37,7 +37,7 @@ class ScanPages extends Command
      */
     public function handle()
     {
-        foreach (\App\Page::all() as $page) {
+        foreach (\App\Models\Page::all() as $page) {
             $page->execute();
         }
     }

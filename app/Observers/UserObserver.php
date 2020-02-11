@@ -2,9 +2,9 @@
 
 namespace App\Observers;
 
-use App\User;
-use App\UserNotificationChannel;
-use App\Website;
+use App\Models\User;
+use App\Models\UserNotificationChannel;
+use App\Models\Website;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
@@ -13,7 +13,7 @@ class UserObserver
     /**
      * Handle the user "created" event.
      *
-     * @param \App\User $user
+     * @param \App\Models\User $user
      * @return void
      */
     public function created(User $user)
@@ -40,7 +40,7 @@ class UserObserver
     /**
      * Handle the user "updated" event.
      *
-     * @param \App\User $user
+     * @param \App\Models\User $user
      * @return void
      */
     public function updated(User $user)
@@ -51,7 +51,7 @@ class UserObserver
     /**
      * Handle the user "deleting" event.
      *
-     * @param \App\User $user
+     * @param \App\Models\User $user
      * @return void
      */
     public function deleting(User $user)
@@ -74,7 +74,7 @@ class UserObserver
     /**
      * Handle the user "restored" event.
      *
-     * @param \App\User $user
+     * @param \App\Models\User $user
      * @return void
      */
     public function restored(User $user)
@@ -101,7 +101,7 @@ class UserObserver
     /**
      * Handle the user "force deleted" event.
      *
-     * @param \App\User $user
+     * @param \App\Models\User $user
      * @return void
      */
     public function forceDeleted(User $user)

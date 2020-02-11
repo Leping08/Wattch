@@ -2,12 +2,12 @@
 
 namespace App\Observers;
 
-use App\Assertion;
-use App\HttpResponse;
-use App\Page;
-use App\Screenshot;
-use App\ScreenshotSchedule;
-use App\Task;
+use App\Models\Assertion;
+use App\Models\HttpResponse;
+use App\Models\Page;
+use App\Models\Screenshot;
+use App\Models\ScreenshotSchedule;
+use App\Models\Task;
 use Illuminate\Support\Facades\Log;
 
 class PageObserver
@@ -101,7 +101,7 @@ class PageObserver
 
         //Restore any Tasks related to the page
         $tasks = Task::withTrashed()
-            ->where('taskable_type', \App\Page::class)
+            ->where('taskable_type', \App\Models\Page::class)
             ->where('taskable_id', $page->id)
             ->get();
 

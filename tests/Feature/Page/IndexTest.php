@@ -2,10 +2,10 @@
 
 namespace Tests\Feature\Page;
 
-use App\HttpResponse;
-use App\Page;
-use App\User;
-use App\Website;
+use App\Models\HttpResponse;
+use App\Models\Page;
+use App\Models\User;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;

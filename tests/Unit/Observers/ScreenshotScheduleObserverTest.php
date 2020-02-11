@@ -3,11 +3,11 @@
 namespace Tests\Unit\Observers;
 
 use App\Jobs\CaptureScreenshot;
-use App\Page;
-use App\Screenshot;
-use App\ScreenshotSchedule;
-use App\Task;
-use App\Website;
+use App\Models\Page;
+use App\Models\Screenshot;
+use App\Models\ScreenshotSchedule;
+use App\Models\Task;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Tests\traits\MockHttpCalls;
@@ -38,11 +38,11 @@ class ScreenshotScheduleObserverTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $this->assertCount(0, Task::where('taskable_type', \App\ScreenshotSchedule::class)->get());
+        $this->assertCount(0, Task::where('taskable_type', \App\Models\ScreenshotSchedule::class)->get());
 
         $schedule = factory(ScreenshotSchedule::class)->create();
 
-        $this->assertCount(1, Task::where('taskable_type', \App\ScreenshotSchedule::class)->where('taskable_id', $schedule->id)->get());
+        $this->assertCount(1, Task::where('taskable_type', \App\Models\ScreenshotSchedule::class)->where('taskable_id', $schedule->id)->get());
     }
 
     /** @test */
