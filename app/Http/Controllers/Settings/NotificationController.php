@@ -34,7 +34,7 @@ class NotificationController extends Controller
             'slack_webhook' => 'regex:/^(https:\/\/hooks.slack.com)/', //TODO Add better validation messages here
         ]);
 
-        $user = Auth::user();
+        $user = $request->user();
 
         //Email update logic
         if ($validatedData['email']) {

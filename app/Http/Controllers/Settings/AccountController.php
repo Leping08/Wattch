@@ -21,9 +21,7 @@ class AccountController extends Controller
 
     public function store(Request $request)
     {
-        $user = Auth::user();
-
-        if ($request->email && ($request->email != $user->email)) { //If the email has changed
+        if ($request->email && ($request->email != $request->user()->email)) { //If the email has changed
             $request->validate([
                 'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],  //Check for unique email
             ]);
@@ -35,7 +33,7 @@ class AccountController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
 
-        $user->fill([
+        $request->user()->fill([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
             'password' => Hash::make($validatedData['password'])

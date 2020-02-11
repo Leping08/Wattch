@@ -9,6 +9,7 @@ use App\Product;
 use App\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Redirect;
 
 class BillingController extends Controller
 {
@@ -33,10 +34,7 @@ class BillingController extends Controller
 
     public function store(Request $request)
     {
-        /* @var $user User */
-        $user = Auth::user();
-
-        $user->updateDefaultPaymentMethodFromStripe($request->payment_method_id);
+        $request->user()->updateDefaultPaymentMethodFromStripe($request->user()->payment_method_id);
 
         //TODO add flash message
         return Redirect::back();
