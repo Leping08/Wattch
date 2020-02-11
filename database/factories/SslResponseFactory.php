@@ -1,8 +1,8 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-use App\SslResponse;
-use App\Website;
+use App\Models\SslResponse;
+use App\Models\Website;
 use Faker\Generator as Faker;
 
 $factory->define(SslResponse::class, function (Faker $faker) {

@@ -2,9 +2,9 @@
 
 namespace App\Observers;
 
-use App\User;
-use App\UserNotificationChannel;
-use App\Website;
+use App\Models\User;
+use App\Models\UserNotificationChannel;
+use App\Models\Website;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 

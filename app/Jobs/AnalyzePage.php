@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use App\HttpResponse;
-use App\Page;
+use App\Models\HttpResponse;
+use App\Models\Page;
 use GuzzleHttp\Client;
 use GuzzleHttp\Exception\ClientException;
 use GuzzleHttp\Exception\RequestException;

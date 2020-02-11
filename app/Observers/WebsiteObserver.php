@@ -2,10 +2,10 @@
 
 namespace App\Observers;
 
-use App\Page;
-use App\SslResponse;
-use App\Task;
-use App\Website;
+use App\Models\Page;
+use App\Models\SslResponse;
+use App\Models\Task;
+use App\Models\Website;
 use Illuminate\Support\Facades\Log;
 
 class WebsiteObserver

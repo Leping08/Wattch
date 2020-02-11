@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Website;
+use App\Models\Website;
 use Illuminate\Console\Command;
 
 class ScanWebsites extends Command

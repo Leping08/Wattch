@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Page;
-use App\Screenshot;
-use App\ScreenshotSchedule;
-use App\Task;
-use App\Website;
+use App\Models\Page;
+use App\Models\Screenshot;
+use App\Models\ScreenshotSchedule;
+use App\Models\Task;
+use App\Models\Website;
 use Carbon\Carbon;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;

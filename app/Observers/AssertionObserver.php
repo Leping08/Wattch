@@ -2,10 +2,10 @@
 
 namespace App\Observers;
 
-use App\Assertion;
-use App\AssertionResult;
-use App\SslResponse;
-use App\Task;
+use App\Models\Assertion;
+use App\Models\AssertionResult;
+use App\Models\SslResponse;
+use App\Models\Task;
 use Illuminate\Support\Facades\Log;
 
 class AssertionObserver

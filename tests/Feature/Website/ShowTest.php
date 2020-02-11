@@ -2,14 +2,14 @@
 
 namespace Tests\Feature\Website;
 
-use App\Assertion;
-use App\AssertionResult;
-use App\AssertionType;
-use App\HttpResponse;
+use App\Models\Assertion;
+use App\Models\AssertionResult;
+use App\Models\AssertionType;
+use App\Models\HttpResponse;
 use App\Library\Classes\Assert;
-use App\Page;
-use App\User;
-use App\Website;
+use App\Models\Page;
+use App\Models\User;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;

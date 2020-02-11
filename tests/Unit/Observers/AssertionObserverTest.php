@@ -2,12 +2,12 @@
 
 namespace Tests\Unit\Observers;
 
-use App\Assertion;
-use App\AssertionResult;
+use App\Models\Assertion;
+use App\Models\AssertionResult;
 use App\Jobs\AnalyzeAssertion;
-use App\Page;
-use App\Task;
-use App\Website;
+use App\Models\Page;
+use App\Models\Task;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Tests\traits\MockHttpCalls;

@@ -2,9 +2,9 @@
 
 namespace Tests\Unit\Observers;
 
-use App\User;
-use App\UserNotificationChannel;
-use App\Website;
+use App\Models\User;
+use App\Models\UserNotificationChannel;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 

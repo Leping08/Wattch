@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Assertion;
-use App\AssertionResult;
+use App\Models\Assertion;
+use App\Models\AssertionResult;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 

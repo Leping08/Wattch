@@ -2,11 +2,11 @@
 
 namespace Tests\Unit\Models;
 
-use App\Feature;
-use App\Product;
+use App\Models\Feature;
+use App\Models\Product;
 use App\Subscription;
-use App\User;
-use App\Website;
+use App\Models\User;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Tests\traits\MockHttpCalls;

@@ -1,8 +1,8 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-use App\HttpResponse;
-use App\Page;
+use App\Models\HttpResponse;
+use App\Models\Page;
 use Faker\Generator as Faker;
 
 $factory->define(HttpResponse::class, function (Faker $faker) {

@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use App\Assertion;
-use App\AssertionResult;
+use App\Models\Assertion;
+use App\Models\AssertionResult;
 use App\Library\Classes\Assert;
 use App\Notifications\AssertionFailed;
 use Illuminate\Bus\Queueable;

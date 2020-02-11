@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Assertion;
-use App\AssertionType;
-use App\Page;
-use App\Task;
+use App\Models\Assertion;
+use App\Models\AssertionType;
+use App\Models\Page;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class PageAssertionsController extends Controller

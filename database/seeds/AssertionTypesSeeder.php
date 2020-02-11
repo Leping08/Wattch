@@ -1,6 +1,6 @@
 <?php
 
-use App\AssertionType;
+use App\Models\AssertionType;
 use Illuminate\Database\Seeder;
 
 class AssertionTypesSeeder extends Seeder

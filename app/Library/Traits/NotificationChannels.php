@@ -2,8 +2,8 @@
 
 namespace App\Library\Traits;
 
-use App\NotificationChannel;
-use App\UserNotificationChannel;
+use App\Models\NotificationChannel;
+use App\Models\UserNotificationChannel;
 use Carbon\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\Auth;

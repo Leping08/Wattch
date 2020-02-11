@@ -2,8 +2,8 @@
 
 namespace App\Observers;
 
-use App\ScreenshotSchedule;
-use App\Task;
+use App\Models\ScreenshotSchedule;
+use App\Models\Task;
 use Illuminate\Support\Facades\Log;
 
 class ScreenshotScheduleObserver

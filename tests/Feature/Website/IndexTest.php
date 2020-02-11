@@ -2,13 +2,13 @@
 
 namespace Tests\Feature\Website;
 
-use App\Assertion;
-use App\AssertionResult;
-use App\Page;
-use App\Screenshot;
-use App\SslResponse;
-use App\User;
-use App\Website;
+use App\Models\Assertion;
+use App\Models\AssertionResult;
+use App\Models\Page;
+use App\Models\Screenshot;
+use App\Models\SslResponse;
+use App\Models\User;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;

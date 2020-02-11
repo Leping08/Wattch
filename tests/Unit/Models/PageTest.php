@@ -4,11 +4,11 @@ namespace Tests\Unit\Models;
 
 use App\Jobs\AnalyzePage;
 use App\Jobs\CaptureScreenshot;
-use App\Page;
-use App\Screenshot;
-use App\SslResponse;
-use App\Task;
-use App\Website;
+use App\Models\Page;
+use App\Models\Screenshot;
+use App\Models\SslResponse;
+use App\Models\Task;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Tests\traits\MockHttpCalls;

@@ -1,8 +1,8 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-use App\Page;
-use App\Screenshot;
+use App\Models\Page;
+use App\Models\Screenshot;
 use Faker\Generator as Faker;
 use Illuminate\Support\Str;
 

@@ -2,11 +2,11 @@
 
 namespace Tests\Feature\Page;
 
-use App\Page;
-use App\ScreenshotSchedule;
-use App\Task;
-use App\User;
-use App\Website;
+use App\Models\Page;
+use App\Models\ScreenshotSchedule;
+use App\Models\Task;
+use App\Models\User;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;

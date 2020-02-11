@@ -2,12 +2,12 @@
 
 namespace Tests\Unit\Observers;
 
-use App\HttpResponse;
+use App\Models\HttpResponse;
 use App\Jobs\AnalyzePage;
-use App\Page;
-use App\ScreenshotSchedule;
-use App\Task;
-use App\Website;
+use App\Models\Page;
+use App\Models\ScreenshotSchedule;
+use App\Models\Task;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Tests\traits\MockHttpCalls;

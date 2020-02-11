@@ -2,7 +2,7 @@
 
 namespace App\Console\Commands;
 
-use App\Page;
+use App\Models\Page;
 use Illuminate\Console\Command;
 
 class ScanPages extends Command
