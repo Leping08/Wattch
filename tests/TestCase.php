@@ -2,7 +2,7 @@
 
 namespace Tests;
 
-use App\Website;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\TestCase as BaseTestCase;
 use Illuminate\Support\Facades\Storage;
 

@@ -1,8 +1,6 @@
 <?php
 
-
 namespace App\Library\Classes;
-
 
 use GuzzleHttp\Client;
 use Illuminate\Foundation\Testing\TestResponse;
@@ -11,7 +9,7 @@ use Illuminate\Http\Response;
 class Assert
 {
     /**
-     * Calling this looks like Assertion::run('https://www.google.com/', 'assertSee', ['about'])
+     * Calling this looks like Assertion::run('https://www.google.com/', 'assertSee', ['about']).
      *
      * assertSee(string $value)
      * assertDontSee(string $value)
@@ -41,7 +39,7 @@ class Assert
         } catch (\Exception $exception) {
             return [
                 'status' => false,
-                'error_message' => $exception->getMessage() ?? 'Something went wrong'
+                'error_message' => $exception->getMessage() ?? 'Something went wrong',
             ];
         }
 
@@ -51,14 +49,15 @@ class Assert
 
         try {
             call_user_func_array([$response, $assertionMethod], $parameters);
+
             return [
                 'status' => true,
-                'error_message' => null
+                'error_message' => null,
             ];
         } catch (\Exception $exception) {
             return [
                 'status' => false,
-                'error_message' => $exception->getMessage() ?? 'Something went wrong'
+                'error_message' => $exception->getMessage() ?? 'Something went wrong',
             ];
         }
     }

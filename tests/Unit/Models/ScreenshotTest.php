@@ -3,9 +3,9 @@
 namespace Tests\Unit\Models;
 
 use App\Jobs\CaptureScreenshot;
-use App\Page;
-use App\Screenshot;
-use App\Website;
+use App\Models\Page;
+use App\Models\Screenshot;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Tests\traits\MockHttpCalls;
@@ -22,11 +22,11 @@ class ScreenshotTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $screenshot = factory(Screenshot::class)->create([
-            'page_id' => $page->id
+            'page_id' => $page->id,
         ]);
 
         $this->assertInstanceOf(Page::class, $screenshot->page);

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Settings;
 
 use App\Http\Controllers\Controller;
-use App\Product;
+use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -36,12 +36,13 @@ class AccountController extends Controller
         $request->user()->fill([
             'name' => $validatedData['name'],
             'email' => $validatedData['email'],
-            'password' => Hash::make($validatedData['password'])
+            'password' => Hash::make($validatedData['password']),
         ])->save();
 
         //TODO Change stripe subscription
 
         session()->flash('success', 'Account Updated');
+
         return redirect()->route('settings.account.index');
     }
 }

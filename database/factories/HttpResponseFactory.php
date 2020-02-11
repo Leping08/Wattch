@@ -1,9 +1,8 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-
-use App\HttpResponse;
-use App\Page;
+use App\Models\HttpResponse;
+use App\Models\Page;
 use Faker\Generator as Faker;
 
 $factory->define(HttpResponse::class, function (Faker $faker) {
@@ -14,6 +13,6 @@ $factory->define(HttpResponse::class, function (Faker $faker) {
         'ip' => $faker->ipv4,
         'total_time' => $faker->numerify('#.##'),
         'headers_raw' => [],
-        'request_stats_raw' => []
+        'request_stats_raw' => [],
     ];
 });

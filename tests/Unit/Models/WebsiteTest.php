@@ -3,11 +3,11 @@
 namespace Tests\Unit\Models;
 
 use App\Jobs\AnalyzeWebsite;
-use App\Page;
-use App\SslResponse;
-use App\Task;
-use App\User;
-use App\Website;
+use App\Models\Page;
+use App\Models\SslResponse;
+use App\Models\Task;
+use App\Models\User;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Tests\traits\MockHttpCalls;
@@ -24,7 +24,7 @@ class WebsiteTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $this->assertInstanceOf(User::class, $website->user);
@@ -38,7 +38,7 @@ class WebsiteTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         foreach ($website->pages as $page) {
@@ -54,7 +54,7 @@ class WebsiteTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         foreach ($website->ssl_certs as $cert) {
@@ -70,7 +70,7 @@ class WebsiteTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $this->assertInstanceOf(SslResponse::class, $website->latest_ssl_response);
@@ -85,7 +85,7 @@ class WebsiteTest extends TestCase
 
         $page = factory(Page::class)->create([
             'website_id' => $website->id,
-            'route' => '/'
+            'route' => '/',
         ]);
 
         $this->assertInstanceOf(Page::class, $website->home_page);
@@ -99,10 +99,10 @@ class WebsiteTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
-        $this->assertEquals("/website/1", $website->link);
+        $this->assertEquals('/website/1', $website->link);
     }
 
     /** @test */
@@ -113,7 +113,7 @@ class WebsiteTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $this->assertInstanceOf(Task::class, $website->tasks->first());
@@ -127,7 +127,7 @@ class WebsiteTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $this->expectsJobs(AnalyzeWebsite::class);

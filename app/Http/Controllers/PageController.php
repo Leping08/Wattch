@@ -2,11 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Page;
-use App\Screenshot;
-use App\ScreenshotSchedule;
-use App\Task;
-use App\Website;
+use App\Models\Page;
+use App\Models\Screenshot;
+use App\Models\ScreenshotSchedule;
+use App\Models\Task;
+use App\Models\Website;
 use Carbon\Carbon;
 use Illuminate\Database\Query\Builder;
 use Illuminate\Http\Request;
@@ -34,7 +34,7 @@ class PageController extends Controller
             'http_responses' => function ($query) {
                 $query->orderBy('created_at', 'desc')
                     ->take(100);
-            }
+            },
         ]);
 
         return view('pages.auth.pages.show', compact('page'));
@@ -44,7 +44,7 @@ class PageController extends Controller
     {
         $request->validate([
             'website_id' => ['required', 'numeric'],
-            'route' => ['required', 'string']
+            'route' => ['required', 'string'],
         ]);
 
         $website_id = $request['website_id'];
@@ -58,26 +58,28 @@ class PageController extends Controller
             ->where('route', $route)
             ->get();
 
-        if (!count($page)) {
+        if (! count($page)) {
             $page = Page::create([
                 'route' => $route,
-                'website_id' => $website_id
+                'website_id' => $website_id,
             ]);
 
             $screenshot = ScreenshotSchedule::create([
-                'page_id' => $page->id
+                'page_id' => $page->id,
             ]);
 
             Task::create([
                 'taskble_type' => Screenshot::class,
                 'taskable_id' => $screenshot->id,
-                'frequency' => 'daily'
+                'frequency' => 'daily',
             ]);
 
             session()->flash('success', "{$page->domain} has been added!");
+
             return redirect()->route('websites.show', ['website' => $website_id]);
         } else {
             session()->flash('warning', 'That page already exists');
+
             return redirect()->route('websites.show', ['website' => $website_id]);
         }
     }

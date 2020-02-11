@@ -1,6 +1,5 @@
 <?php
 
-
 namespace App\Library\Classes;
 
 use PHPUnit\Framework\Assert;
@@ -11,6 +10,7 @@ class Wattch
     {
         try {
             Assert::assertTrue($value);
+
             return 'Success';
         } catch (\Exception $exception) {
             return $exception->getMessage();
@@ -21,6 +21,7 @@ class Wattch
     {
         try {
             Assert::assertContains($needle, $value);
+
             return 'Success';
         } catch (\Exception $exception) {
             return $exception->getMessage();

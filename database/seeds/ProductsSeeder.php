@@ -1,7 +1,7 @@
 <?php
 
+use App\Models\Product;
 use Illuminate\Database\Seeder;
-use App\Product;
 
 class ProductsSeeder extends Seeder
 {
@@ -14,17 +14,17 @@ class ProductsSeeder extends Seeder
     {
         Product::create([
             'name' => 'Free',
-            'stripe_plan' => 'plan_FxGYWZAZDnb46I'
+            'stripe_plan' => 'plan_FxGYWZAZDnb46I',
         ]);
 
         Product::create([
             'name' => 'Basic',
-            'stripe_plan' => 'plan_Fv1JsDdJ6hGCUS'
+            'stripe_plan' => 'plan_Fv1JsDdJ6hGCUS',
         ]);
 
         Product::create([
             'name' => 'Pro',
-            'stripe_plan' => 'plan_Fv1JRE0rl9ig2O'
+            'stripe_plan' => 'plan_Fv1JRE0rl9ig2O',
         ]);
     }
 }

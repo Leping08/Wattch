@@ -2,9 +2,9 @@
 
 namespace App\Observers;
 
-use App\User;
-use App\UserNotificationChannel;
-use App\Website;
+use App\Models\User;
+use App\Models\UserNotificationChannel;
+use App\Models\Website;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Log;
 
@@ -25,7 +25,7 @@ class UserObserver
             'user_id' => $user->id,
             'channel_id' => 1,
             'settings' => json_encode(['email' => $user->email], JSON_PRETTY_PRINT),
-            'muted_at' => Carbon::now()
+            'muted_at' => Carbon::now(),
         ]);
 
         //Slack
@@ -33,7 +33,7 @@ class UserObserver
             'user_id' => $user->id,
             'channel_id' => 2,
             'settings' => json_encode(['webhook_url' => null], JSON_PRETTY_PRINT),
-            'muted_at' => Carbon::now()
+            'muted_at' => Carbon::now(),
         ]);
     }
 
@@ -56,7 +56,7 @@ class UserObserver
      */
     public function deleting(User $user)
     {
-        Log::info('Deleting User Id: ' . $user->id);
+        Log::info('Deleting User Id: '.$user->id);
 
         //Restore any Website related to the user
         foreach ($user->websites as $website) {

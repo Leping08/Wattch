@@ -2,8 +2,8 @@
 
 namespace App\Console;
 
-use App\Task;
-use App\User;
+use App\Models\Task;
+use App\Models\User;
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
 use Illuminate\Support\Facades\Auth;
@@ -36,12 +36,12 @@ class Kernel extends ConsoleKernel
         // Go through each task to dynamically set them up.
         foreach (Task::all() as $task) {
             $frequency = $task->frequency; // everyHour, everyMinute, twiceDaily etc.
-            $schedule->call(function() use ($task){
+            $schedule->call(function () use ($task) {
                 try {
-                    Log::error('Executing task Id: ' . $task->id);
+                    Log::error('Executing task Id: '.$task->id);
                     $task->taskable->execute();
                 } catch (\Exception $exception) {
-                    Log::error('Error executing task Id: ' . $task->id);
+                    Log::error('Error executing task Id: '.$task->id);
                     Log::error($exception->getMessage());
                 }
             })->$frequency();

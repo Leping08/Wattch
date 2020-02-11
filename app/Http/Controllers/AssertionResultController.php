@@ -2,9 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\AssertionResult;
-use App\Page;
-use App\Website;
+use App\Models\AssertionResult;
+use App\Models\Page;
+use App\Models\Website;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 
@@ -17,22 +17,22 @@ class AssertionResultController extends Controller
             'page_id' => 'numeric',
             'status_id' => 'numeric',
             'start_date' => 'date',
-            'end_date' => 'date'
+            'end_date' => 'date',
         ]));
 
         $statuses = collect([
             [
                 'id' => 0,
-                'name' => 'All'
+                'name' => 'All',
             ],
             [
                 'id' => 1,
-                'name' => 'Successful'
+                'name' => 'Successful',
             ],
             [
                 'id' => 2,
-                'name' => 'Failed'
-            ]
+                'name' => 'Failed',
+            ],
         ]);
 
         $website = $validData->has('website_id') ? Website::find($validData->get('website_id')) : null;
@@ -45,7 +45,7 @@ class AssertionResultController extends Controller
         $end_date = $validData->has('end_date') ? Carbon::parse($validData->get('end_date')) : Carbon::now();
 
         $assertion_results = AssertionResult::with([
-            'assertion.type', 'assertion.page.latest_screenshot', 'assertion.page.website'
+            'assertion.type', 'assertion.page.latest_screenshot', 'assertion.page.website',
         ])
             ->whereHas('assertion.page.website', function ($query) use ($website) {
                 $website ? $query->where('id', '=', $website->id) : $query;
@@ -73,7 +73,6 @@ class AssertionResultController extends Controller
 
         return view('pages.auth.results.index', compact('assertion_results', 'websites', 'pages', 'statuses'));
     }
-
 
     public function show(AssertionResult $result)
     {

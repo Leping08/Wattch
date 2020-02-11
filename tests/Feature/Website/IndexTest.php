@@ -1,16 +1,14 @@
 <?php
 
-
 namespace Tests\Feature\Website;
 
-
-use App\Assertion;
-use App\AssertionResult;
-use App\Page;
-use App\Screenshot;
-use App\SslResponse;
-use App\User;
-use App\Website;
+use App\Models\Assertion;
+use App\Models\AssertionResult;
+use App\Models\Page;
+use App\Models\Screenshot;
+use App\Models\SslResponse;
+use App\Models\User;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
@@ -46,17 +44,17 @@ class IndexTest extends TestCase
 
         $website1 = factory(Website::class)->create([
             'user_id' => $user1->id,
-            'domain' => 'http://deltavcreative.com/'
+            'domain' => 'http://deltavcreative.com/',
         ]);
 
         $website2 = factory(Website::class)->create([
             'user_id' => $user2->id,
-            'domain' => 'http://racingvods.com/'
+            'domain' => 'http://racingvods.com/',
         ]);
 
         $website3 = factory(Website::class)->create([
             'user_id' => $user1->id,
-            'domain' => 'https://theswimschoolfl.com/'
+            'domain' => 'https://theswimschoolfl.com/',
         ]);
 
         $this->get(route('websites.index'))
@@ -73,18 +71,17 @@ class IndexTest extends TestCase
         $this->be($user);
 
         $website1 = factory(Website::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
         factory(Page::class, 10)->create([
-            'website_id' => $website1->id
+            'website_id' => $website1->id,
         ]);
-
 
         $website2 = factory(Website::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
         factory(Page::class, 5)->create([
-            'website_id' => $website2->id
+            'website_id' => $website2->id,
         ]);
 
         $this->get(route('websites.index'))
@@ -100,12 +97,12 @@ class IndexTest extends TestCase
         $this->be($user);
 
         $website = factory(Website::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         factory(SslResponse::class)->create([
             'website_id' => $website->id,
-            'ssl_expires_in' => 17
+            'ssl_expires_in' => 17,
         ]);
 
         $this->get(route('websites.index'))
@@ -120,12 +117,12 @@ class IndexTest extends TestCase
         $this->be($user);
 
         $website = factory(Website::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         factory(SslResponse::class)->create([
             'website_id' => $website->id,
-            'ssl_expires_in' => 0
+            'ssl_expires_in' => 0,
         ]);
 
         $this->get(route('websites.index'))
@@ -141,16 +138,16 @@ class IndexTest extends TestCase
         $this->be($user);
 
         $website = factory(Website::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $page = factory(Page::class)->create([
             'website_id' => $website->id,
-            'route' => '/'
+            'route' => '/',
         ]);
 
         $screenshot = factory(Screenshot::class)->create([
-            'page_id' => $page->id
+            'page_id' => $page->id,
         ]);
 
         $this->get(route('websites.index'))
@@ -165,30 +162,30 @@ class IndexTest extends TestCase
         $this->be($user);
 
         $website = factory(Website::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $page = factory(Page::class)->create([
             'website_id' => $website->id,
-            'route' => '/'
+            'route' => '/',
         ]);
 
         $assertion1 = factory(Assertion::class)->create([
-            'page_id' => $page->id
+            'page_id' => $page->id,
         ]);
 
         $result1 = factory(AssertionResult::class)->create([
             'assertion_id' => $assertion1->id,
-            'success' => false
+            'success' => false,
         ]);
 
         $assertion2 = factory(Assertion::class)->create([
-            'page_id' => $page->id
+            'page_id' => $page->id,
         ]);
 
         $result2 = factory(AssertionResult::class)->create([
             'assertion_id' => $assertion2->id,
-            'success' => true
+            'success' => true,
         ]);
 
         $this->get(route('websites.index'))

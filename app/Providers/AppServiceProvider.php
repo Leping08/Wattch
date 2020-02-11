@@ -2,16 +2,16 @@
 
 namespace App\Providers;
 
-use App\Assertion;
+use App\Models\Assertion;
 use App\Observers\AssertionObserver;
 use App\Observers\PageObserver;
 use App\Observers\ScreenshotScheduleObserver;
 use App\Observers\UserObserver;
 use App\Observers\WebsiteObserver;
-use App\Page;
-use App\ScreenshotSchedule;
-use App\User;
-use App\Website;
+use App\Models\Page;
+use App\Models\ScreenshotSchedule;
+use App\Models\User;
+use App\Models\Website;
 use GuzzleHttp\Client;
 use Illuminate\Pagination\Paginator;
 use Illuminate\Support\ServiceProvider;
@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         app()->bind('HttpClient', function () {
-            return (new Client(['verify' => false]));
+            return new Client(['verify' => false]);
         });
     }
 

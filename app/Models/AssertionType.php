@@ -1,13 +1,13 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Support\Carbon;
 
 /**
- * An Eloquent Model: 'AssertionType'
+ * An Eloquent Model: 'AssertionType'.
  *
  * This represents what the assertion is. Ex:
  * assertSee()
@@ -17,7 +17,7 @@ use Illuminate\Support\Carbon;
  * These are documented here:
  * https://laravel.com/docs/master/http-tests
  *
- * @property integer $id
+ * @property int $id
  * @property string $name
  * @property string $method
  * @property string $icon
@@ -40,14 +40,14 @@ class AssertionType extends Model
         'method',
         'icon',
         'example',
-        'description'
+        'description',
     ];
 
     /**
      * @var array
      */
     protected $appends = [
-        'icon_path'
+        'icon_path',
     ];
 
     /**

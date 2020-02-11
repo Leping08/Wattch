@@ -2,8 +2,8 @@
 
 namespace App\Jobs;
 
-use App\Assertion;
-use App\AssertionResult;
+use App\Models\Assertion;
+use App\Models\AssertionResult;
 use App\Library\Classes\Assert;
 use App\Notifications\AssertionFailed;
 use Illuminate\Bus\Queueable;
@@ -16,12 +16,10 @@ class AnalyzeAssertion implements ShouldQueue
 {
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
-
     /**
      * @var Assertion
      */
     public $assertion;
-
 
     /**
      * AnalyzeAssertion constructor.
@@ -45,11 +43,11 @@ class AnalyzeAssertion implements ShouldQueue
         $assertionResult = AssertionResult::create([
             'assertion_id' => $this->assertion->id,
             'success' => $result['status'],
-            'error_message' => $result['error_message'] ?? null
+            'error_message' => $result['error_message'] ?? null,
         ]);
 
         //If the assertion failed notify the user through the assertion failed notification class
-        if(!$result['status']) {
+        if (! $result['status']) {
             $user = $this->assertion->page->website->user;
             $user->notify(new AssertionFailed($assertionResult));
         }

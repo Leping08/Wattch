@@ -2,9 +2,9 @@
 
 namespace Tests\Unit\Models;
 
-use App\HttpResponse;
-use App\Page;
-use App\Website;
+use App\Models\HttpResponse;
+use App\Models\Page;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Tests\traits\MockHttpCalls;
@@ -21,11 +21,11 @@ class HttpResponseTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $response = factory(HttpResponse::class)->create([
-            'page_id' => $page->id
+            'page_id' => $page->id,
         ]);
 
         $this->assertInstanceOf(Page::class, $response->page);
@@ -39,11 +39,11 @@ class HttpResponseTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $response = factory(HttpResponse::class)->create([
-            'page_id' => $page->id
+            'page_id' => $page->id,
         ]);
 
         $this->assertTrue($response->valid());

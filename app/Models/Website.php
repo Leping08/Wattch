@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Jobs\AnalyzeWebsite;
 use App\Library\Interfaces\Taskable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Log;
  *
  * An Eloquent Model: 'Website'
  *
- * @property integer $id
- * @property integer $user_id
+ * @property int $id
+ * @property int $user_id
  * @property string $domain
  * @property Carbon $created_at
  * @property Carbon $updated_at
@@ -30,7 +30,6 @@ use Illuminate\Support\Facades\Log;
  * @property-read string $home_page
  * @property-read string $link
  * @property-read Task $tasks
- *
  */
 class Website extends Model implements Taskable
 {
@@ -38,7 +37,7 @@ class Website extends Model implements Taskable
 
     protected $fillable = [
         'user_id',
-        'domain'
+        'domain',
     ];
 
     protected static function boot()

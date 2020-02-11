@@ -2,7 +2,7 @@
 
 namespace App\Notifications;
 
-use App\AssertionResult;
+use App\Models\AssertionResult;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Notifications\Messages\MailMessage;
@@ -14,7 +14,6 @@ class AssertionFailed extends Notification
     use Queueable;
 
     protected $assertionResult;
-
 
     /**
      * AssertionFailed constructor.
@@ -73,7 +72,7 @@ class AssertionFailed extends Notification
                     ->fields([
                         'Assertion' => $this->assertionResult->assertion->type->method,
                         'Page' => $this->assertionResult->assertion->page->full_route,
-                        'Message' => $this->assertionResult->error_message
+                        'Message' => $this->assertionResult->error_message,
                     ]);
             })
             ->warning();
@@ -88,7 +87,7 @@ class AssertionFailed extends Notification
     public function toArray($notifiable)
     {
         return [
-            'message' => $this->assertionResult->error_message
+            'message' => $this->assertionResult->error_message,
         ];
     }
 }

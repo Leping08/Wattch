@@ -1,17 +1,15 @@
 <?php
 
-
 namespace Tests\Feature\Website;
 
-
-use App\Assertion;
-use App\AssertionResult;
-use App\AssertionType;
-use App\HttpResponse;
+use App\Models\Assertion;
+use App\Models\AssertionResult;
+use App\Models\AssertionType;
+use App\Models\HttpResponse;
 use App\Library\Classes\Assert;
-use App\Page;
-use App\User;
-use App\Website;
+use App\Models\Page;
+use App\Models\User;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
@@ -30,7 +28,7 @@ class ShowTest extends TestCase
         $this->fakeHttpResponse();
 
         $website = factory(Website::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $this->get(route('websites.show', ['website' => $website]))
@@ -52,7 +50,7 @@ class ShowTest extends TestCase
         $this->fakeHttpResponse();
 
         $website = factory(Website::class)->create([
-            'user_id' => $user1->id
+            'user_id' => $user1->id,
         ]);
 
         $this->get(route('websites.show', ['website' => $website]))
@@ -74,21 +72,21 @@ class ShowTest extends TestCase
         $this->fakeHttpResponse();
 
         $website1 = factory(Website::class)->create([
-            'user_id' => $user1->id
+            'user_id' => $user1->id,
         ]);
 
         $website2 = factory(Website::class)->create([
-            'user_id' => $user1->id
+            'user_id' => $user1->id,
         ]);
 
         $page1 = factory(Page::class)->create([
             'website_id' => $website1->id,
-            'route' => '/page1'
+            'route' => '/page1',
         ]);
 
         $page2 = factory(Page::class)->create([
             'website_id' => $website2->id,
-            'route' => '/page2'
+            'route' => '/page2',
         ]);
 
         $this->get(route('websites.show', ['website' => $website1]))
@@ -111,16 +109,16 @@ class ShowTest extends TestCase
         $this->fakeHttpResponse();
 
         $website = factory(Website::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $response = factory(HttpResponse::class)->create([
             'page_id' => $page->id,
-            'total_time' => 2.75
+            'total_time' => 2.75,
         ]);
 
         $this->get(route('websites.show', ['website' => $website]))
@@ -138,11 +136,11 @@ class ShowTest extends TestCase
         $this->fakeHttpResponse();
 
         $website = factory(Website::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $this->get(route('websites.show', ['website' => $website]))
@@ -159,11 +157,11 @@ class ShowTest extends TestCase
         $this->fakeHttpResponse();
 
         $website = factory(Website::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $assertionType = AssertionType::first();
@@ -171,23 +169,23 @@ class ShowTest extends TestCase
         $assertion1 = factory(Assertion::class)->create([
             'page_id' => $page->id,
             'assertion_type_id' => $assertionType->id,
-            'parameters' => ['test']
+            'parameters' => ['test'],
         ]);
 
         $assertion2 = factory(Assertion::class)->create([
             'page_id' => $page->id,
             'assertion_type_id' => $assertionType->id,
-            'parameters' => ['test']
+            'parameters' => ['test'],
         ]);
 
         factory(AssertionResult::class)->create([
             'assertion_id' => $assertion1->id,
-            'success' => true
+            'success' => true,
         ]);
 
         factory(AssertionResult::class)->create([
             'assertion_id' => $assertion2->id,
-            'success' => false
+            'success' => false,
         ]);
 
         $this->get(route('websites.show', ['website' => $website]))

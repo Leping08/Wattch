@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Website;
+use App\Models\Website;
 use Illuminate\Http\Request;
 
 class ScanWebsiteController extends Controller
@@ -11,6 +11,7 @@ class ScanWebsiteController extends Controller
     {
         $this->authorize('view', $website);
         $website->execute();
+
         return redirect()->back();
     }
 }

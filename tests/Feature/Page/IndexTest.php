@@ -1,13 +1,11 @@
 <?php
 
-
 namespace Tests\Feature\Page;
 
-
-use App\HttpResponse;
-use App\Page;
-use App\User;
-use App\Website;
+use App\Models\HttpResponse;
+use App\Models\Page;
+use App\Models\User;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
@@ -44,23 +42,23 @@ class IndexTest extends TestCase
         $this->be($user1);
         $website1 = factory(Website::class)->create([
             'user_id' => $user1->id,
-            'domain' => 'http://deltavcreative.com/'
+            'domain' => 'http://deltavcreative.com/',
         ]);
 
         $page1 = factory(Page::class)->create([
             'website_id' => $website1->id,
-            'route' => '/website_1_route'
+            'route' => '/website_1_route',
         ]);
 
         $this->be($user2);
         $website2 = factory(Website::class)->create([
             'user_id' => $user2->id,
-            'domain' => 'http://racingvods.com/'
+            'domain' => 'http://racingvods.com/',
         ]);
 
         $page2 = factory(Page::class)->create([
             'website_id' => $website2->id,
-            'route' => '/website_2_route'
+            'route' => '/website_2_route',
         ]);
 
         $this->be($user1);
@@ -81,22 +79,22 @@ class IndexTest extends TestCase
 
         $website = factory(Website::class)->create([
             'user_id' => $user->id,
-            'domain' => 'http://deltavcreative.com/'
+            'domain' => 'http://deltavcreative.com/',
         ]);
 
         $page1 = factory(Page::class)->create([
             'website_id' => $website->id,
-            'route' => '/route1'
+            'route' => '/route1',
         ]);
 
         $page2 = factory(Page::class)->create([
             'website_id' => $website->id,
-            'route' => '/route2'
+            'route' => '/route2',
         ]);
 
         $page3 = factory(Page::class)->create([
             'website_id' => $website->id,
-            'route' => '/route3'
+            'route' => '/route3',
         ]);
 
         $this->get(route('websites.show', ['website' => $website->id]))
@@ -113,18 +111,18 @@ class IndexTest extends TestCase
 
         $website = factory(Website::class)->create([
             'user_id' => $user->id,
-            'domain' => 'http://deltavcreative.com/'
+            'domain' => 'http://deltavcreative.com/',
         ]);
 
         $page = factory(Page::class)->create([
             'website_id' => $website->id,
-            'route' => '/route1'
+            'route' => '/route1',
         ]);
 
         $response = factory(HttpResponse::class)->create([
             'page_id' => $page->id,
             'response_code' => '400',
-            'total_time' => '2.78'
+            'total_time' => '2.78',
         ]);
 
         $this->get(route('websites.show', ['website' => $website->id]))

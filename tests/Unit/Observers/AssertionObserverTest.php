@@ -1,15 +1,13 @@
 <?php
 
-
 namespace Tests\Unit\Observers;
 
-
-use App\Assertion;
-use App\AssertionResult;
+use App\Models\Assertion;
+use App\Models\AssertionResult;
 use App\Jobs\AnalyzeAssertion;
-use App\Page;
-use App\Task;
-use App\Website;
+use App\Models\Page;
+use App\Models\Task;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Tests\traits\MockHttpCalls;
@@ -26,13 +24,13 @@ class AssertionObserverTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $this->expectsJobs(AnalyzeAssertion::class);
 
         $assertion = factory(Assertion::class)->create([
-            'page_id' => $page->id
+            'page_id' => $page->id,
         ]);
     }
 
@@ -46,11 +44,11 @@ class AssertionObserverTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $assertion = factory(Assertion::class)->create([
-            'page_id' => $page->id
+            'page_id' => $page->id,
         ]);
 
         $this->assertCount(1, Task::where('taskable_type', Assertion::class)->get());
@@ -64,15 +62,15 @@ class AssertionObserverTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $page2 = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $assertion = factory(Assertion::class)->create([
-            'page_id' => $page->id
+            'page_id' => $page->id,
         ]);
 
         $this->expectsJobs(AnalyzeAssertion::class);
@@ -92,11 +90,11 @@ class AssertionObserverTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $assertion = factory(Assertion::class)->create([
-            'page_id' => $page->id
+            'page_id' => $page->id,
         ]);
 
         $this->assertCount(1, AssertionResult::all());
@@ -121,11 +119,11 @@ class AssertionObserverTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $assertion = factory(Assertion::class)->create([
-            'page_id' => $page->id
+            'page_id' => $page->id,
         ]);
 
         $this->assertCount(1, Task::where('taskable_type', Assertion::class)->get());
@@ -146,11 +144,11 @@ class AssertionObserverTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $assertion = factory(Assertion::class)->create([
-            'page_id' => $page->id
+            'page_id' => $page->id,
         ]);
 
         $this->assertCount(1, AssertionResult::all());

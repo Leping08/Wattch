@@ -14,7 +14,7 @@ class DatabaseSeeder extends Seeder
         $this->call([
             ProductsSeeder::class,
             NotificationChannelSeeder::class,
-            AssertionTypesSeeder::class
+            AssertionTypesSeeder::class,
         ]);
     }
 }

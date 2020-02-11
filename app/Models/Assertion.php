@@ -1,12 +1,12 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use App\Jobs\AnalyzeAssertion;
 use App\Library\Interfaces\Taskable;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Log;
 
@@ -17,8 +17,8 @@ use Illuminate\Support\Facades\Log;
  *
  * An Eloquent Model: 'Assertion'
  *
- * @property integer $id
- * @property integer $page_id
+ * @property int $id
+ * @property int $page_id
  * @property string $assertion_type_id
  * @property array $parameters
  * @property Carbon $muted_at
@@ -29,7 +29,6 @@ use Illuminate\Support\Facades\Log;
  * @property-read AssertionType $type
  * @property-read AssertionResult $results
  * @property-read Task $tasks
- *
  */
 class Assertion extends Model implements Taskable
 {
@@ -42,28 +41,28 @@ class Assertion extends Model implements Taskable
         'page_id',
         'assertion_type_id',
         'parameters',
-        'muted_at'
+        'muted_at',
     ];
 
     /**
      * @var array
      */
     protected $casts = [
-        'parameters' => 'json'  //TODO: MAKE SURE SOMEONE CAN NOT RUN CODE FROM THIS
+        'parameters' => 'json',  //TODO: MAKE SURE SOMEONE CAN NOT RUN CODE FROM THIS
     ];
 
     /**
      * @var array
      */
     protected $dates = [
-        'muted_at'
+        'muted_at',
     ];
 
     /**
      * @var array
      */
     protected $appends = [
-        'muted'
+        'muted',
     ];
 
     protected static function boot()
@@ -133,7 +132,7 @@ class Assertion extends Model implements Taskable
     }
 
     /**
-     * @return Boolean
+     * @return bool
      */
     public function getMutedAttribute()
     {

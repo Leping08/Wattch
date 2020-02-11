@@ -2,13 +2,13 @@
 
 namespace App\Jobs;
 
-use App\SslResponse;
-use App\Website;
+use App\Models\SslResponse;
+use App\Models\Website;
 use Illuminate\Bus\Queueable;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\App;
 use Spatie\SslCertificate\SslCertificate;
 
@@ -44,7 +44,7 @@ class AnalyzeWebsite implements ShouldQueue
                     'website_id' => $this->website->id,
                     'ssl_valid' => 1,
                     'ssl_expires_in' => 30,
-                    'ssl_raw' => []
+                    'ssl_raw' => [],
                 ]);
             } else {
                 $certificate = SslCertificate::createForHostName($this->website->domain);
@@ -53,7 +53,7 @@ class AnalyzeWebsite implements ShouldQueue
                     'website_id' => $this->website->id,
                     'ssl_valid' => $certificate->isValid(),
                     'ssl_expires_in' => $certificate->expirationDate()->diffInDays(),
-                    'ssl_raw' => $certificate
+                    'ssl_raw' => $certificate,
                 ]);
             }
         } catch (\Exception $e) {
@@ -61,7 +61,7 @@ class AnalyzeWebsite implements ShouldQueue
                 'website_id' => $this->website->id,
                 'ssl_valid' => 0,
                 'ssl_expires_in' => 0,
-                'ssl_raw' => json_encode(['error' => $e->getMessage()], JSON_PRETTY_PRINT)
+                'ssl_raw' => json_encode(['error' => $e->getMessage()], JSON_PRETTY_PRINT),
             ]);
         }
     }

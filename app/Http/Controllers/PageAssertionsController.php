@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Assertion;
-use App\AssertionType;
-use App\Page;
-use App\Task;
+use App\Models\Assertion;
+use App\Models\AssertionType;
+use App\Models\Page;
+use App\Models\Task;
 use Illuminate\Http\Request;
 
 class PageAssertionsController extends Controller
@@ -29,7 +29,7 @@ class PageAssertionsController extends Controller
     {
         $request->validate([
             'page_id' => ['required', 'numeric', 'exists:pages,id'],
-            'assertion_type_id' => ['required', 'numeric', 'exists:assertion_types,id']
+            'assertion_type_id' => ['required', 'numeric', 'exists:assertion_types,id'],
         ]);
 
         $page = Page::find($request->page_id);
@@ -38,13 +38,13 @@ class PageAssertionsController extends Controller
         $assertion = Assertion::create([
             'assertion_type_id' => $assertion_type->id,
             'page_id' => $page->id,
-            'parameters' => [$request->parameters]
+            'parameters' => [$request->parameters],
         ]);
 
         Task::create([
             'taskable_type' => Assertion::class,
             'taskable_id' => $assertion->id,
-            'frequency' => 'hourly'
+            'frequency' => 'hourly',
         ]);
 
         session()->flash('success', 'Assertion created');

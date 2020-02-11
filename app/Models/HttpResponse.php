@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -14,10 +14,10 @@ use Illuminate\Support\Str;
  *
  * An Eloquent Model: 'HttpResponse'
  *
- * @property integer $id
- * @property integer $page_id
+ * @property int $id
+ * @property int $page_id
  * @property string $domain
- * @property integer $response_code
+ * @property int $response_code
  * @property string $ip
  * @property float $total_time
  * @property Carbon $created_at
@@ -28,7 +28,6 @@ use Illuminate\Support\Str;
  * @property-read HttpResponse $latest_http_response
  * @property-read Screenshot $screenshots
  * @property-read Task $tasks
- *
  */
 class HttpResponse extends Model
 {
@@ -41,14 +40,13 @@ class HttpResponse extends Model
         'ip',
         'total_time',
         'headers_raw',
-        'request_stats_raw'
+        'request_stats_raw',
     ];
 
     protected $casts = [
         'headers_raw' => 'array',
-        'request_stats_raw' => 'array'
+        'request_stats_raw' => 'array',
     ];
-
 
     protected static function boot()
     {
@@ -72,6 +70,6 @@ class HttpResponse extends Model
      */
     public function valid(): bool
     {
-        return !Str::startsWith($this->response_code, '4');
+        return ! Str::startsWith($this->response_code, '4');
     }
 }

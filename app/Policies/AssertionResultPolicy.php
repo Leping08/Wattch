@@ -2,8 +2,8 @@
 
 namespace App\Policies;
 
-use App\AssertionResult;
-use App\User;
+use App\Models\AssertionResult;
+use App\Models\User;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
 class AssertionResultPolicy

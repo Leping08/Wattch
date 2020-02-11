@@ -2,7 +2,7 @@
 
 namespace App\Http\Controllers;
 
-use App\Page;
+use App\Models\Page;
 use Illuminate\Http\Request;
 
 class ScanPageController extends Controller
@@ -11,6 +11,7 @@ class ScanPageController extends Controller
     {
         $this->authorize('view', $page);
         $page->execute();
+
         return redirect()->back();
     }
 }

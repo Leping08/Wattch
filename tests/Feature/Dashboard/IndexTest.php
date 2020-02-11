@@ -1,13 +1,11 @@
 <?php
 
-
 namespace Tests\Feature\Dashboard;
 
-
-use App\Assertion;
-use App\Page;
-use App\User;
-use App\Website;
+use App\Models\Assertion;
+use App\Models\Page;
+use App\Models\User;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Auth;
 use Tests\TestCase;
@@ -40,16 +38,16 @@ class IndexTest extends TestCase
         $this->be($user);
 
         $website = factory(Website::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $pages = factory(Page::class, 10)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         foreach ($pages as $page) {
             factory(Assertion::class)->create([
-                'page_id' => $page
+                'page_id' => $page,
             ]);
         }
 
@@ -62,7 +60,7 @@ class IndexTest extends TestCase
             ->assertSeeText('Alerts')
             ->assertSee(Website::all()->count())
             ->assertSee(Assertion::all()->count());
-            //->assertSee(Alert::all()->count())
+        //->assertSee(Alert::all()->count())
     }
 
     /** @test */
@@ -72,16 +70,16 @@ class IndexTest extends TestCase
         $this->be($user);
 
         $website = factory(Website::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $pages = factory(Page::class, 5)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         foreach ($pages as $page) {
             factory(Assertion::class)->create([
-                'page_id' => $page
+                'page_id' => $page,
             ]);
         }
 

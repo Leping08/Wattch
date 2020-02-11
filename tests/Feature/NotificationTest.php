@@ -1,13 +1,11 @@
 <?php
 
-
 namespace Tests\Feature;
 
-
-use App\AssertionType;
+use App\Models\AssertionType;
 use App\Notifications\AssertionFailed;
-use App\User;
-use App\UserNotificationChannel;
+use App\Models\User;
+use App\Models\UserNotificationChannel;
 use Carbon\Carbon;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Illuminate\Support\Facades\Notification;
@@ -41,7 +39,6 @@ class NotificationTest extends TestCase
 
         $this->assertCount(1, $user->viaNotificationChannels());
 
-
 //        $site = factory(Website::class)->create([
 //            'user_id' => $user
 //        ]);
@@ -61,7 +58,6 @@ class NotificationTest extends TestCase
 //
 //        // Assert a notification was sent to the given user
 //        Notification::assertSentTo($user, AssertionFailed::class);
-
 
 //        Notification::assertSentTo($user, AssertionFailed::class, function ($notification, $channels) use ($user) {
 //            $mailData = $notification->toMail($user)->toArray();

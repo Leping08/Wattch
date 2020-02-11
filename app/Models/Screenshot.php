@@ -1,6 +1,6 @@
 <?php
 
-namespace App;
+namespace App\Models;
 
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Model;
@@ -14,15 +14,14 @@ use Illuminate\Support\Facades\Log;
  *
  * An Eloquent Model: 'Screenshot'
  *
- * @property integer $id
+ * @property int $id
  * @property string $uuid
- * @property integer $page_id
+ * @property int $page_id
  * @property string $src
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
  * @property-read Page $page
- *
  */
 class Screenshot extends Model
 {
@@ -31,9 +30,8 @@ class Screenshot extends Model
     protected $fillable = [
         'uuid',
         'page_id',
-        'src'
+        'src',
     ];
-
 
     protected static function boot()
     {

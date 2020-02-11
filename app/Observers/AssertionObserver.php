@@ -2,10 +2,10 @@
 
 namespace App\Observers;
 
-use App\Assertion;
-use App\AssertionResult;
-use App\SslResponse;
-use App\Task;
+use App\Models\Assertion;
+use App\Models\AssertionResult;
+use App\Models\SslResponse;
+use App\Models\Task;
 use Illuminate\Support\Facades\Log;
 
 class AssertionObserver
@@ -23,7 +23,7 @@ class AssertionObserver
         Task::create([
             'taskable_type' => Assertion::class,
             'taskable_id' => $assertion->id,
-            'frequency' => 'hourly'
+            'frequency' => 'hourly',
         ]);
     }
 
@@ -46,7 +46,7 @@ class AssertionObserver
      */
     public function deleting(Assertion $assertion)
     {
-        Log::info('Deleting Assertion Id: ' . $assertion->id);
+        Log::info('Deleting Assertion Id: '.$assertion->id);
 
         //Delete any Results related to the assertion
         foreach ($assertion->results as $result) {
@@ -67,7 +67,7 @@ class AssertionObserver
      */
     public function restored(Assertion $assertion)
     {
-        Log::info('Restoring Assertion Id: ' . $assertion->id);
+        Log::info('Restoring Assertion Id: '.$assertion->id);
 
         //Restore any Results related to the assertion
         $results = AssertionResult::withTrashed()

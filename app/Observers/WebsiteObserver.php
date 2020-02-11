@@ -2,10 +2,10 @@
 
 namespace App\Observers;
 
-use App\Page;
-use App\SslResponse;
-use App\Task;
-use App\Website;
+use App\Models\Page;
+use App\Models\SslResponse;
+use App\Models\Task;
+use App\Models\Website;
 use Illuminate\Support\Facades\Log;
 
 class WebsiteObserver
@@ -29,7 +29,7 @@ class WebsiteObserver
         Task::create([
             'taskable_type' => Website::class,
             'taskable_id' => $website->id,
-            'frequency' => 'daily'
+            'frequency' => 'daily',
         ]);
     }
 
@@ -52,8 +52,8 @@ class WebsiteObserver
      */
     public function deleting(Website $website)
     {
-        Log::info('Deleting Website Id: ' . $website->id);
-        Log::info('Pages Count: ' . $website->pages->count());
+        Log::info('Deleting Website Id: '.$website->id);
+        Log::info('Pages Count: '.$website->pages->count());
 
         //Delete any Pages related to the website
         foreach ($website->pages as $page) {
@@ -79,7 +79,7 @@ class WebsiteObserver
      */
     public function restored(Website $website)
     {
-        Log::info('Restoring Website Id: ' . $website->id);
+        Log::info('Restoring Website Id: '.$website->id);
 
         //Restore any Pages related to the website
         $pages = Page::withTrashed()

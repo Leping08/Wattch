@@ -1,12 +1,10 @@
 <?php
 
-
 namespace Tests\Unit\Observers;
 
-
-use App\User;
-use App\UserNotificationChannel;
-use App\Website;
+use App\Models\User;
+use App\Models\UserNotificationChannel;
+use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 
@@ -45,7 +43,7 @@ class UserObserverTest extends TestCase
         $this->be($user);
 
         factory(Website::class, 3)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $user->refresh();
