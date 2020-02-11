@@ -33,10 +33,10 @@
                     <a href="{{route('pages.show', ['page' => $page])}}">
                         <div class="mb-10">
                             @if($page->screenshots->last())
-                                <img class="object-contain rounded-lg hover:shadow-md shadow" src="{{ asset($page->screenshots->last()->src) }}" alt="">
+                                <img class="object-cover object-top h-64 w-full rounded-lg hover:shadow-md shadow" src="{{ asset($page->screenshots->last()->src) }}" alt="">
                             @else
                                 <div class="rounded bg-white">
-                                    <img class="object-contain rounded-lg hover:shadow-md h-56" src="/img/wattch_guy/undraw_online_test_gba7.svg" alt="">
+                                    <img class="object-cover object-top h-64 w-full rounded-lg hover:shadow-md shadow" src="/img/wattch_guy/undraw_online_test_gba7.svg" alt="">
                                 </div>
                             @endif
                         </div>

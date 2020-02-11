@@ -2,6 +2,8 @@
 
 namespace App;
 
+use App\Models\Product;
+use App\Models\User;
 use Illuminate\Support\Carbon;
 
 /**

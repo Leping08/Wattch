@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Library\Traits\NotificationChannels;
 use App\Library\Traits\ProductHelpers;
+use App\Subscription;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;

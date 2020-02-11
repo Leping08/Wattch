@@ -102,6 +102,10 @@
     width: 7rem;
 }
 
+.h-18 {
+    height: 4.5rem;
+}
+
 .add-btn-teal {
     @apply bg-teal-500 p-2 rounded-full cursor-pointer text-gray-100 border-teal-500 border shadow
 }

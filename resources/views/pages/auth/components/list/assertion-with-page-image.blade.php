@@ -1,7 +1,7 @@
 <a href="{{ route('assertions.show', ['assertion' => $assertion]) }}" class="flex hover:bg-gray-300 border-b">
     <div class="text-center mx-6 my-2">
         <div>
-            <img class="h-18 w-32 rounded shadow" alt="" src="{{$assertion->page->latest_screenshot->src ?? asset('img/wattch_guy/undraw_online_test_gba7.svg')}}">
+            <img class="rounded shadow object-cover object-top w-32 h-18" alt="" src="{{$assertion->page->latest_screenshot->src ?? asset('img/wattch_guy/undraw_online_test_gba7.svg')}}">
         </div>
     </div>
     <div class="flex flex-auto flex-col justify-around mx-6">

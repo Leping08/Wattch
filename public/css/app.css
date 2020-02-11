@@ -1037,6 +1037,10 @@ video {
   width: 7rem;
 }
 
+.h-18 {
+  height: 4.5rem;
+}
+
 .add-btn-teal {
   background-color: #38b2ac;
   padding: 0.5rem;

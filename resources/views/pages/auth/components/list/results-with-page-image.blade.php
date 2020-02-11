@@ -1,7 +1,7 @@
 <a href="{{ route('results.show', ['result' => $result]) }}" class="flex hover:bg-gray-300 border-b border-gray-300 cursor-pointer">
     <div class="text-center mx-6 my-2">
         <div>
-            <img class="h-18 w-32 rounded shadow" alt="" src="{{$result->assertion->page->latest_screenshot->src}}">
+            <img class="rounded shadow object-cover object-top w-32 h-18" alt="" src="{{$result->assertion->page->latest_screenshot->src}}">
         </div>
     </div>
     <div class="flex flex-col justify-around mx-6">

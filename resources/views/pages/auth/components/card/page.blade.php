@@ -11,7 +11,7 @@
         <div class="flex">
             <div class="text-center mx-6 my-2">
                 <div>
-                    <img class="h-18 w-32 rounded shadow" alt="" src="{{ asset($page->latest_screenshot->src) }}">
+                    <img class="rounded shadow object-cover object-top w-32 h-18" alt="" src="{{ asset($page->latest_screenshot->src) }}">
                 </div>
             </div>
             <div class="flex w-full text-center">
