@@ -13,7 +13,7 @@ class AssertionResultPolicy
     /**
      * Determine whether the user can view any assertion results.
      *
-     * @param  \App\User  $user
+     * @param  User  $user
      * @return mixed
      */
     public function viewAny(User $user)
@@ -24,8 +24,8 @@ class AssertionResultPolicy
     /**
      * Determine whether the user can view the assertion result.
      *
-     * @param  \App\User  $user
-     * @param  \App\AssertionResult  $assertionResult
+     * @param  User  $user
+     * @param  AssertionResult  $assertionResult
      * @return mixed
      */
     public function view(User $user, AssertionResult $assertionResult)
@@ -36,7 +36,7 @@ class AssertionResultPolicy
     /**
      * Determine whether the user can create assertion results.
      *
-     * @param  \App\User  $user
+     * @param  User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -47,8 +47,8 @@ class AssertionResultPolicy
     /**
      * Determine whether the user can update the assertion result.
      *
-     * @param  \App\User  $user
-     * @param  \App\AssertionResult  $assertionResult
+     * @param  User  $user
+     * @param  AssertionResult  $assertionResult
      * @return mixed
      */
     public function update(User $user, AssertionResult $assertionResult)
@@ -59,8 +59,8 @@ class AssertionResultPolicy
     /**
      * Determine whether the user can delete the assertion result.
      *
-     * @param  \App\User  $user
-     * @param  \App\AssertionResult  $assertionResult
+     * @param  User  $user
+     * @param  AssertionResult  $assertionResult
      * @return mixed
      */
     public function delete(User $user, AssertionResult $assertionResult)
@@ -71,8 +71,8 @@ class AssertionResultPolicy
     /**
      * Determine whether the user can restore the assertion result.
      *
-     * @param  \App\User  $user
-     * @param  \App\AssertionResult  $assertionResult
+     * @param  User  $user
+     * @param  AssertionResult  $assertionResult
      * @return mixed
      */
     public function restore(User $user, AssertionResult $assertionResult)
@@ -83,8 +83,8 @@ class AssertionResultPolicy
     /**
      * Determine whether the user can permanently delete the assertion result.
      *
-     * @param  \App\User  $user
-     * @param  \App\AssertionResult  $assertionResult
+     * @param  User  $user
+     * @param  AssertionResult  $assertionResult
      * @return mixed
      */
     public function forceDelete(User $user, AssertionResult $assertionResult)

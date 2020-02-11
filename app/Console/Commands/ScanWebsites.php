@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Website;
 use Illuminate\Console\Command;
 
 class ScanWebsites extends Command
@@ -37,7 +38,7 @@ class ScanWebsites extends Command
      */
     public function handle()
     {
-        foreach (\App\Website::all() as $website) {
+        foreach (Website::all() as $website) {
             $website->execute();
         }
     }

@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use App\NotificationChannel;
 
 class NotificationChannelSeeder extends Seeder
 {
@@ -11,12 +12,12 @@ class NotificationChannelSeeder extends Seeder
      */
     public function run()
     {
-        \App\NotificationChannel::create([
+        NotificationChannel::create([
             'name' => 'mail',
             'config' => null
         ]);
 
-        \App\NotificationChannel::create([
+        NotificationChannel::create([
             'name' => 'slack',
             'config' => null
         ]);

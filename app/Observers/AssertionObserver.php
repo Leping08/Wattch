@@ -13,7 +13,7 @@ class AssertionObserver
     /**
      * Handle the assertion "created" event.
      *
-     * @param  \App\Assertion  $assertion
+     * @param  Assertion  $assertion
      * @return void
      */
     public function created(Assertion $assertion)
@@ -30,7 +30,7 @@ class AssertionObserver
     /**
      * Handle the assertion "updated" event.
      *
-     * @param  \App\Assertion  $assertion
+     * @param  Assertion  $assertion
      * @return void
      */
     public function updated(Assertion $assertion)
@@ -41,7 +41,7 @@ class AssertionObserver
     /**
      * Handle the assertion "deleting" event.
      *
-     * @param  \App\Assertion  $assertion
+     * @param  Assertion  $assertion
      * @return void
      */
     public function deleting(Assertion $assertion)
@@ -62,7 +62,7 @@ class AssertionObserver
     /**
      * Handle the assertion "restored" event.
      *
-     * @param  \App\Assertion  $assertion
+     * @param  Assertion  $assertion
      * @return void
      */
     public function restored(Assertion $assertion)
@@ -80,7 +80,7 @@ class AssertionObserver
 
         //Restore any tasks related to the assertion
         $tasks = Task::withTrashed()
-            ->where('taskable_type', 'App\Assertion')
+            ->where('taskable_type', Assertion::class)
             ->where('taskable_id', $assertion->id)
             ->get();
 
@@ -92,7 +92,7 @@ class AssertionObserver
     /**
      * Handle the assertion "force deleted" event.
      *
-     * @param  \App\Assertion  $assertion
+     * @param  Assertion  $assertion
      * @return void
      */
     public function forceDeleted(Assertion $assertion)

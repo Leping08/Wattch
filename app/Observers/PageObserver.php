@@ -102,7 +102,7 @@ class PageObserver
 
         //Restore any Tasks related to the page
         $tasks = Task::withTrashed()
-            ->where('taskable_type', 'App\Page')
+            ->where('taskable_type', Page::class)
             ->where('taskable_id', $page->id)
             ->get();
 

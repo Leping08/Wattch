@@ -13,7 +13,7 @@ class WebsiteObserver
     /**
      * Handle the website "created" event.
      *
-     * @param \App\Website $website
+     * @param Website $website
      * @return void
      */
     public function created(Website $website)
@@ -36,7 +36,7 @@ class WebsiteObserver
     /**
      * Handle the website "updated" event.
      *
-     * @param \App\Website $website
+     * @param Website $website
      * @return void
      */
     public function updated(Website $website)
@@ -47,7 +47,7 @@ class WebsiteObserver
     /**
      * Handle the website "deleting" event.
      *
-     * @param \App\Website $website
+     * @param Website $website
      * @return void
      */
     public function deleting(Website $website)
@@ -74,7 +74,7 @@ class WebsiteObserver
     /**
      * Handle the website "restored" event.
      *
-     * @param \App\Website $website
+     * @param Website $website
      * @return void
      */
     public function restored(Website $website)
@@ -101,7 +101,7 @@ class WebsiteObserver
 
         //Restore any tasks related to the website
         $tasks = Task::withTrashed()
-            ->where('taskable_type', 'App\Website')
+            ->where('taskable_type', Website::class)
             ->where('taskable_id', $website->id)
             ->get();
 
@@ -113,7 +113,7 @@ class WebsiteObserver
     /**
      * Handle the website "force deleted" event.
      *
-     * @param \App\Website $website
+     * @param Website $website
      * @return void
      */
     public function forceDeleted(Website $website)

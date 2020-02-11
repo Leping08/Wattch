@@ -13,7 +13,7 @@ class AssertionPolicy
     /**
      * Determine whether the user can view any assertions.
      *
-     * @param  \App\User  $user
+     * @param  User  $user
      * @return mixed
      */
     public function viewAny(User $user)
@@ -24,8 +24,8 @@ class AssertionPolicy
     /**
      * Determine whether the user can view the assertion.
      *
-     * @param  \App\User  $user
-     * @param  \App\Assertion  $assertion
+     * @param  User  $user
+     * @param  Assertion  $assertion
      * @return mixed
      */
     public function view(User $user, Assertion $assertion)
@@ -36,7 +36,7 @@ class AssertionPolicy
     /**
      * Determine whether the user can create assertions.
      *
-     * @param  \App\User  $user
+     * @param  User  $user
      * @return mixed
      */
     public function create(User $user)
@@ -47,8 +47,8 @@ class AssertionPolicy
     /**
      * Determine whether the user can update the assertion.
      *
-     * @param  \App\User  $user
-     * @param  \App\Assertion  $assertion
+     * @param  User  $user
+     * @param  Assertion  $assertion
      * @return mixed
      */
     public function update(User $user, Assertion $assertion)
@@ -59,8 +59,8 @@ class AssertionPolicy
     /**
      * Determine whether the user can delete the assertion.
      *
-     * @param  \App\User  $user
-     * @param  \App\Assertion  $assertion
+     * @param  User  $user
+     * @param  Assertion  $assertion
      * @return mixed
      */
     public function delete(User $user, Assertion $assertion)
@@ -71,8 +71,8 @@ class AssertionPolicy
     /**
      * Determine whether the user can restore the assertion.
      *
-     * @param  \App\User  $user
-     * @param  \App\Assertion  $assertion
+     * @param  User  $user
+     * @param  Assertion  $assertion
      * @return mixed
      */
     public function restore(User $user, Assertion $assertion)
@@ -83,8 +83,8 @@ class AssertionPolicy
     /**
      * Determine whether the user can permanently delete the assertion.
      *
-     * @param  \App\User  $user
-     * @param  \App\Assertion  $assertion
+     * @param  User  $user
+     * @param  Assertion  $assertion
      * @return mixed
      */
     public function forceDelete(User $user, Assertion $assertion)

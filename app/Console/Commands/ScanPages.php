@@ -2,6 +2,7 @@
 
 namespace App\Console\Commands;
 
+use App\Page;
 use Illuminate\Console\Command;
 
 class ScanPages extends Command
@@ -37,7 +38,7 @@ class ScanPages extends Command
      */
     public function handle()
     {
-        foreach (\App\Page::all() as $page) {
+        foreach (Page::all() as $page) {
             $page->execute();
         }
     }
