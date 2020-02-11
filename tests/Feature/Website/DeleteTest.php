@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Tests\Feature\Website;
-
 
 use App\User;
 use App\Website;
@@ -19,13 +17,13 @@ class DeleteTest extends TestCase
         $user1 = factory(User::class)->create();
         $this->be($user1);
         $website1 = factory(Website::class)->create([
-            'user_id' => $user1->id
+            'user_id' => $user1->id,
         ]);
 
         $user2 = factory(User::class)->create();
         $this->be($user2);
         $website2 = factory(Website::class)->create([
-            'user_id' => $user2->id
+            'user_id' => $user2->id,
         ]);
 
         $this->be($user1);
@@ -58,7 +56,7 @@ class DeleteTest extends TestCase
         $user = factory(User::class)->create();
         $this->be($user);
         $website = factory(Website::class)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $user->refresh();

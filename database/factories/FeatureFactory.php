@@ -1,7 +1,6 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-
 use Faker\Generator as Faker;
 
 $factory->define(\App\Feature::class, function (Faker $faker) {
@@ -9,6 +8,6 @@ $factory->define(\App\Feature::class, function (Faker $faker) {
         'product_id' => factory(\App\Product::class),
         'name' => $faker->word,
         'description' => $faker->sentence,
-        'rules' => []
+        'rules' => [],
     ];
 });

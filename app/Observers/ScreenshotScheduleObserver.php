@@ -21,7 +21,7 @@ class ScreenshotScheduleObserver
         Task::create([
             'taskable_type' => ScreenshotSchedule::class,
             'taskable_id' => $screenshotSchedule->id,
-            'frequency' => 'daily'
+            'frequency' => 'daily',
         ]);
     }
 
@@ -44,7 +44,7 @@ class ScreenshotScheduleObserver
      */
     public function deleting(ScreenshotSchedule $screenshotSchedule)
     {
-        Log::info('Deleting ScreenshotSchedule ID: ' . $screenshotSchedule->id);
+        Log::info('Deleting ScreenshotSchedule ID: '.$screenshotSchedule->id);
     }
 
     /**

@@ -1,12 +1,11 @@
 <?php
 
-
 namespace Tests\Feature\Settings;
 
 use App\User;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
-use Tests\TestCase;
 use Illuminate\Foundation\Testing\RefreshDatabase;
+use Tests\TestCase;
 
 class NotificationTest extends TestCase
 {
@@ -28,7 +27,7 @@ class NotificationTest extends TestCase
             'email' => 'change@me.io',
             'email_toggle' => true,
             'slack_webhook' => 'https://hooks.slack.com/services/fdsfdsfdsfefsfds',
-            'slack_toggle' => true
+            'slack_toggle' => true,
         ];
 
         $response = $this->json('POST', route('settings.notifications.store'), $data);

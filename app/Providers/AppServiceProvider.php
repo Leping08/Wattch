@@ -26,7 +26,7 @@ class AppServiceProvider extends ServiceProvider
     public function register()
     {
         app()->bind('HttpClient', function () {
-            return (new Client(['verify' => false]));
+            return new Client(['verify' => false]);
         });
     }
 

@@ -13,5 +13,5 @@ return [
     |
     */
 
-    'test_site' => env('TEST_SITE', 'https://www.google.com/')
+    'test_site' => env('TEST_SITE', 'https://www.google.com/'),
 ];

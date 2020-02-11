@@ -25,7 +25,7 @@ class PageTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $this->assertInstanceOf(Website::class, $page->website);
@@ -39,7 +39,7 @@ class PageTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         foreach ($website->ssl_certs as $cert) {
@@ -59,7 +59,7 @@ class PageTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $task = $page->tasks->first();
@@ -75,11 +75,11 @@ class PageTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $screenshot = factory(Screenshot::class)->create([
-            'page_id' => $page->id
+            'page_id' => $page->id,
         ]);
 
         $screenshots = $page->screenshots->first();
@@ -96,10 +96,10 @@ class PageTest extends TestCase
 
         $page = factory(Page::class)->create([
             'website_id' => $website->id,
-            'route' => '/test'
+            'route' => '/test',
         ]);
 
-        $this->assertEquals($page->fullRoute, "https://www.google.com/test");
+        $this->assertEquals($page->fullRoute, 'https://www.google.com/test');
     }
 
     /** @test */
@@ -111,10 +111,10 @@ class PageTest extends TestCase
 
         $page = Page::create([
             'website_id' => $website->id,
-            'route' => '/news/'
+            'route' => '/news/',
         ]);
 
-        $this->assertEquals("/news", $page->remove_trailing_slashes($page->route));
+        $this->assertEquals('/news', $page->remove_trailing_slashes($page->route));
     }
 
     /** @test */
@@ -125,7 +125,7 @@ class PageTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $page->execute();
@@ -146,7 +146,7 @@ class PageTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $this->expectsJobs(AnalyzePage::class);
@@ -162,7 +162,7 @@ class PageTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $this->expectsJobs(CaptureScreenshot::class);

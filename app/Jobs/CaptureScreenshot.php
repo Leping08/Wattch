@@ -10,11 +10,11 @@ use Facebook\WebDriver\Remote\RemoteWebDriver;
 use Facebook\WebDriver\WebDriverBy;
 use Facebook\WebDriver\WebDriverDimension;
 use Illuminate\Bus\Queueable;
-use Illuminate\Http\File;
-use Illuminate\Queue\SerializesModels;
-use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Http\File;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
 use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
@@ -50,9 +50,9 @@ class CaptureScreenshot implements ShouldQueue
     {
         if (App::runningUnitTests()) {
             Screenshot::create([
-                'uuid' => (string)Str::uuid(),
+                'uuid' => (string) Str::uuid(),
                 'page_id' => $this->page->id,
-                'src' => '/' . (string)Str::uuid()
+                'src' => '/'.(string) Str::uuid(),
             ]);
         } else {
             $process = (new ChromeProcess())->toProcess();
@@ -72,11 +72,11 @@ class CaptureScreenshot implements ShouldQueue
 
             //Resize to full height for a complete screenshot
             $body = $browser->driver->findElement(WebDriverBy::tagName('body'));
-            if (!empty($body)) {
+            if (! empty($body)) {
                 $currentSize = $body->getSize();
 
                 //optional: scroll to bottom and back up, to trigger image lazy loading
-                $browser->driver->executeScript('window.scrollTo(0, ' . $currentSize->getHeight() . ');');
+                $browser->driver->executeScript('window.scrollTo(0, '.$currentSize->getHeight().');');
                 $browser->pause(1000); //wait a sec
                 $browser->driver->executeScript('window.scrollTo(0, 0);'); //scroll back to top of the page
 
@@ -88,11 +88,11 @@ class CaptureScreenshot implements ShouldQueue
             $browser->waitUntilMissing('.loading');
             $image = $browser->driver->TakeScreenshot(); //$image is now the image data in PNG format
 
-            $uuid = (string)Str::uuid(); //Create a uuid for the name of the file
+            $uuid = (string) Str::uuid(); //Create a uuid for the name of the file
 
-            $filename = 'screenshots/page_' . $this->page->id . '/' . $uuid . '.png'; //timestamp as a filename
+            $filename = 'screenshots/page_'.$this->page->id.'/'.$uuid.'.png'; //timestamp as a filename
             if (Storage::disk('public')->put($filename, $image)) { //save the image somewhere useful
-                $path = 'storage/' . $filename; //set the src to the storage folder
+                $path = 'storage/'.$filename; //set the src to the storage folder
                 //$path = Storage::disk('local')->path($filename); //TODO get the path to work on local and in deployment
             } else {
                 $driver->quit();
@@ -104,7 +104,7 @@ class CaptureScreenshot implements ShouldQueue
             Screenshot::create([
                 'uuid' => $uuid,
                 'page_id' => $this->page->id,
-                'src' => $path
+                'src' => $path,
             ]);
         }
     }

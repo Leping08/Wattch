@@ -11,15 +11,14 @@
 |
 */
 
-use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 
 Auth::routes();
 
-
 /* Public Routes */
 Route::get('/', function () {
-    return Auth::check() ? redirect()->route('dashboard') :  view('pages.public.home');
+    return Auth::check() ? redirect()->route('dashboard') : view('pages.public.home');
 })->name('home');
 
 /* @see SignUpController::index() */
@@ -50,8 +49,6 @@ Route::middleware('auth')->group(function () {
     /* @see DashboardController::index() */
     Route::get('/dashboard', 'DashboardController@index')->name('dashboard');
 
-
-
     /* @see WebsiteController::index() */
     Route::get('/websites', 'WebsiteController@index')->name('websites.index');
 
@@ -67,8 +64,6 @@ Route::middleware('auth')->group(function () {
     /* @see WebsiteController::destroy() */
     Route::delete('/websites/{website}', 'WebsiteController@destroy')->name('websites.destroy');
 
-
-
     /* @see PageController::index() */
     Route::get('/pages', 'PageController@index')->name('pages.index');
 
@@ -81,15 +76,11 @@ Route::middleware('auth')->group(function () {
     /* @see PageController::destroy() */
     Route::delete('/pages/{page}', 'PageController@destroy')->name('pages.destroy');
 
-
-
     /* @see ScanWebsiteController::store() */
     Route::post('/scan/websites/{website}', 'ScanWebsiteController@store')->name('scan.websites');
 
     /* @see ScanPageController::store() */
     Route::post('/scan/pages/{page}', 'ScanPageController@store')->name('scan.pages');
-
-
 
     /* @see PageAssertionsController::index() */
     Route::get('/pages/{page}/assertions', 'PageAssertionsController@index')->name('pages.assertions.index');
@@ -97,15 +88,11 @@ Route::middleware('auth')->group(function () {
     /* @see PageAssertionsController::store() */
     Route::post('/pages/{page}/assertions', 'PageAssertionsController@store')->name('pages.assertions.store');
 
-
-
     /* @see AssertionController::index() */
     Route::get('/assertions', 'AssertionController@index')->name('assertions.index');
 
     /* @see AssertionController::show() */
     Route::get('/assertions/{assertion}', 'AssertionController@show')->name('assertions.show');
-
-
 
     /* @see AssertionResultController::index() */
     Route::get('/results', 'AssertionResultController@index')->name('results.index');
@@ -113,23 +100,17 @@ Route::middleware('auth')->group(function () {
     /* @see AssertionResultController::show() */
     Route::get('/results/{result}', 'AssertionResultController@show')->name('results.show');
 
-
-
     /* @see AccountController::index() */
     Route::get('/settings/account', 'Settings\AccountController@index')->name('settings.account.index');
 
     /* @see AccountController::store() */
     Route::post('/settings/account', 'Settings\AccountController@store')->name('settings.account.store');
 
-
-
     /* @see BillingController::index() */
     Route::get('/settings/billing', 'Settings\BillingController@index')->name('settings.billing.index');
 
     /* @see BillingController::store() */
     Route::post('/settings/billing', 'Settings\BillingController@store')->name('settings.billing.store');
-
-
 
     /* @see NotificationController::index() */
     Route::get('/settings/notifications', 'Settings\NotificationController@index')->name('settings.notifications.index');

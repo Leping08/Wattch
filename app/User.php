@@ -4,20 +4,20 @@ namespace App;
 
 use App\Library\Traits\NotificationChannels;
 use App\Library\Traits\ProductHelpers;
+use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Support\Carbon;
 use Laravel\Cashier\Billable;
 
 /**
- * A model for a user. This is someone who login's into the application
+ * A model for a user. This is someone who login's into the application.
  *
  * An Eloquent Model: 'User'
  *
- * @property integer $id
+ * @property int $id
  * @property string $name
  * @property string $email
  * @property Carbon $email_verified_at
@@ -26,7 +26,7 @@ use Laravel\Cashier\Billable;
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
- * @property integer $stripe_id
+ * @property int $stripe_id
  * @property string $card_brand
  * @property string $card_last_four
  * @property Carbon $trial_ends_at

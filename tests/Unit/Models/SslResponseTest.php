@@ -21,7 +21,7 @@ class SslResponseTest extends TestCase
         $website = factory(Website::class)->create();
 
         $page = factory(Page::class)->create([
-            'website_id' => $website->id
+            'website_id' => $website->id,
         ]);
 
         $ssl = SslResponse::first();

@@ -1,6 +1,5 @@
 <?php
 
-
 namespace Tests\Unit\Scoping;
 
 use App\User;
@@ -8,7 +7,6 @@ use App\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
 use Tests\traits\MockHttpCalls;
-
 
 class WebsiteTest extends TestCase
 {
@@ -27,35 +25,34 @@ class WebsiteTest extends TestCase
 
         $this->be($user_3);
         $site_1 = factory(Website::class)->create([
-            'user_id' => $user_3
+            'user_id' => $user_3,
         ]);
 
         $this->be($user_2);
         $site_2 = factory(Website::class)->create([
-            'user_id' => $user_2
+            'user_id' => $user_2,
         ]);
 
         $this->be($user_3);
         $this->assertCount(1, Website::all());
 
         $site_3 = factory(Website::class)->create([
-            'user_id' => $user_3
+            'user_id' => $user_3,
         ]);
 
         $this->assertCount(2, Website::all());
 
         $this->be($user_2);
         $site_4 = factory(Website::class)->create([
-            'user_id' => $user_2
+            'user_id' => $user_2,
         ]);
         $site_5 = factory(Website::class)->create([
-            'user_id' => $user_2
+            'user_id' => $user_2,
         ]);
         $site_6 = factory(Website::class)->create([
-            'user_id' => $user_2
+            'user_id' => $user_2,
         ]);
         $this->assertCount(4, Website::all());
-
 
         $this->be($user_3);
         $this->assertCount(2, Website::all());

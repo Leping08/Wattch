@@ -1,7 +1,6 @@
 <?php
 
 /** @var \Illuminate\Database\Eloquent\Factory $factory */
-
 use App\Assertion;
 use App\AssertionResult;
 use Faker\Generator as Faker;

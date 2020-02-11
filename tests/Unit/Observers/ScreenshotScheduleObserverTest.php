@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Tests\Unit\Observers;
-
 
 use App\Jobs\CaptureScreenshot;
 use App\Page;
@@ -29,7 +27,7 @@ class ScreenshotScheduleObserverTest extends TestCase
 
         $page = factory(Page::class)->create([ //This creates a screenshot schedule
             'website_id' => $website->id,
-            'route' => '/'
+            'route' => '/',
         ]);
 
         factory(ScreenshotSchedule::class)->create();

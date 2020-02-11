@@ -14,7 +14,7 @@ class AssertionController extends Controller
         $assertions = Assertion::with([
             'page.website', 'page.latest_screenshot', 'type', 'results' => function ($query) {
                 $query->orderBy('created_at', 'desc')->whereDate('created_at', '>', Carbon::now()->subDays(30));
-            }
+            },
         ])
             ->simplePaginate(10)
             ->appends(request()->query());
@@ -31,7 +31,7 @@ class AssertionController extends Controller
         $assertion->load([
             'page.website', 'page.latest_screenshot', 'type', 'latest_result', 'results' => function ($query) {
                 $query->orderBy('created_at', 'desc')->whereDate('created_at', '>', Carbon::now()->subDays(30));
-            }
+            },
         ]);
 
         return view('pages.auth.assertions.show', compact('assertion', 'results'));

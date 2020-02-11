@@ -12,8 +12,8 @@ use Illuminate\Support\Carbon;
  *
  * An Eloquent Model: 'Feature'
  *
- * @property integer $id
- * @property integer $product_id
+ * @property int $id
+ * @property int $product_id
  * @property string $name
  * @property string $description
  * @property string $rules
@@ -21,7 +21,6 @@ use Illuminate\Support\Carbon;
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
  * @property-read Product $product
- *
  */
 class Feature extends Model
 {
@@ -31,11 +30,11 @@ class Feature extends Model
         'product_id',
         'name',
         'description',
-        'rules'
+        'rules',
     ];
 
     protected $casts = [
-        'rules' => 'array'
+        'rules' => 'array',
     ];
 
     /**

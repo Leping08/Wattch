@@ -13,12 +13,12 @@ class NotificationChannelSeeder extends Seeder
     {
         \App\NotificationChannel::create([
             'name' => 'mail',
-            'config' => null
+            'config' => null,
         ]);
 
         \App\NotificationChannel::create([
             'name' => 'slack',
-            'config' => null
+            'config' => null,
         ]);
     }
 }

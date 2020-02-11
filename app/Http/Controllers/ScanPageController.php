@@ -11,6 +11,7 @@ class ScanPageController extends Controller
     {
         $this->authorize('view', $page);
         $page->execute();
+
         return redirect()->back();
     }
 }

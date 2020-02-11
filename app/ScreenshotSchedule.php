@@ -14,20 +14,19 @@ use Illuminate\Support\Carbon;
  *
  * An Eloquent Model: 'ScreenshotSchedule'
  *
- * @property integer $id
- * @property integer $page_id
+ * @property int $id
+ * @property int $page_id
  * @property Carbon $created_at
  * @property Carbon $updated_at
  * @property Carbon $deleted_at
  * @property-read Page $page
- *
  */
 class ScreenshotSchedule extends Model implements Taskable
 {
     use SoftDeletes;
 
     protected $fillable = [
-        'page_id'
+        'page_id',
     ];
     //TODO: Add some sort of scope here
 

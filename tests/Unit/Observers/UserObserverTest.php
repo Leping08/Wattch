@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Tests\Unit\Observers;
-
 
 use App\User;
 use App\UserNotificationChannel;
@@ -45,7 +43,7 @@ class UserObserverTest extends TestCase
         $this->be($user);
 
         factory(Website::class, 3)->create([
-            'user_id' => $user->id
+            'user_id' => $user->id,
         ]);
 
         $user->refresh();

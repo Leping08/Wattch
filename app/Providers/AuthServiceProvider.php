@@ -10,8 +10,8 @@ use App\Policies\AssertionResultPolicy;
 use App\Policies\PagePolicy;
 use App\Policies\WebsitePolicy;
 use App\Website;
-use Illuminate\Support\Facades\Gate;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
+use Illuminate\Support\Facades\Gate;
 
 class AuthServiceProvider extends ServiceProvider
 {

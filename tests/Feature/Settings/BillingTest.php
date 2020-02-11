@@ -1,8 +1,6 @@
 <?php
 
-
 namespace Tests\Feature\Settings;
-
 
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
