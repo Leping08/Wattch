@@ -21,7 +21,7 @@ class AssertionObserver
         $assertion->execute();
 
         Task::create([
-            'taskable_type' => 'App\Assertion',
+            'taskable_type' => Assertion::class,
             'taskable_id' => $assertion->id,
             'frequency' => 'hourly'
         ]);

@@ -23,7 +23,7 @@ class PageObserver
         $page->execute();
 
         Task::create([
-            'taskable_type' => 'App\Page',
+            'taskable_type' => Page::class,
             'taskable_id' => $page->id,
             'frequency' => 'hourly'
         ]);

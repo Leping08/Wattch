@@ -27,7 +27,7 @@ class WebsiteObserver
 //        ]);
 
         Task::create([
-            'taskable_type' => 'App\Website',
+            'taskable_type' => Website::class,
             'taskable_id' => $website->id,
             'frequency' => 'daily'
         ]);

@@ -7,6 +7,7 @@ use App\Screenshot;
 use Facebook\WebDriver\Chrome\ChromeOptions;
 use Facebook\WebDriver\Remote\DesiredCapabilities;
 use Facebook\WebDriver\Remote\RemoteWebDriver;
+use Facebook\WebDriver\WebDriverBy;
 use Facebook\WebDriver\WebDriverDimension;
 use Illuminate\Bus\Queueable;
 use Illuminate\Http\File;
@@ -66,7 +67,23 @@ class CaptureScreenshot implements ShouldQueue
             //Start by setting your full desired width and an arbitrary height
             $size = new WebDriverDimension(1920, 1080);
             $browser->driver->manage()->window()->setSize($size);
+
             $browser->visit($this->page->full_route);
+
+            //Resize to full height for a complete screenshot
+            $body = $browser->driver->findElement(WebDriverBy::tagName('body'));
+            if (!empty($body)) {
+                $currentSize = $body->getSize();
+
+                //optional: scroll to bottom and back up, to trigger image lazy loading
+                $browser->driver->executeScript('window.scrollTo(0, ' . $currentSize->getHeight() . ');');
+                $browser->pause(1000); //wait a sec
+                $browser->driver->executeScript('window.scrollTo(0, 0);'); //scroll back to top of the page
+
+                //set window to full height
+                $size = new WebDriverDimension(1920, $currentSize->getHeight()); //make browser full height for complete screenshot
+                $browser->driver->manage()->window()->setSize($size);
+            }
 
             $browser->waitUntilMissing('.loading');
             $image = $browser->driver->TakeScreenshot(); //$image is now the image data in PNG format
@@ -78,6 +95,7 @@ class CaptureScreenshot implements ShouldQueue
                 $path = 'storage/' . $filename; //set the src to the storage folder
                 //$path = Storage::disk('local')->path($filename); //TODO get the path to work on local and in deployment
             } else {
+                $driver->quit();
                 throw new \Exception('Could not save image');
             }
 

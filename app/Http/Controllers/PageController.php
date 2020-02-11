@@ -3,6 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Page;
+use App\Screenshot;
+use App\ScreenshotSchedule;
+use App\Task;
 use App\Website;
 use Carbon\Carbon;
 use Illuminate\Database\Query\Builder;
@@ -59,6 +62,16 @@ class PageController extends Controller
             $page = Page::create([
                 'route' => $route,
                 'website_id' => $website_id
+            ]);
+
+            $screenshot = ScreenshotSchedule::create([
+                'page_id' => $page->id
+            ]);
+
+            Task::create([
+                'taskble_type' => Screenshot::class,
+                'taskable_id' => $screenshot->id,
+                'frequency' => 'daily'
             ]);
 
             session()->flash('success', "{$page->domain} has been added!");

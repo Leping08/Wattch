@@ -42,7 +42,7 @@ class PageAssertionsController extends Controller
         ]);
 
         Task::create([
-            'taskable_type' => 'App\Assertion',
+            'taskable_type' => Assertion::class,
             'taskable_id' => $assertion->id,
             'frequency' => 'hourly'
         ]);

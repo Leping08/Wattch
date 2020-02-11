@@ -8,7 +8,6 @@ use App\User;
 use App\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;
 use Tests\TestCase;
-use Tests\traits\MockHttpCalls;
 
 class DeleteTest extends TestCase
 {
@@ -19,17 +18,17 @@ class DeleteTest extends TestCase
     {
         $user1 = factory(User::class)->create();
         $this->be($user1);
-
-        $user2 = factory(User::class)->create();
-
         $website1 = factory(Website::class)->create([
             'user_id' => $user1->id
         ]);
 
+        $user2 = factory(User::class)->create();
+        $this->be($user2);
         $website2 = factory(Website::class)->create([
             'user_id' => $user2->id
         ]);
 
+        $this->be($user1);
         $user1->refresh();
         $this->assertCount(1, $user1->websites);
 
@@ -51,5 +50,24 @@ class DeleteTest extends TestCase
         $this->be($user2);
         $user2->refresh();
         $this->assertCount(1, $user2->websites);
+    }
+
+    /** @test */
+    public function a_user_can_destroy_a_website_by_hitting_the_website_destroy_route()
+    {
+        $user = factory(User::class)->create();
+        $this->be($user);
+        $website = factory(Website::class)->create([
+            'user_id' => $user->id
+        ]);
+
+        $user->refresh();
+        $this->assertCount(1, $user->websites);
+
+        $this->delete(route('websites.destroy', ['website' => $website]))
+            ->assertStatus(302);
+
+        $user->refresh();
+        $this->assertCount(0, $user->websites);
     }
 }

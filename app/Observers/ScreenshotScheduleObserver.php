@@ -19,7 +19,7 @@ class ScreenshotScheduleObserver
         $screenshotSchedule->execute();
 
         Task::create([
-            'taskable_type' => 'App\ScreenshotSchedule',
+            'taskable_type' => ScreenshotSchedule::class,
             'taskable_id' => $screenshotSchedule->id,
             'frequency' => 'daily'
         ]);
