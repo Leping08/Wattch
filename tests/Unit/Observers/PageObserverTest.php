@@ -77,7 +77,7 @@ class PageObserverTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $this->assertCount(0, Task::where('taskable_type', 'App\Page')->get());
+        $this->assertCount(0, Task::where('taskable_type', \App\Page::class)->get());
 
         $website = factory(Website::class)->create();
 
@@ -86,7 +86,7 @@ class PageObserverTest extends TestCase
             'route' => '/',
         ]);
 
-        $this->assertCount(1, Task::where('taskable_type', 'App\Page')->get());
+        $this->assertCount(1, Task::where('taskable_type', \App\Page::class)->get());
     }
 
     /** @test */
@@ -142,7 +142,7 @@ class PageObserverTest extends TestCase
 
         $page->delete();
 
-        $this->assertEquals(0, Task::where('taskable_type', 'App\Page')->where('taskable_id', $page->id)->get()->count());
+        $this->assertEquals(0, Task::where('taskable_type', \App\Page::class)->where('taskable_id', $page->id)->get()->count());
     }
 
     /** @test */

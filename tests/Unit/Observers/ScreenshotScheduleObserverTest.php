@@ -38,11 +38,11 @@ class ScreenshotScheduleObserverTest extends TestCase
     {
         $this->fakeHttpResponse();
 
-        $this->assertCount(0, Task::where('taskable_type', 'App\ScreenshotSchedule')->get());
+        $this->assertCount(0, Task::where('taskable_type', \App\ScreenshotSchedule::class)->get());
 
         $schedule = factory(ScreenshotSchedule::class)->create();
 
-        $this->assertCount(1, Task::where('taskable_type', 'App\ScreenshotSchedule')->where('taskable_id', $schedule->id)->get());
+        $this->assertCount(1, Task::where('taskable_type', \App\ScreenshotSchedule::class)->where('taskable_id', $schedule->id)->get());
     }
 
     /** @test */

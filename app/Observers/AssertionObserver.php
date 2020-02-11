@@ -80,7 +80,7 @@ class AssertionObserver
 
         //Restore any tasks related to the assertion
         $tasks = Task::withTrashed()
-            ->where('taskable_type', 'App\Assertion')
+            ->where('taskable_type', \App\Assertion::class)
             ->where('taskable_id', $assertion->id)
             ->get();
 

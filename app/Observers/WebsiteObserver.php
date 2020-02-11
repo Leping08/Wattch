@@ -101,7 +101,7 @@ class WebsiteObserver
 
         //Restore any tasks related to the website
         $tasks = Task::withTrashed()
-            ->where('taskable_type', 'App\Website')
+            ->where('taskable_type', \App\Website::class)
             ->where('taskable_id', $website->id)
             ->get();
 
