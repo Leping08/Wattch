@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="mx-auto">
+    <div class="p-2">
         <div class="flex justify-between m-2">
             <div class="">
                 <div class="page-heading p-2">{{ $page->fullRoute }}
