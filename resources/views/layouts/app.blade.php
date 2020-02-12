@@ -19,11 +19,11 @@
 <body class="bg-gray-200 h-screen antialiased leading-none">
 
 <div id="app">
-    <div class="">
+    <div class="flex flex-col min-h-screen">
         <div>
             @include('layouts.top_nav')
         </div>
-        <div class="flex h-full">
+        <div class="flex flex-grow">
             <div>
                 @if (Auth::check())
                     <div class="fixed mt-0 lg:mt-16 w-0 lg:w-64 min-h-screen bg-gray-100 shadow-md pt-4 hidden lg:block">

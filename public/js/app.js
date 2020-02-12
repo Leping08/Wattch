@@ -2017,6 +2017,9 @@ __webpack_require__.r(__webpack_exports__);
       }],
       chartOptions: {
         chart: {
+          animations: {
+            enabled: false
+          },
           sparkline: {
             enabled: true
           },

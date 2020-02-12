@@ -17,6 +17,9 @@
                 }],
                 chartOptions: {
                     chart: {
+                        animations: {
+                            enabled: false
+                        },
                         sparkline: {
                             enabled: true,
                         },

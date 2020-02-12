@@ -35,22 +35,30 @@
                 </dropdown>
             </div>
         </div>
-        <div class="z-0 mt-2 p-2">
+        <div class="mt-2 p-2">
             @if(count($page->screenshots))
                 <carousel :loop="true" :auto-play="true" :per-page="1" pagination-active-color="#38b1ac" pagination-color="#4a5568">
                     @foreach($page->screenshots as $screenshot)
                         <slide>
-                            <img alt="" class="card" src="{{ asset($screenshot->src) }}">
-                            <div class="card-overlap relative -mt-6 mx-2">
+                            <img alt="" class="card object-cover object-top w-full h-screen" src="{{ asset($screenshot->src) }}">
+                            <div class="card-overlap relative -mt-6 m-2">
                                 <div class="flex flex-row items-center p-2">
                                     <div class="flex-1 text-center">
-                                        <div class="flex flex-row mt-2">
-                                            <div class="text-xl flex-1">
-                                                <span class="text-gray-600"><span
-                                                        class="mdi mdi-camera-outline"></span></span>
-                                                {{ $screenshot->created_at->format('m/d/y g:i a') }}
-                                                <span
-                                                    class="text-sm text-gray-600 italic">screenshot captured</span>
+                                        <div class="flex flex-row p-2">
+                                            <div class="text-xl flex flex-1 justify-between">
+                                                <div class="flex-grow"></div>
+                                                <div class="flex-grow">
+                                                    <span class="text-gray-600">
+                                                        <span class="mdi mdi-camera-outline"></span>
+                                                    </span>
+                                                    {{ $screenshot->created_at->format('m/d/y g:i a') }}
+                                                    <span class="text-sm text-gray-600 italic">screenshot captured</span>
+                                                </div>
+                                                <div class="flex-grow">
+                                                    <a target="_blank" href=" {{ asset($screenshot->src) }} " class="card bg-white p-2 rounded-full text-lg text-gray-600 focus:outline-none">
+                                                        <span class="mdi mdi-card-search-outline"></span>
+                                                    </a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>

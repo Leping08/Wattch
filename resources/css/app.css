@@ -118,6 +118,14 @@
     @apply block text-gray-600 text-sm font-bold mb-2
 }
 
+.VueCarousel-dot-container {
+    margin: 0 !important;
+}
+
+.VueCarousel-dot {
+    margin: 0 !important;
+}
+
 @screen md {
     .add-btn-teal {
         @apply p-3

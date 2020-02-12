@@ -19,7 +19,9 @@ class DashboardController extends Controller
             ->limit(5)
             ->get();
 
-        $latest_assertions = Assertion::with(['page.latest_screenshot', 'type', 'results'])
+        $latest_assertions = Assertion::with(['page.latest_screenshot', 'type', 'results' => function($query) {
+                return $query->orderBy('created_at', 'desc')->whereDate('created_at', '>', Carbon::now()->subDays(30));
+            }])
             ->orderBy('created_at', 'desc')
             ->limit(5)
             ->get();

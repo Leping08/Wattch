@@ -1066,6 +1066,14 @@ video {
   margin-bottom: 0.5rem
 }
 
+.VueCarousel-dot-container {
+  margin: 0 !important;
+}
+
+.VueCarousel-dot {
+  margin: 0 !important;
+}
+
 @media (min-width: 768px) {
   .add-btn-teal {
     padding: 0.75rem

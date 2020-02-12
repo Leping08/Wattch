@@ -11,7 +11,7 @@
                     </div>
 
                     <div class="p-4">
-                        <img alt="" class="w-full" src="/img/wattch_guy/undraw_team_collaboration_8eoc.svg">
+                        <img alt="" class="w-full" src="{{ asset('/img/wattch_guy/undraw_team_collaboration_8eoc.svg') }}">
                     </div>
 
                     <form class="w-full p-6" method="POST" action="{{ route('login') }}">
