@@ -8,7 +8,7 @@
                 <div class="flex flex-col card bg-gray-100">
 
                     <div class="bg-teal-600 px-4 py-2 rounded-t-lg shadow">
-                        <span class="font-bold text-gray-200 no-underline">Sign Up</span>
+                        <span class="card-heading text-gray-200">{{ __('Sign Up') }}</span>
                     </div>
 
                     <div class="p-4">
