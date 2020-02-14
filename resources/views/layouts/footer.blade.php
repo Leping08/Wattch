@@ -1,8 +1,8 @@
 <footer class="bg-gray-700 text-white w-full">
     <div class="p-8 flex container mx-auto align-middle items-center">
-        <a href="{{ url('/') }}" class="flex-1 items-center">
+        <a href="{{ route('home') }}" class="flex-1 items-center">
             <div class="flex items-center">
-                <img src="/img/wattch_guy/wattch_guy.svg" class="h-16" alt="">
+                <img src="{{ asset('/img/wattch_guy/wattch_guy.svg') }}" class="h-16" alt="">
                 <span class="text-2xl font-semibold text-white no-underline italic">{{ config('app.name', 'Laravel') }}</span>
             </div>
         </a>

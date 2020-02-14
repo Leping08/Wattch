@@ -36,7 +36,7 @@
                                 <img class="object-cover object-top h-64 w-full rounded-lg hover:shadow-md shadow" src="{{ asset($page->screenshots->last()->src) }}" alt="">
                             @else
                                 <div class="rounded bg-white">
-                                    <img class="object-cover object-top h-64 w-full rounded-lg hover:shadow-md shadow" src="/img/wattch_guy/undraw_online_test_gba7.svg" alt="">
+                                    <img class="object-cover object-top h-64 w-full rounded-lg hover:shadow-md shadow" src="{{ asset('/img/wattch_guy/undraw_online_test_gba7.svg') }}" alt="">
                                 </div>
                             @endif
                         </div>

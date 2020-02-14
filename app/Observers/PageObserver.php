@@ -28,7 +28,7 @@ class PageObserver
             'frequency' => 'hourly',
         ]);
 
-        $schedule = ScreenshotSchedule::create([
+        ScreenshotSchedule::create([
             'page_id' => $page->id,
         ]);
     }

@@ -42,27 +42,14 @@
                         <slide>
                             <img alt="" class="card object-cover object-top w-full h-screen" src="{{ asset($screenshot->src) }}">
                             <div class="card-overlap relative -mt-6 m-2">
-                                <div class="flex flex-row items-center p-2">
+                                <a href="{{ route('screenshots.show', ['screenshot' => $screenshot]) }}" class="flex p-4">
                                     <div class="flex-1 text-center">
-                                        <div class="flex flex-row p-2">
-                                            <div class="text-xl flex flex-1 justify-between">
-                                                <div class="flex-grow"></div>
-                                                <div class="flex-grow">
-                                                    <span class="text-gray-600">
-                                                        <span class="mdi mdi-camera-outline"></span>
-                                                    </span>
-                                                    {{ $screenshot->created_at->format('m/d/y g:i a') }}
-                                                    <span class="text-sm text-gray-600 italic">screenshot captured</span>
-                                                </div>
-                                                <div class="flex-grow">
-                                                    <a target="_blank" href=" {{ asset($screenshot->src) }} " class="card bg-white p-2 rounded-full text-lg text-gray-600 focus:outline-none">
-                                                        <span class="mdi mdi-card-search-outline"></span>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                        </div>
+                                        <span class="text-gray-600 mr-2">
+                                            <span class="mdi mdi-camera-outline text-xl"></span>
+                                        </span>
+                                            <span class="text-lg text-gray-700">{{ $screenshot->created_at->format('m/d/y g:i a') }}</span>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </slide>
                     @endforeach

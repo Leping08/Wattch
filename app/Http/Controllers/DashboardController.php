@@ -14,20 +14,18 @@ class DashboardController extends Controller
     {
         $websites_count = Website::all()->count();
         $assertions_count = Assertion::all()->count();
-        $latest_results = AssertionResult::with(['assertion.type', 'assertion.page.website'])
-            ->orderBy('created_at', 'desc')
-            ->limit(5)
-            ->get();
 
         $latest_assertions = Assertion::with(['page.latest_screenshot', 'type', 'results' => function($query) {
-                return $query->orderBy('created_at', 'desc')->whereDate('created_at', '>', Carbon::now()->subDays(30));
+                return $query->orderBy('created_at', 'desc')
+                    ->whereDate('created_at', '>', Carbon::now()->subDays(30));
             }])
             ->orderBy('created_at', 'desc')
             ->limit(5)
             ->get();
 
-        $assertions_results = AssertionResult::orderBy('created_at', 'desc')->whereDate('created_at', '>',
-            Carbon::now()->subDays(30))->get();
+        $assertions_results = AssertionResult::orderBy('created_at', 'desc')
+            ->whereDate('created_at', '>', Carbon::now()->subDays(30))
+            ->get(['success', 'created_at']);
 
         $assertions_success_by_day = $assertions_results->groupBy(function ($item) {
             return Carbon::parse($item->created_at)->format('m-d-Y').' GMT';

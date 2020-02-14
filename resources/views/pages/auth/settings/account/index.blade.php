@@ -76,7 +76,7 @@
             </div>
         </form>
         <div class="w-1/3 lg:block md:hidden sm:hidden hidden p-2">
-            <img alt="" class="w-full" src="/img/icons/undraw_profile_data_mk6k.svg">
+            <img alt="" class="w-full" src="{{ asset('/img/icons/undraw_profile_data_mk6k.svg') }}">
         </div>
     </div>
 @endsection

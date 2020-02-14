@@ -2,7 +2,7 @@
     <div class="flex items-center justify-center py-2 lg:p-2 md:p-2 sm:p-2 shadow-md bg-teal-600">
         <div class="flex">
             <a href="{{ Auth::check() ? route('dashboard') : route('home') }}" class="mr-6 flex items-center px-4">
-                <img src="/img/wattch_guy/wattch_guy.svg" class="flex-1 w-12 h-full object-cover object-center" alt="">
+                <img src="{{ asset('/img/wattch_guy/wattch_guy.svg') }}" class="flex-1 w-12 h-full object-cover object-center" alt="">
                 <span class="text-2xl font-semibold text-white no-underline italic">{{ config('app.name', 'Laravel') }}</span>
             </a>
         </div>

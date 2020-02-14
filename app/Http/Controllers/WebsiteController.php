@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Page;
 use App\Models\Website;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -93,6 +94,11 @@ class WebsiteController extends Controller
         $website = Website::create([
             'user_id' => auth()->id(),
             'domain' => $request['website'],
+        ]);
+
+        Page::create([
+            'website_id' => $website->id,
+            'route' => '/'
         ]);
 
         session()->flash('success', "{$website->domain} has been added!");

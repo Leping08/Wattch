@@ -12,7 +12,7 @@
                     </div>
 
                     <div class="p-4">
-                        <img alt="" class="w-full" src="/img/wattch_guy/undraw_experience_design_eq3j.svg">
+                        <img alt="" class="w-full" src="{{ asset('/img/wattch_guy/undraw_experience_design_eq3j.svg') }}">
                     </div>
 
                     <form class="w-full p-6" id="payment_form" method="POST" action="{{ route('register') }}">

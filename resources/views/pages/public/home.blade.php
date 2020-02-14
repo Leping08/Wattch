@@ -26,7 +26,7 @@
 {{--                    </div>--}}
                 </div>
                 <div class="flex-1 mt-12 xl:mt-0 px-6">
-                    <img class="w-2/3 float-right" src="/img/wattch_guy/undraw_server_down_s4lk.svg" alt="">
+                    <img class="w-2/3 float-right" src="{{ asset('/img/wattch_guy/undraw_server_down_s4lk.svg') }}" alt="">
                 </div>
             </div>
 
@@ -82,7 +82,7 @@
             <div class="md:w-1/1 flex md:mx-auto relative">
                 @foreach($items as $key => $item)
                     <div class="flex-1 max-w-sm card bg-white overflow-hidden m-4">
-                        <img class="w-full p-4" src="/img/icons/{{$item['icon']}}" alt="">
+                        <img class="w-full p-4" src="{{ asset('/img/icons/'.$item['icon']) }}" alt="">
                         <div class="px-6 py-4">
                             <div class="font-bold text-xl mb-2">{{$item['name']}}</div>
                             <p class="text-gray-700 text-base">{{$item['content']}}</p>

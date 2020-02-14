@@ -51,7 +51,7 @@
     <form id="sign_up" method="POST" action="{{ route('sign-up.store') }}">
         @csrf
         <div class="relative">
-            <img src="/img/blobs/blob-shape.svg" class="absolute xl:visible lg:visible md:invisible sm:invisible invisible h-128" style="z-index: -25; top: 100px; right: 30px" alt="">
+            <img src="{{ asset('/img/blobs/blob-shape.svg') }}" class="absolute xl:visible lg:visible md:invisible sm:invisible invisible h-128" style="z-index: -25; top: 100px; right: 30px" alt="">
             <div class="w-full text-center pt-8 z-50">
                 <div><span class="mdi mdi-tag-text-outline text-teal-600 lg:text-4xl md:text-3xl text-3xl"></span></div>
                 <div class="text-center text-gray-700 italic lg:text-3xl text-2xl mt-2">Pricing</div>
@@ -65,15 +65,8 @@
 
         </div>
 
-        {{--        <div class="flex flex-col break-words bg-white border border-1 rounded-lg shadow-md lg:my-8 md:my-6 sm:my-4 my-4 z-10"></div>--}}
-
         <div class="relative">
-            <img src="/img/blobs/blob-shape.svg" class="absolute xl:visible lg:visible md:invisible sm:invisible invisible h-96" style="z-index: -25; left: 20px; top: -100px; transform: rotate(280deg);" alt="">
-            {{--            <div class="w-full text-center pt-4 z-50">--}}
-            {{--                <div><img src="/img/wattch_guy/wattch_guy.svg" class="h-24 mx-auto" alt=""></div>--}}
-            {{--                <div class="text-center text-gray-700 italic lg:text-3xl text-2xl mt-2">Sign Up</div>--}}
-            {{--                <div class="text-center text-gray-600 italic mt-2">We Wattch so you don't have to</div>--}}
-            {{--            </div>--}}
+            <img src="{{ asset('/img/blobs/blob-shape.svg') }}" class="absolute xl:visible lg:visible md:invisible sm:invisible invisible h-96" style="z-index: -25; left: 20px; top: -100px; transform: rotate(280deg);" alt="">
 
             <div class="flex xl:flex-no-wrap lg:flex-no-wrap md:flex-no-wrap sm:flex-wrap flex-wrap xl:w-10/12 lg:w-4/5 md:w-full sm:w-full w-full mx-auto">
                 <div class="w-full">

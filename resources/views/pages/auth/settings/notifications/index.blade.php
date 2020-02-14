@@ -59,7 +59,7 @@
             </form>
         </div>
         <div class="w-1/3 lg:block md:hidden sm:hidden hidden">
-            <img alt="" class="w-full" src="/img/icons/undraw_notify_88a4.svg">
+            <img alt="" class="w-full" src="{{ asset('/img/icons/undraw_notify_88a4.svg') }}">
         </div>
     </div>
 @endsection

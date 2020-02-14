@@ -30,19 +30,17 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('telescope:prune')->daily();
 
-        //Login as the system user
-        Auth::loginUsingId(config('auth.system_user_id'));
-
         // Go through each task to dynamically set them up.
-        foreach (Task::all() as $task) {
+        $tasks = Task::cursor();
+
+        foreach ($tasks as $task) {
             $frequency = $task->frequency; // everyHour, everyMinute, twiceDaily etc.
             $schedule->call(function () use ($task) {
                 try {
-                    Log::error('Executing task Id: '.$task->id);
+                    Log::info('Executing task Id: '.$task->id);
                     $task->taskable->execute();
                 } catch (\Exception $exception) {
                     Log::error('Error executing task Id: '.$task->id);
-                    Log::error($exception->getMessage());
                 }
             })->$frequency();
         }

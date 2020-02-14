@@ -18,7 +18,7 @@
                         <div class="mb-10">
                             @if($website->home_page)
                                 @if($website->home_page->latest_screenshot)
-                                    <img class="object-contain rounded-lg hover:shadow-md shadow" src="{{ asset($website->home_page->latest_screenshot->src) }}" alt="">
+                                    <img class="object-cover object-top h-64 w-full rounded-lg hover:shadow-md shadow" src="{{ asset($website->home_page->latest_screenshot->src) }}" alt="">
                                 @endif
                             @else
                                 <div class="rounded bg-white">

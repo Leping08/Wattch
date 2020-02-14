@@ -86,4 +86,27 @@ class StoreTest extends TestCase
 
         $this->assertCount(1, $user->websites);
     }
+
+    /** @test */
+    public function a_home_page_should_be_created_when_a_user_creates_a_website()
+    {
+        $user = factory(User::class)->create();
+        $this->be($user);
+
+        $this->assertCount(0, $user->websites);
+
+        $data = [
+            'website' => 'https://www.google.com/',
+        ];
+
+        $this->post(route('websites.store'), $data)
+            ->assertRedirect(route('websites.index'));
+
+        $user->refresh();
+        $this->assertCount(1, $user->websites);
+
+        $website = $user->websites->first();
+
+        $this->assertCount(1, $website->pages);
+    }
 }
