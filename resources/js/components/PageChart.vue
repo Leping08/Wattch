@@ -30,6 +30,11 @@
                                 reset: false
                             },
                         },
+                        events: {
+                            markerClick: (event, chartContext, { seriesIndex, dataPointIndex, config}) => {
+                                this.link(dataPointIndex);
+                            }
+                        }
                     },
                     colors: ['#309795'],
                     stroke: {
@@ -86,6 +91,13 @@
 
             this.chartOptions.yaxis.max = Math.ceil(Math.max(...this.series[0].data) + 1);
         },
+        methods: {
+            link: function(index) {
+                if(this.responses[index]) {
+                    window.location.href = '/responses/' + this.responses[index].id;
+                }
+            }
+        }
     }
 </script>
 

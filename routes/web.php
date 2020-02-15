@@ -91,6 +91,9 @@ Route::middleware('auth')->group(function () {
     /* @see ScreenshotController::show() */
     Route::get('/screenshots/{screenshot}', 'ScreenshotController@show')->name('screenshots.show');
 
+    /* @see ResponseController::show() */
+    Route::get('/responses/{response}', 'ResponseController@show')->name('responses.show');
+
     /* @see AssertionController::index() */
     Route::get('/assertions', 'AssertionController@index')->name('assertions.index');
 

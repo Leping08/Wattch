@@ -26,9 +26,6 @@
                                 Scan
                             </button>
                         </form>
-
-                        <a class="block no-underline italic text-gray-600 hover:bg-gray-300 p-2"
-                           href="{{ route('websites.edit', ['website' => $page->id]) }}">Edit</a>
                         <a class="block no-underline italic text-gray-600 hover:bg-gray-300 p-2"
                            href="#delete-modal">Delete</a>
                     </template>

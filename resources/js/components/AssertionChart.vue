@@ -30,6 +30,11 @@
                                 reset: false
                             },
                         },
+                        events: {
+                            markerClick: (event, chartContext, { seriesIndex, dataPointIndex, config}) => {
+                                this.link(dataPointIndex);
+                            }
+                        }
                     },
                     colors: ['#309795'],
                     stroke: {
@@ -123,6 +128,13 @@
                 }];
             }
         },
+        methods: {
+            link: function(index) {
+                if(this.results[index]) {
+                    window.location.href = '/results/' + this.results[index].id;
+                }
+            }
+        }
     }
 </script>
 

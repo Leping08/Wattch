@@ -28,6 +28,7 @@ class ScreenshotSchedule extends Model implements Taskable
     protected $fillable = [
         'page_id',
     ];
+
     //TODO: Add some sort of scope here
 
     /**

@@ -1852,6 +1852,8 @@ __webpack_require__.r(__webpack_exports__);
   name: "AssertionChart",
   props: ['results'],
   data: function data() {
+    var _this = this;
+
     return {
       series: [{
         name: 'Status',
@@ -1871,6 +1873,15 @@ __webpack_require__.r(__webpack_exports__);
               zoomout: false,
               pan: false,
               reset: false
+            }
+          },
+          events: {
+            markerClick: function markerClick(event, chartContext, _ref) {
+              var seriesIndex = _ref.seriesIndex,
+                  dataPointIndex = _ref.dataPointIndex,
+                  config = _ref.config;
+
+              _this.link(dataPointIndex);
             }
           }
         },
@@ -1984,6 +1995,13 @@ __webpack_require__.r(__webpack_exports__);
         color: '#f56565',
         opacity: 1
       }];
+    }
+  },
+  methods: {
+    link: function link(index) {
+      if (this.results[index]) {
+        window.location.href = '/results/' + this.results[index].id;
+      }
     }
   }
 });
@@ -2438,6 +2456,8 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['responses'],
   data: function data() {
+    var _this = this;
+
     return {
       series: [{
         name: 'Response Time',
@@ -2456,6 +2476,15 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
               zoomout: false,
               pan: false,
               reset: false
+            }
+          },
+          events: {
+            markerClick: function markerClick(event, chartContext, _ref) {
+              var seriesIndex = _ref.seriesIndex,
+                  dataPointIndex = _ref.dataPointIndex,
+                  config = _ref.config;
+
+              _this.link(dataPointIndex);
             }
           }
         },
@@ -2533,6 +2562,13 @@ function _arrayWithoutHoles(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
     }
 
     this.chartOptions.yaxis.max = Math.ceil(Math.max.apply(Math, _toConsumableArray(this.series[0].data)) + 1);
+  },
+  methods: {
+    link: function link(index) {
+      if (this.responses[index]) {
+        window.location.href = '/responses/' + this.responses[index].id;
+      }
+    }
   }
 });
 

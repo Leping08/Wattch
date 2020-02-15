@@ -48,7 +48,7 @@ class Assertion extends Model implements Taskable
      * @var array
      */
     protected $casts = [
-        'parameters' => 'json',  //TODO: MAKE SURE SOMEONE CAN NOT RUN CODE FROM THIS
+        'parameters' => 'json',
     ];
 
     /**
