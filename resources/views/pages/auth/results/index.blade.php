@@ -78,7 +78,7 @@
 
         <div class="card bg-gray-100 mb-6 overflow-hidden">
             @forelse($assertion_results as $result)
-                @include('pages.auth.components.list.results-with-page-image')
+                @include('pages.auth.components.lists.results-with-page-image')
             @empty
                 <div>
 

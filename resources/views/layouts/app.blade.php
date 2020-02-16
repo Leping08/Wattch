@@ -12,7 +12,7 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" href="//cdn.materialdesignicons.com/4.4.95/css/materialdesignicons.min.css">
+    <link rel="stylesheet" href="//cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
 
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('/img/wattch_guy/wattch_guy.png') }}">
 </head>

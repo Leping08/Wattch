@@ -13,7 +13,7 @@
 
         <div class="card bg-gray-100 mb-6 overflow-hidden">
             @forelse($assertions as $assertion)
-                @include('pages.auth.components.list.assertion-with-page-image')
+                @include('pages.auth.components.lists.assertion-with-page-image')
             @empty
                 <div>
 

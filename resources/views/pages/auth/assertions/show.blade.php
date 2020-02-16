@@ -50,15 +50,15 @@
         </div>
 
         <div class="w-full mt-4">
-            @include('pages.auth.components.card.assertion', ['assertion' => $assertion])
+            @include('pages.auth.components.cards.assertion', ['assertion' => $assertion])
         </div>
 
         <div class="mt-4">
-            @include('pages.auth.components.card.page', ['page' => $assertion->page])
+            @include('pages.auth.components.cards.page', ['page' => $assertion->page])
         </div>
 
         <div class="mt-4">
-            @include('pages.auth.components.card.results', ['assertion' => $assertion])
+            @include('pages.auth.components.cards.results', ['assertion' => $assertion])
         </div>
     </div>
 @endsection

@@ -9,9 +9,9 @@ class ResponseController extends Controller
 {
     public function show(HttpResponse $response)
     {
-        //TODO Make sure they can view it
+        $this->authorize('view', $response);
 
-        //return $response;
+        $response->with('page');
 
         return view('pages.auth.http_responses.show', compact('response'));
     }

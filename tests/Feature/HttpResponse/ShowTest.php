@@ -14,9 +14,31 @@ class ShowTest extends TestCase
 {
     use DatabaseMigrations;
 
+    /** @test */
     public function a_user_can_only_see_http_responses_for_responses_that_are_related_to_pages_and_websites_they_own()
     {
-        
+        $user1 = factory(User::class)->create();
+        $user2 = factory(User::class)->create();
+        $this->be($user1);
+
+        $website1 = factory(Website::class)->create([
+            'user_id' => $user1->id
+        ]);
+        $page1 = factory(Page::class)->create([
+            'website_id' => $website1->id
+        ]);
+        $response1 = factory(HttpResponse::class)->create([
+            'page_id' => $page1->id
+        ]);
+
+        $this->get(route('responses.show', ['response' => $response1]))
+            ->assertStatus(200);
+
+        $this->be($user2);
+        $user2->refresh();
+
+        $this->get(route('responses.show', ['response' => $response1]))
+            ->assertStatus(404);
     }
 
     /** @test */
@@ -79,7 +101,6 @@ class ShowTest extends TestCase
             ->assertSeeText($response->request_stats_raw['starttransfer_time'])
             ->assertSeeText($response->request_stats_raw['appconnect_time'])
             ->assertSeeText($response->request_stats_raw['total_time'])
-            ->assertSeeText($response->request_stats_raw['primary_ip'])
-            ->assertSeeText($response->request_stats_raw['url']);
+            ->assertSeeText($response->request_stats_raw['primary_ip']);
     }
 }

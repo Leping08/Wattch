@@ -4,10 +4,12 @@ namespace App\Providers;
 
 use App\Models\Assertion;
 use App\Models\AssertionResult;
+use App\Models\HttpResponse;
 use App\Models\Page;
 use App\Models\Screenshot;
 use App\Policies\AssertionPolicy;
 use App\Policies\AssertionResultPolicy;
+use App\Policies\HttpResponsePolicy;
 use App\Policies\PagePolicy;
 use App\Policies\ScreenshotPolicy;
 use App\Policies\WebsitePolicy;
@@ -27,7 +29,8 @@ class AuthServiceProvider extends ServiceProvider
         Page::class => PagePolicy::class,
         Assertion::class => AssertionPolicy::class,
         AssertionResult::class => AssertionResultPolicy::class,
-        Screenshot::class => ScreenshotPolicy::class
+        Screenshot::class => ScreenshotPolicy::class,
+        HttpResponse::class => HttpResponsePolicy::class
     ];
 
     /**

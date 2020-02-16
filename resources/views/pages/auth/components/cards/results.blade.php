@@ -13,7 +13,7 @@
         </div>
         <div class="border-t">
             @forelse($results as $result)
-                @include('pages.auth.components.list.result-no-page-image', ['result' => $result])
+                @include('pages.auth.components.lists.result-no-page-image', ['result' => $result])
             @empty
 
             @endforelse

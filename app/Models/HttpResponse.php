@@ -27,6 +27,7 @@ use Illuminate\Support\Str;
  * @property-read HttpResponse $http_responses
  * @property-read HttpResponse $latest_http_response
  * @property-read Screenshot $screenshots
+ * @property-read Page $page
  * @property-read Task $tasks
  */
 class HttpResponse extends Model

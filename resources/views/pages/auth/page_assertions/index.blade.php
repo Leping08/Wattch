@@ -73,7 +73,7 @@
                 </div>
                 <div>
                     @forelse($page->assertions as $assertion)
-                        @include('pages.auth.components.list.assertion-no-page-image')
+                        @include('pages.auth.components.lists.assertion-no-page-image')
                     @empty
 
                     @endforelse

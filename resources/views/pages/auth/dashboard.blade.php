@@ -106,7 +106,7 @@
                     </div>
                 </a>
                 @forelse($latest_assertions as $assertion)
-                    @include('pages.auth.components.list.assertion-with-page-image')
+                    @include('pages.auth.components.lists.assertion-with-page-image')
                 @empty
 
                 @endforelse

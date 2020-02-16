@@ -39,11 +39,11 @@
         </div>
 
         <div class="mt-4">
-            @include('pages.auth.components.card.assertion', ['assertion' => $result->assertion])
+            @include('pages.auth.components.cards.assertion', ['assertion' => $result->assertion])
         </div>
 
         <div class="mt-4">
-            @include('pages.auth.components.card.page', ['page' => $result->assertion->page])
+            @include('pages.auth.components.cards.page', ['page' => $result->assertion->page])
         </div>
     </div>
 @endsection
