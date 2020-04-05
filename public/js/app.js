@@ -2839,12 +2839,14 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "UpdatePaymentMethod.vue",
   props: ['stripekey', 'intent'],
   data: function data() {
     return {
       stripeError: '',
+      nameError: '',
       loading: false,
       payment_method_id: null,
       name: null
@@ -2852,6 +2854,13 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     this.setUpStripe();
+  },
+  watch: {
+    name: function name() {
+      if (this.name) {
+        this.nameError = null;
+      }
+    }
   },
   methods: {
     setUpStripe: function setUpStripe() {
@@ -2880,6 +2889,10 @@ __webpack_require__.r(__webpack_exports__);
       }
     },
     submitFormToCreateToken: function submitFormToCreateToken() {
+      if (!this.name) {
+        this.nameError = 'Please add card holder name';
+      }
+
       if (this.stripeError === '') {
         this.createToken();
       }
@@ -6390,6 +6403,14 @@ var render = function() {
       _vm._m(0),
       _vm._v(" "),
       _c("input", {
+        directives: [
+          {
+            name: "model",
+            rawName: "v-model",
+            value: _vm.name,
+            expression: "name"
+          }
+        ],
         staticClass: "input",
         attrs: {
           id: "name",
@@ -6398,8 +6419,20 @@ var render = function() {
           placeholder: "John Doe",
           required: ""
         },
-        domProps: { value: _vm.name }
-      })
+        domProps: { value: _vm.name },
+        on: {
+          input: function($event) {
+            if ($event.target.composing) {
+              return
+            }
+            _vm.name = $event.target.value
+          }
+        }
+      }),
+      _vm._v(" "),
+      _c("span", { staticClass: "text-red-600 italic pt-2" }, [
+        _vm._v(_vm._s(_vm.nameError))
+      ])
     ]),
     _vm._v(" "),
     _c("div", { staticClass: "flex flex-wrap mb-6" }, [

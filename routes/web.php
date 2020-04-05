@@ -118,6 +118,10 @@ Route::middleware('auth')->group(function () {
     /* @see BillingController::store() */
     Route::post('/settings/billing', 'Settings\BillingController@store')->name('settings.billing.store');
 
+    /* @see DownloadInvoiceController::show() */
+    Route::get('/settings/billing/{invoiceId}', 'Settings\DownloadInvoiceController@show')->name('settings.billing.download_invoice.show');
+
+
     /* @see NotificationController::index() */
     Route::get('/settings/notifications', 'Settings\NotificationController@index')->name('settings.notifications.index');
 

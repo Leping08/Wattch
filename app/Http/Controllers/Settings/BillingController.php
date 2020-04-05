@@ -27,12 +27,24 @@ class BillingController extends Controller
         $intent = $user->createSetupIntent();
         $stripePubKey = env('STRIPE_KEY');
 
-        return view('pages.auth.settings.billing.index', compact('intent', 'stripePubKey', 'user', 'paymentMethods', 'invoices'));
+        return view('pages.auth.settings.billing.index',
+            compact('intent', 'stripePubKey', 'user', 'paymentMethods', 'invoices'));
     }
 
     public function store(Request $request)
     {
-        $request->user()->updateDefaultPaymentMethodFromStripe($request->user()->payment_method_id);
+        //TODO Add tests for this
+        /* @see User $user */
+        $user = $request->user();
+
+        $newDefaultPaymentMethod = $user->updateDefaultPaymentMethod($request['payment_method_id']);
+        //TODO handel error here ^
+
+        foreach ($user->paymentMethods() as $paymentMethod) {
+            if(!($paymentMethod->asStripePaymentMethod()->id === $newDefaultPaymentMethod->id)) {
+                $user->removePaymentMethod($paymentMethod->asStripePaymentMethod());
+            }
+        }
 
         //TODO add flash message
         return Redirect::back();

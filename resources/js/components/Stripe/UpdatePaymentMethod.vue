@@ -5,7 +5,8 @@
                 <span class="mdi mdi-account-outline"></span> Name on Card
             </label>
 
-            <input id="name" type="text" class="input" name="name" :value="name" placeholder="John Doe" required>
+            <input id="name" type="text" class="input" name="name" v-model="name" placeholder="John Doe" required>
+            <span class="text-red-600 italic pt-2">{{nameError}}</span>
         </div>
 
         <div class="flex flex-wrap mb-6">
@@ -33,6 +34,7 @@
         data() {
             return {
                 stripeError: '',
+                nameError: '',
                 loading: false,
                 payment_method_id: null,
                 name: null
@@ -40,6 +42,13 @@
         },
         mounted() {
             this.setUpStripe();
+        },
+        watch: {
+            name: function () {
+                if (this.name) {
+                    this.nameError = null;
+                }
+            }
         },
         methods: {
             setUpStripe() {
@@ -75,6 +84,10 @@
             },
 
             submitFormToCreateToken() {
+                if (!this.name) {
+                    this.nameError = 'Please add card holder name';
+                }
+
                 if (this.stripeError === '') {
                     this.createToken()
                 }
@@ -99,7 +112,7 @@
                         })
                     }
                 })
-            },
+            }
         }
     }
 </script>

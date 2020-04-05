@@ -45,5 +45,21 @@ class AppServiceProvider extends ServiceProvider
         ScreenshotSchedule::observe(ScreenshotScheduleObserver::class);
         Paginator::defaultView('vendor.pagination.tailwind-default');
         Paginator::defaultSimpleView('vendor.pagination.tailwind-simple');
+
+        Blade::directive('baby', function () {
+            return "<?php if((auth()->user()->product()->id ?? 1) >= 1): ?>";
+        });
+
+        Blade::directive('security', function () {
+            return "<?php if((auth()->user()->product()->id ?? 1) >= 2): ?>";
+        });
+
+        Blade::directive('pi', function () {
+            return "<?php if((auth()->user()->product()->id ?? 1) >= 3): ?>";
+        });
+
+        Blade::directive('endproduct', function () {
+            return "<?php endif; ?>";
+        });
     }
 }

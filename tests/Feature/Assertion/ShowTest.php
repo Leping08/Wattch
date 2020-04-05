@@ -1,6 +1,6 @@
 <?php
 
-namespace Tests\Feature;
+namespace Tests\Feature\Assertion;
 
 use App\Models\Assertion;
 use App\Models\HttpResponse;

@@ -1,10 +1,9 @@
 <?php
 
-namespace Tests\Feature\Page;
+namespace Tests\Feature\HttpResponse;
 
 use App\Models\HttpResponse;
 use App\Models\Page;
-use App\Models\Screenshot;
 use App\Models\User;
 use App\Models\Website;
 use Illuminate\Foundation\Testing\DatabaseMigrations;

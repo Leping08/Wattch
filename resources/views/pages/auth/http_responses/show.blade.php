@@ -39,7 +39,7 @@
                         </div>
                     </div>
                     <div class="flex">
-                        <div class="m-4 w-full border rounded-lg">
+                        <div class="m-4 w-full shadow rounded-lg">
                             <table class="table-auto w-full rounded-lg overflow-hidden">
                                 <thead>
                                     <tr class="bg-teal-600">
