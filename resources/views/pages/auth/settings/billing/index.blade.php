@@ -99,8 +99,8 @@
                     </div>
                 </div>
             </div>
-            <div class="flex mx-8 h-96">
-                <img alt="" class="h-full" src="{{ asset('/img/icons/undraw_pay_online_b1hk.svg') }}">
+            <div class="flex mx-8 h-96 lg:block md:hidden sm:hidden hidden">
+                <img alt="" class="h-full p-4" src="{{ asset('/img/icons/undraw_pay_online_b1hk.svg') }}">
             </div>
         </div>
 

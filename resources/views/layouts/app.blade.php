@@ -32,6 +32,7 @@
                 @endif
             </div>
             <div class="mt-16 w-full {{Auth::check() ? 'ml-0 lg:ml-64' : ''}}">
+                @include('pages.auth.utilities.flash')
                 @yield('content')
             </div>
         </div>

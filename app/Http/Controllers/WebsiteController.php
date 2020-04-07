@@ -112,7 +112,7 @@ class WebsiteController extends Controller
 
         $website->delete();
 
-        //TODO Add flash message
+        session()->flash('success', 'Website deleted!');
         return redirect()->route('websites.index');
     }
 }

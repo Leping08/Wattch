@@ -46,7 +46,7 @@ class BillingController extends Controller
             }
         }
 
-        //TODO add flash message
+        session()->flash('success', 'Card on file updated!');
         return Redirect::back();
     }
 }

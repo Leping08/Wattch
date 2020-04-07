@@ -28,8 +28,8 @@ class NotificationController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'email' => 'email',
-            'slack_webhook' => 'regex:/^(https:\/\/hooks.slack.com)/', //TODO Add better validation messages here
+            'email' => ['nullable', 'email'],
+            'slack_webhook' => ['nullable', 'regex:/^(https:\/\/hooks.slack.com)/'], //TODO Add better validation messages here
         ]);
 
         $user = $request->user();
@@ -45,7 +45,7 @@ class NotificationController extends Controller
                 ], JSON_PRETTY_PRINT);
                 $channel->save();
                 Log::info("Email successfully updated for User Id $user->id");
-            //TODO Flash message
+                //TODO Flash message
             } else {
                 Log::info("User Id $user->id did not update their email");
                 //TODO Flash message
@@ -70,7 +70,7 @@ class NotificationController extends Controller
                 ], JSON_PRETTY_PRINT);
                 $channel->save();
                 Log::info("Slack webhook url successfully updated for User Id $user->id");
-            //TODO Flash message
+                //TODO Flash message
             } else {
                 Log::info("User Id $user->id did not update their slack webhook url");
                 //TODO Flash message
@@ -84,6 +84,7 @@ class NotificationController extends Controller
             $user->toggleSetting('slack', false);
         }
 
+        session()->flash('success', 'Settings updated!');
         return Redirect::back();
     }
 }

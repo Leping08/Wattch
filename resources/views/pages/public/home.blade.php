@@ -4,15 +4,6 @@
     <div class="flex items-center">
         <div class="md:w-1/1 flex-1 md:mx-auto p-6">
 
-            @if (session('status'))
-                <div
-                    class="text-sm border border-t-8 rounded-lg text-green-700 border-green-600 bg-green-100 px-3 py-4 mb-4"
-                    role="alert">
-                    {{ session('status') }}
-                </div>
-            @endif
-
-
             <div class="flex items-center mx-6">
                 <div class="flex-1 px-6 text-left md:text-center xl:text-left inline-block align-text-bottom">
                     <h1 class="text-3xl sm:text-4xl md:text-5xl xl:text-4xl font-light leading-tight">We Wattch So <span class="text-teal-500 font-normal">You Don't Have To</span></h1>

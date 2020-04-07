@@ -41,33 +41,33 @@
                 @endif
             </div>
 
-            <div class="flex flex-wrap mb-6">
-                <label for="password" class="block text-gray-600 text-sm font-bold mb-2">
-                    <span class="mdi mdi-lock-outline"></span> {{ __('Password') }}
-                </label>
+{{--            <div class="flex flex-wrap mb-6">--}}
+{{--                <label for="password" class="block text-gray-600 text-sm font-bold mb-2">--}}
+{{--                    <span class="mdi mdi-lock-outline"></span> {{ __('Password') }}--}}
+{{--                </label>--}}
 
-                <input id="password" type="password" class="input {{ $errors->has('password') ? ' border-red-500' : '' }}" name="password">
+{{--                <input id="password" type="password" class="input {{ $errors->has('password') ? ' border-red-500' : '' }}" name="password">--}}
 
-                @if ($errors->has('password'))
-                    <p class="text-red-500 text-xs italic mt-4">
-                        {{ $errors->first('password') }}
-                    </p>
-                @endif
-            </div>
+{{--                @if ($errors->has('password'))--}}
+{{--                    <p class="text-red-500 text-xs italic mt-4">--}}
+{{--                        {{ $errors->first('password') }}--}}
+{{--                    </p>--}}
+{{--                @endif--}}
+{{--            </div>--}}
 
-            <div class="flex flex-wrap mb-6">
-                <label for="password_confirmation" class="block text-gray-600 text-sm font-bold mb-2">
-                    <span class="mdi mdi-lock-outline"></span> {{ __('Password Confirmation') }}
-                </label>
+{{--            <div class="flex flex-wrap mb-6">--}}
+{{--                <label for="password_confirmation" class="block text-gray-600 text-sm font-bold mb-2">--}}
+{{--                    <span class="mdi mdi-lock-outline"></span> {{ __('Password Confirmation') }}--}}
+{{--                </label>--}}
 
-                <input id="password_confirmation" type="password" class="input {{ $errors->has('password_confirmation') ? ' border-red-500' : '' }}" name="password_confirmation">
+{{--                <input id="password_confirmation" type="password" class="input {{ $errors->has('password_confirmation') ? ' border-red-500' : '' }}" name="password_confirmation">--}}
 
-                @if ($errors->has('password_confirmation'))
-                    <p class="text-red-500 text-xs italic mt-4">
-                        {{ $errors->first('password_confirmation') }}
-                    </p>
-                @endif
-            </div>
+{{--                @if ($errors->has('password_confirmation'))--}}
+{{--                    <p class="text-red-500 text-xs italic mt-4">--}}
+{{--                        {{ $errors->first('password_confirmation') }}--}}
+{{--                    </p>--}}
+{{--                @endif--}}
+{{--            </div>--}}
 
             <div class="flex flex-wrap items-center">
                 <button type="submit" class="btn-teal">
@@ -75,7 +75,7 @@
                 </button>
             </div>
         </form>
-        <div class="w-1/3 lg:block md:hidden sm:hidden hidden p-2">
+        <div class="w-1/3 lg:block md:hidden sm:hidden hidden p-4">
             <img alt="" class="w-full" src="{{ asset('/img/icons/undraw_profile_data_mk6k.svg') }}">
         </div>
     </div>

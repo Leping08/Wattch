@@ -41,6 +41,7 @@ Vue.component('sign-up', require('./components/Stripe/SignUp').default);
 Vue.component('sign-up-product-selector', require('./components/SignUpProductSelector').default);
 Vue.component('mobile-nav', require('./components/MobileNav').default);
 Vue.component('apexchart', VueApexCharts);
+Vue.component('flash', require('./components/Flash').default);
 
 
 /**

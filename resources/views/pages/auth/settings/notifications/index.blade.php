@@ -14,7 +14,7 @@
                         <toggle-button name="email_toggle" :height="16" color="#38b1ab" :value="{{ $muted_email_notifications ? 'false' : 'true' }}" :labels="{checked: 'On', unchecked: 'Off'}"></toggle-button> <span class="mdi mdi-email-outline ml-2"></span> Email
                     </label>
 
-                    <input id="email" type="email" class="input {{ $errors->has('email') ? ' border-red-500' : '' }}" name="email" value="{{ old('email') ?? $notification_email_address }}" required>
+                    <input id="email" type="email" class="input {{ $errors->has('email') ? ' border-red-500' : '' }}" name="email" value="{{ old('email') ?? $notification_email_address }}">
 
                     @if ($errors->has('email'))
                         <p class="text-red-500 text-xs italic mt-4">
@@ -28,7 +28,7 @@
 {{--                        <toggle-button name="phone_toggle" :height="16" color="#38b1ab" :value="{{ 'true' }}" :labels="{checked: 'On', unchecked: 'Off'}"></toggle-button> <span class="mdi mdi-phone-outline ml-2"></span> Text Message--}}
 {{--                    </label>--}}
 
-{{--                    <input id="phone" type="tel" class="input {{ $errors->has('phone') ? ' border-red-500' : '' }}" name="phone" value="{{ old('phone') ?? '999-999-9999' }}" required autofocus>--}}
+{{--                    <input id="phone" type="tel" class="input {{ $errors->has('phone') ? ' border-red-500' : '' }}" name="phone" value="{{ old('phone') ?? '999-999-9999' }}" autofocus>--}}
 
 {{--                    @if ($errors->has('phone'))--}}
 {{--                        <p class="text-red-500 text-xs italic mt-4">--}}
@@ -58,8 +58,8 @@
                 </div>
             </form>
         </div>
-        <div class="w-1/3 lg:block md:hidden sm:hidden hidden">
-            <img alt="" class="w-full" src="{{ asset('/img/icons/undraw_notify_88a4.svg') }}">
+        <div class="w-1/3 lg:block md:hidden sm:hidden hidden p-4">
+            <img alt="" class="w-full" src="{{ asset('/img/icons/undraw_updated_rr85.svg') }}">
         </div>
     </div>
 @endsection
