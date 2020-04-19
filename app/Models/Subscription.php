@@ -2,6 +2,7 @@
 
 namespace App;
 
+use App\Models\Plan;
 use App\Models\Product;
 use App\Models\User;
 use Illuminate\Support\Carbon;
@@ -33,6 +34,14 @@ class Subscription extends \Laravel\Cashier\Subscription
      */
     public function product()
     {
-        return $this->hasOne(Product::class, 'stripe_plan', 'name');
+        return $this->hasOne(Product::class, 'stripe_plan', 'stripe_plan');
+    }
+
+    /**
+     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     */
+    public function plan()
+    {
+        return $this->hasOne(Plan::class, 'stripe_plan', 'stripe_plan');
     }
 }

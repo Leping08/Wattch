@@ -1,5 +1,5 @@
 <template>
-    <div :id="name" class="overlay fixed inset-0 w-full h-screen flex items-center justify-center">
+    <div :id="name" class="overlay fixed inset-0 w-full h-screen flex items-center justify-center z-40" tabindex="0" @keydown.esc="closeModal()">
         <a href="#" class="cancel"></a>
 
         <div class="w-full md:w-1/2 lg:w-1/3 relative rounded-lg bg-white p-4 m-4">
@@ -13,14 +13,19 @@
 
 <script>
     export default {
-        props: ['name']
+        props: ['name'],
+        methods: {
+            closeModal() {
+                window.location.href = '#';
+            }
+        }
     }
 </script>
 
 <style>
     .overlay {
         visibility: hidden;
-        background: rgba(0, 0, 0, .4);
+        background: rgba(0, 0, 0, .5);
         transition: opacity .3s;
     }
     .overlay:target {

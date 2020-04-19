@@ -33,7 +33,7 @@ use Laravel\Cashier\Billable;
  * @property Carbon $trial_ends_at
  * @property-read Website $websites
  * @property-read Product $product
- * @property-read Subscription $subscription
+ * @property-read Subscription $subscriptions
  * @property-read Feature $features
  * @property-read NotificationChannel $notification_channels
  */
@@ -80,11 +80,11 @@ class User extends Authenticatable
     }
 
     /**
-     * @return \Illuminate\Database\Eloquent\Relations\HasOne
+     * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function subscription()
+    public function subscriptions()
     {
-        return $this->hasOne(Subscription::class, 'user_id'); //TODO this could have many
+        return $this->hasMany(Subscription::class, 'user_id'); //TODO this could have many
     }
 
     /**
@@ -99,10 +99,10 @@ class User extends Authenticatable
     }
 
     /**
-     * @return Product
+     * @return Product|null
      */
     public function product()
     {
-        return $this->subscription->product ?? null;
+        return $this->subscriptions->first()->plan->product ?? null;
     }
 }

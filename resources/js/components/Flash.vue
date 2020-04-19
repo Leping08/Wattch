@@ -9,7 +9,7 @@
         leave-to-class="opacity-0 -translate-y-4"
     >
         <!--TODO: Make these stack-->
-        <div v-if="isOpen" class="fixed inset-0 flex pointer-events-none p-6 items-start justify-end z-50 block">
+        <div v-if="isOpen" class="fixed inset-0 flex pointer-events-none p-6 items-start justify-end z-30 block">
             <div class="max-w-sm w-full bg-white shadow-lg rounded-lg pointer-events-auto">
                 <div class="rounded-lg shadow-xs overflow-hidden">
                     <div class="p-4">

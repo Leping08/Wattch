@@ -1,4 +1,4 @@
-<div class="fixed w-full mx-auto top-0 z-50 shadow">
+<div class="fixed w-full mx-auto top-0 z-20 shadow">
     <div class="flex items-center justify-center py-2 lg:p-2 md:p-2 sm:p-2 shadow-md bg-teal-600">
         <div class="flex">
             <a href="{{ Auth::check() ? route('dashboard') : route('home') }}" class="mr-6 flex items-center px-4">

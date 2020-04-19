@@ -30,7 +30,7 @@ class Product extends Model
     protected $fillable = [
         'name',
         'price',
-        'stripe_plan',
+        'stripe_product',
     ];
 
     /**

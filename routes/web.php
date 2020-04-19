@@ -27,14 +27,6 @@ Route::get('/sign-up', 'SignUpController@index')->name('sign-up.index');
 /* @see SignUpController::store() */
 Route::post('/sign-up', 'SignUpController@store')->name('sign-up.store');
 
-Route::get('/about', function () {
-    return view('pages.public.about'); //TODO: Add about page
-});
-
-Route::get('/pricing', function () {
-    return view('pages.public.pricing'); //TODO: Add pricing page
-});
-
 Route::get('/privacy-policy', function () {
     return view('pages.public.privacy-policy'); //TODO: Add privacy policy page
 });

@@ -4,19 +4,26 @@ namespace App\Library\Traits;
 
 trait ProductHelpers
 {
-    public function product()
+    /**
+     * @param  string  $product
+     * @return bool
+     */
+    public function has(string $product) : bool
     {
-        return $this->subscription->product;
-    }
+        $product_id = $this->product()->id ?? null;
 
-    public function features()
-    {
-        return $this->subscription->product->features;
-    }
+        if (! $product_id) {
+            return false;
+        }
 
-    public function rules()
-    {
-        //TODO: Find a good way to do this
-        //return $this->subscription->product->features;
+        if ($product === 'baby') {
+            return $product_id === 1;
+        } elseif ($product === 'security') {
+            return $product_id === 2;
+        } elseif ($product === 'pi') {
+            return $product_id === 3;
+        } else {
+            return false;
+        }
     }
 }
