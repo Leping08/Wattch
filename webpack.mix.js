@@ -15,10 +15,13 @@ require('laravel-mix-purgecss');
  */
 
 mix.js('resources/js/app.js', 'public/js')
-   .postCss('resources/css/app.css', 'public/css')
-   .tailwind('./tailwind.config.js')
-   .purgeCss();
+    .copyDirectory('resources/fonts', 'public/fonts')
+    .postCss('resources/css/app.css', 'public/css')
+    .copy('node_modules/@mdi/font/css/materialdesignicons.css', 'public/icons/css/')
+    .copyDirectory('node_modules/@mdi/font/fonts/', 'public/icons/fonts/')
+    .tailwind('./tailwind.config.js')
+    .purgeCss();
 
 if (mix.inProduction()) {
-  mix.version();
+    mix.version();
 }

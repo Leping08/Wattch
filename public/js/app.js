@@ -2701,17 +2701,36 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "ProductSelector.vue",
-  props: ['products', 'current'],
+  props: ['products', 'user'],
   data: function data() {
     return {
+      selected_plan: null,
       selected_product: null
     };
   },
   methods: {
-    activeClasses: function activeClasses(productId) {
-      if (this.selected_product.id === productId) {
+    select: function select(product, plan) {
+      this.selected_plan = plan;
+      this.selected_product = product;
+    },
+    activeClasses: function activeClasses(product, plan) {
+      if (this.selected_plan.id === plan.id) {
         return 'border-2 border-teal-500';
       } else {
         return 'border border-gray-100';
@@ -2719,7 +2738,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   created: function created() {
-    this.selected_product = this.current;
+    this.selected_plan = this.user.subscriptions[0].plan;
+    this.selected_product = this.user.subscriptions[0].plan.product;
   }
 });
 
@@ -6402,6 +6422,11 @@ var render = function() {
   var _c = _vm._self._c || _h
   return _c("div", {}, [
     _c("input", {
+      attrs: { type: "hidden", id: "plan_id", name: "plan_id" },
+      domProps: { value: _vm.selected_plan.id }
+    }),
+    _vm._v(" "),
+    _c("input", {
       attrs: { type: "hidden", id: "product_id", name: "product_id" },
       domProps: { value: _vm.selected_product.id }
     }),
@@ -6414,46 +6439,66 @@ var render = function() {
           "div",
           { staticClass: "p-2 lg:w-1/3 md:w-full sm:w-full w-full relative" },
           [
-            _c(
-              "div",
-              {
-                staticClass: "text-center bg-white lg:p-8 p-4 card",
-                class: _vm.activeClasses(product.id),
-                on: {
-                  click: function($event) {
-                    _vm.selected_product = product
-                  }
-                }
-              },
-              [
-                _vm.selected_product.id === product.id
-                  ? _c("div", { staticClass: "flex" }, [
-                      _c("div", { staticClass: "flex-1" }),
-                      _vm._v(" "),
-                      _vm._m(0, true)
-                    ])
-                  : _vm._e(),
-                _vm._v(" "),
-                _c("h2", { staticClass: "text-lg mb-4 text-gray-600 italic" }, [
-                  _vm._v(_vm._s(product.name))
-                ]),
-                _vm._v(" "),
-                _c("div", { staticClass: "mb-4 italic" }, [
-                  _c("span", { staticClass: "text-xl text-gray-500" }, [
-                    _vm._v("$")
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-3xl text-gray-700" }, [
-                    _vm._v(_vm._s(product.price / 100))
-                  ]),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "text-sm text-gray-500" }, [
-                    _vm._v("/mo")
-                  ])
-                ])
+            _vm._l(product.plans, function(plan) {
+              return [
+                plan.time_frame === "monthly"
+                  ? [
+                      _c(
+                        "div",
+                        {
+                          staticClass:
+                            "text-center bg-white lg:p-8 p-4 card cursor-pointer",
+                          class: _vm.activeClasses(product, plan),
+                          on: {
+                            click: function($event) {
+                              return _vm.select(product, plan)
+                            }
+                          }
+                        },
+                        [
+                          _vm.selected_plan.id === plan.id
+                            ? _c("div", { staticClass: "flex" }, [
+                                _c("div", { staticClass: "flex-1" }),
+                                _vm._v(" "),
+                                _vm._m(0, true)
+                              ])
+                            : _vm._e(),
+                          _vm._v(" "),
+                          _c(
+                            "h2",
+                            {
+                              staticClass: "text-lg mb-4 text-gray-600 italic"
+                            },
+                            [_vm._v(_vm._s(product.name))]
+                          ),
+                          _vm._v(" "),
+                          _c("div", { staticClass: "mb-4 italic" }, [
+                            _c(
+                              "span",
+                              { staticClass: "text-xl text-gray-500" },
+                              [_vm._v("$")]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              { staticClass: "text-3xl text-gray-700" },
+                              [_vm._v(_vm._s(plan.price / 100))]
+                            ),
+                            _vm._v(" "),
+                            _c(
+                              "span",
+                              { staticClass: "text-sm text-gray-500" },
+                              [_vm._v("/mo")]
+                            )
+                          ])
+                        ]
+                      )
+                    ]
+                  : _vm._e()
               ]
-            )
-          ]
+            })
+          ],
+          2
         )
       }),
       0

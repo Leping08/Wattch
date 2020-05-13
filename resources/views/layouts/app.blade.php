@@ -12,11 +12,12 @@
     <!-- Styles -->
     <link href="{{ mix('css/app.css') }}" rel="stylesheet">
 
-    <link rel="stylesheet" href="//cdn.materialdesignicons.com/4.9.95/css/materialdesignicons.min.css">
+    <!-- Icons -->
+    <link href="{{ mix('icons/css/materialdesignicons.css') }}" rel="stylesheet">
 
     <link rel="icon" type="image/png" sizes="96x96" href="{{ asset('/img/wattch_guy/wattch_guy.png') }}">
 </head>
-<body class="bg-gray-200 h-screen antialiased leading-none">
+<body class="bg-gray-200 h-screen antialiased leading-none font-inter">
 
 <div id="app">
     <div class="flex flex-col min-h-screen">
