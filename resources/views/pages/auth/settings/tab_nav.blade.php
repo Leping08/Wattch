@@ -4,7 +4,7 @@
             'name' => 'Account',
             'url' => route('settings.account.index'),
             'route_name' => 'dashboard',
-            'icon' => 'account-badge-horizontal-outline',
+            'icon' => 'badge-account-horizontal-outline',
             'selected' => \Illuminate\Support\Facades\Route::currentRouteName() === 'settings.account.index'
         ],
         [

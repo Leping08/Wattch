@@ -39,7 +39,7 @@
         [
             'name' => "Settings",
             'url' => route('settings.account.index'),
-            'icon' => 'settings',
+            'icon' => 'cog',
             'active' => \Illuminate\Support\Facades\Request::segment(1) == 'settings'
         ],
     ]
