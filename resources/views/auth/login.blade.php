@@ -18,7 +18,7 @@
                         @csrf
 
                         <div class="flex flex-wrap mb-6">
-                            <label for="email" class="block text-gray-600 text-sm font-bold mb-2">
+                            <label for="email" class="label">
                                 <span class="mdi mdi-email-outline mr"></span> {{ __('E-Mail Address') }}:
                             </label>
 
@@ -32,7 +32,7 @@
                         </div>
 
                         <div class="flex flex-wrap mb-6">
-                            <label for="password" class="block text-gray-600 text-sm font-bold mb-2">
+                            <label for="password" class="label">
                                 <span class="mdi mdi-lock-outline mr"></span> {{ __('Password') }}:
                             </label>
 

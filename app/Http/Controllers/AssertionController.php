@@ -6,18 +6,24 @@ use App\Models\Assertion;
 use App\Models\AssertionResult;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class AssertionController extends Controller
 {
     public function index(Request $request)
     {
         $assertions = Assertion::with([
-            'page.website', 'page.latest_screenshot', 'type', 'results' => function ($query) {
-                $query->orderBy('created_at', 'desc')->whereDate('created_at', '>', Carbon::now()->subDays(30));
-            },
+            'page.website',
+            'page.latest_screenshot',
+            'type',
+            'results' => function ($query) {
+                $query->orderBy('created_at', 'desc')
+                    ->whereDate('created_at', '>', Carbon::now()->subDays(30))
+                    ->select('id', 'assertion_id', 'success', 'created_at', 'updated_at');
+            }
         ])
-            ->simplePaginate(10)
-            ->appends(request()->query());
+        ->simplePaginate(10)
+        ->appends(request()->query());
 
         return view('pages.auth.assertions.index', compact('assertions'));
     }

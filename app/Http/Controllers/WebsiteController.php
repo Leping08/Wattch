@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Page;
 use App\Models\Website;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -12,8 +13,13 @@ class WebsiteController extends Controller
     public function index()
     {
         $websites = Website::with([
-            'pages.latest_http_response', 'home_page.latest_screenshot', 'latest_ssl_response',
-            'pages.assertions.latest_result',
+            'home_page.latest_screenshot',
+            'latest_ssl_response',
+            'pages.assertions.latest_result'  => function ($query) {
+                $query->orderBy('created_at', 'desc')
+                    ->whereDate('created_at', '>', Carbon::now()->subDays(30))
+                    ->select('id', 'assertion_id', 'success', 'created_at', 'updated_at');
+            }
         ])->get();
 
         //Calculate the percentage of successful and failing assertions foreach website
@@ -69,11 +75,12 @@ class WebsiteController extends Controller
 
     public function store(Request $request)
     {
+        //Got the website regex from http://urlregex.com/
         $validator = Validator::make($request->all(), [
             'website' => [
                 'required',
                 'max:1000',
-                'regex:/((([A-Za-z]{3,9}:(?:\/\/)?)(?:[-;:&=\+\$,\w]+@)?[A-Za-z0-9.-]+|(?:www.|[-;:&=\+\$,\w]+@)[A-Za-z0-9.-]+)((?:\/[\+~%\/.\w-_]*)?\??(?:[-\+=&;%@.\w_]*)#?(?:[\w]*))?)/i',
+                'regex:%^(?:(?:https?|ftp)://)(?:\S+(?::\S*)?@|\d{1,3}(?:\.\d{1,3}){3}|(?:(?:[a-z\d\x{00a1}-\x{ffff}]+-?)*[a-z\d\x{00a1}-\x{ffff}]+)(?:\.(?:[a-z\d\x{00a1}-\x{ffff}]+-?)*[a-z\d\x{00a1}-\x{ffff}]+)*(?:\.[a-z\x{00a1}-\x{ffff}]{2,6}))(?::\d+)?(?:[^\s]*)?$%iu',
             ],
         ]);
 

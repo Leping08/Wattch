@@ -3,7 +3,7 @@
 namespace App\Library\Classes;
 
 use GuzzleHttp\Client;
-use Illuminate\Foundation\Testing\TestResponse;
+use Illuminate\Testing\TestResponse;
 use Illuminate\Http\Response;
 
 class Assert

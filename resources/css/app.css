@@ -115,7 +115,7 @@
 }
 
 .label {
-    @apply block text-gray-600 text-sm font-bold mb-2
+    @apply block text-gray-600 font-semibold mb-2 text-sm
 }
 
 .VueCarousel-dot-container {

@@ -82,9 +82,9 @@ class User extends Authenticatable
     /**
      * @return \Illuminate\Database\Eloquent\Relations\HasMany
      */
-    public function subscriptions()
+    public function subscription()
     {
-        return $this->hasMany(Subscription::class, 'user_id'); //TODO this could have many
+        return $this->hasMany(Subscription::class, 'user_id');
     }
 
     /**
@@ -96,13 +96,5 @@ class User extends Authenticatable
             ->using(UserNotificationChannel::class)
             ->withPivot(['settings', 'muted_at'])
             ->withTimestamps();
-    }
-
-    /**
-     * @return Product|null
-     */
-    public function product()
-    {
-        return $this->subscriptions->first()->plan->product ?? null;
     }
 }

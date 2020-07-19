@@ -90,7 +90,7 @@ class Website extends Model implements Taskable
      */
     public function home_page()
     {
-        return $this->hasOne(Page::class, 'website_id')->where('route', '/');
+        return $this->hasOne(Page::class, 'website_id')->where('route', '/'); //TODO optimize this query
     }
 
     /**

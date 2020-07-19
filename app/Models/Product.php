@@ -27,6 +27,9 @@ class Product extends Model
 {
     use SoftDeletes;
 
+    /**
+     * @var array
+     */
     protected $fillable = [
         'name',
         'price',
@@ -38,7 +41,7 @@ class Product extends Model
      */
     public function users()
     {
-        //TODO Make sure this works
+        //TODO Make this work for some sweet admin reports
         return $this->hasManyThrough(User::class, Subscription::class, 'user_id', 'id');
     }
 
@@ -56,5 +59,10 @@ class Product extends Model
     public function subscriptions()
     {
         return $this->hasMany(Subscription::class, 'stripe_plan', 'stripe_plan');
+    }
+
+    public function plans()
+    {
+        return $this->hasMany(Plan::class, 'product_id');
     }
 }

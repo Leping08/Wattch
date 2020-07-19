@@ -1061,9 +1061,9 @@ video {
 .label {
   display: block;
   color: #718096;
-  font-size: 0.875rem;
-  font-weight: 700;
-  margin-bottom: 0.5rem
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  font-size: 0.875rem
 }
 
 .VueCarousel-dot-container {

@@ -39,6 +39,6 @@ class DashboardController extends Controller
             return $item->where('success', false)->count();
         });
 
-        return view('pages.auth.dashboard', compact('websites_count', 'latest_results', 'latest_assertions', 'assertions_count', 'assertions_success_by_day', 'assertions_fails_by_day'));
+        return view('pages.auth.dashboard', compact('websites_count', 'latest_assertions', 'assertions_count', 'assertions_success_by_day', 'assertions_fails_by_day'));
     }
 }

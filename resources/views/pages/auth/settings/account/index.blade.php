@@ -9,8 +9,8 @@
         <form method="POST" class="flex-1" action="{{ route('settings.account.store') }}">
             @csrf
 
-            <div>
-                <product-selector :current="{{ json_encode($currentProduct) }}" :products="{{ json_encode($products) }}"></product-selector>
+            <div class="mb-6">
+                <product-selector :user="{{ json_encode($user) }}" :products="{{ json_encode($products) }}"></product-selector>
             </div>
 
             <div class="flex flex-wrap mb-6">
@@ -28,7 +28,7 @@
             </div>
 
             <div class="flex flex-wrap mb-6">
-                <label for="email" class="block text-gray-600 text-sm font-bold mb-2">
+                <label for="email" class="label">
                     <span class="mdi mdi-email-outline"></span> Email
                 </label>
 

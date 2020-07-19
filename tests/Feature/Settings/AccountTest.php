@@ -30,7 +30,8 @@ class AccountTest extends TestCase
 
         $data = [
             'name' => 'Test Name',
-            'email' => 'new@new.com'
+            'email' => 'new@new.com',
+            'plan_id' => 1
         ];
 
         $this->post(route('settings.account.store'), $data);

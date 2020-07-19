@@ -22,9 +22,9 @@
             <directory suffix=".php">./app</directory>
         </whitelist>
     </filter>
-    <listeners>
-        <listener class="NunoMaduro\Collision\Adapters\Phpunit\Listener" />
-    </listeners>
+<!--    <listeners>-->
+<!--        <listener class="NunoMaduro\Collision\Adapters\Phpunit\Printer" />-->
+<!--    </listeners>-->
     <php>
         <server name="APP_ENV" value="testing"/>
         <server name="DB_CONNECTION" value="mysql"/>

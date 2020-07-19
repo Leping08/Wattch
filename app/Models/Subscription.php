@@ -44,4 +44,15 @@ class Subscription extends \Laravel\Cashier\Subscription
     {
         return $this->hasOne(Plan::class, 'stripe_plan', 'stripe_plan');
     }
+
+    /**
+     * Scope a query to only include stripe_status of active.
+     *
+     * @param  \Illuminate\Database\Eloquent\Builder  $query
+     * @return \Illuminate\Database\Eloquent\Builder
+     */
+    public function scopeActive($query)
+    {
+        return $query->where('stripe_status', '=', 'active');
+    }
 }

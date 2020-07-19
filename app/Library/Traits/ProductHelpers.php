@@ -2,8 +2,37 @@
 
 namespace App\Library\Traits;
 
+use App\Models\Plan;
+use App\Models\Product;
+
 trait ProductHelpers
 {
+    /**
+     * @return Product|null
+     */
+    public function product()
+    {
+        return $this->subscriptions->active() ?? null;
+    }
+
+    /**
+     * @return Plan|null
+     */
+    public function plan()
+    {
+        return $this->product()->plan ?? null;
+    }
+
+    /**
+     * @return Plan|null
+     */
+    public function active_plan()
+    {
+        return $this->with(['subscription' => function ($query) {
+                $query->where('stripe_status', '=', 'active')->with('plan');
+            }])->get()->first()->subscription[0]->plan ?? null;
+    }
+
     /**
      * @param  string  $product
      * @return bool
