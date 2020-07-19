@@ -92,6 +92,9 @@ Route::middleware('auth')->group(function () {
     /* @see AssertionController::show() */
     Route::get('/assertions/{assertion}', 'AssertionController@show')->name('assertions.show');
 
+    /* @see RunAssertionController::index() */
+    Route::post('/assertions/{assertion}/run', 'RunAssertionController@index')->name('assertions.run.index');
+
     /* @see AssertionResultController::index() */
     Route::get('/results', 'AssertionResultController@index')->name('results.index');
 

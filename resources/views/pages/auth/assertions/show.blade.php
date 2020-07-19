@@ -18,7 +18,7 @@
                     </template>
 
                     <template v-slot:default>
-                        <form method="POST" action="">
+                        <form method="POST" action="{{ route('assertions.run.index', ['assertion' => $assertion]) }}">
                             @csrf
                             <button type="submit" class="block no-underline w-full text-left italic text-gray-600 hover:bg-gray-300 p-2">
                                 Run
